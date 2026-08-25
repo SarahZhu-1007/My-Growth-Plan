@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>我的 Dashboard</title>
   
+  <!-- 📱 PWA 移动端配置 -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Dashboard">
@@ -42,6 +43,11 @@
     ::-webkit-scrollbar { width: 4px; height: 4px; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
     .nav-item.active { background: rgba(59,130,246,0.1); color: #2563eb; border-right: 3px solid #2563eb; }
+    .edit-btn-bar { position: fixed; bottom: 20px; right: 20px; z-index: 100; display: flex; gap: 8px; }
+    .edit-action-btn { padding: 10px 16px; border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: none; }
+    .edit-toggle { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; }
+    .edit-save { background: linear-gradient(135deg, #10b981, #059669); color: white; }
+    .edit-reset { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
   </style>
 </head>
 <body class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 min-h-screen pb-20 lg:pb-6">
@@ -59,16 +65,24 @@
   </div>
   <nav class="p-4 space-y-1">
     <a href="#section-learning" onclick="toggleSidebar()" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50 transition-all">
-      <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center text-sm">🇬🇧</span>
-      <span class="font-medium text-sm">英语每日 30 词</span>
+      <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center text-sm">📚</span>
+      <span class="font-medium text-sm">学习成长与英语</span>
     </a>
     <a href="#section-hr" onclick="toggleSidebar()" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50 transition-all">
       <span class="w-8 h-8 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center text-sm">⚖️</span>
       <span class="font-medium text-sm">HR 常用法规库</span>
     </a>
+    <a href="#section-life" onclick="toggleSidebar()" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50 transition-all">
+      <span class="w-8 h-8 bg-pink-100 text-pink-600 rounded-lg flex items-center justify-center text-sm">🌸</span>
+      <span class="font-medium text-sm">生活小确幸</span>
+    </a>
     <a href="#section-media" onclick="toggleSidebar()" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50 transition-all">
-      <span class="w-8 h-8 bg-red-100 text-red-600 rounded-lg flex items-center justify-center text-sm">🎵</span>
-      <span class="font-medium text-sm">网易云与影音角</span>
+      <span class="w-8 h-8 bg-red-100 text-red-600 rounded-lg flex items-center justify-center text-sm">🎬</span>
+      <span class="font-medium text-sm">影音与读书角</span>
+    </a>
+    <a href="#section-tracking" onclick="toggleSidebar()" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50 transition-all">
+      <span class="w-8 h-8 bg-green-100 text-green-600 rounded-lg flex items-center justify-center text-sm">📊</span>
+      <span class="font-medium text-sm">打卡追踪</span>
     </a>
   </nav>
 </aside>
@@ -88,38 +102,43 @@
 <main class="lg:ml-64 min-h-screen p-4 pt-18 lg:p-6">
   <div class="max-w-6xl mx-auto">
 
-    <!-- 顶部 Header -->
+    <!-- 顶部 Banner -->
     <div class="mb-6 mt-12 lg:mt-0">
       <h1 class="text-2xl lg:text-3xl font-bold text-gray-800 mb-1">✨ 我的成长与生活 Dashboard</h1>
       <p class="text-xs lg:text-sm text-gray-500" id="currentDate"></p>
     </div>
 
-    <!-- ===== 1. 英语学习版块 (网络每日自动更新 30 词) ===== -->
+    <!-- ===== SECTION 1: 学习成长 (含每日 30 词联网获取) ===== -->
     <section id="section-learning" class="mb-8 scroll-mt-20">
       <div class="flex items-center justify-between mb-3">
         <div class="flex items-center gap-2">
-          <span class="text-xl">🇬🇧</span>
-          <h2 class="text-lg font-bold text-gray-800">每日英语单词 (联网自动刷新 30 词)</h2>
+          <span class="text-xl">📚</span>
+          <h2 class="text-lg font-bold text-gray-800">学习成长与英语</h2>
         </div>
-        <span class="text-xs bg-blue-100 text-blue-700 px-2.5 py-1 rounded-full font-medium" id="wordProgress">加载中...</span>
       </div>
       
-      <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-blue-100">
-        <div id="wordContainer" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 max-h-80 overflow-y-auto pr-1">
-          <!-- 动态渲染单词列表 -->
+      <!-- 每日英语 30 词 API 自动刷新版块 -->
+      <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-blue-100 mb-4">
+        <div class="flex items-center justify-between mb-3 border-b border-gray-100 pb-2">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">🇬🇧</span>
+            <h3 class="font-bold text-gray-800 text-sm">英语每日 30 词 (联网自动刷新)</h3>
+          </div>
+          <span class="text-xs bg-blue-100 text-blue-700 px-2.5 py-0.5 rounded-full font-medium" id="wordProgress">加载中...</span>
         </div>
-        <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center text-xs text-gray-500">
-          <span>💡 单词每天自动更新，点击卡片标记为“已掌握”</span>
-          <button onclick="refreshWords(true)" class="text-blue-600 font-medium hover:underline">🔄 强制刷新今日单词</button>
+        <div id="wordContainer" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 max-h-72 overflow-y-auto pr-1"></div>
+        <div class="mt-3 pt-2 border-t border-gray-100 flex justify-between items-center text-[11px] text-gray-400">
+          <span>💡 点击卡片标为已掌握，每日自动更换词库</span>
+          <button onclick="refreshWords(true)" class="text-blue-600 font-medium hover:underline">🔄 换一批</button>
         </div>
       </div>
     </section>
 
-    <!-- ===== 2. HR 法规联动版块 ===== -->
+    <!-- ===== SECTION 2: HR 常用法规库 (直接联动网络) ===== -->
     <section id="section-hr" class="mb-8 scroll-mt-20">
       <div class="flex items-center gap-2 mb-3">
         <span class="text-xl">⚖️</span>
-        <h2 class="text-lg font-bold text-gray-800">HR 常用劳动法规 (直接调取官方原文)</h2>
+        <h2 class="text-lg font-bold text-gray-800">HR 常用法规库 (直连网络官方文本)</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <!-- 劳动合同法 -->
@@ -129,11 +148,11 @@
               <h3 class="font-bold text-gray-800 text-sm">《中华人民共和国劳动合同法》</h3>
               <p class="text-[11px] text-gray-400 mt-0.5">人社部官方政策法规库</p>
             </div>
-            <span class="text-[10px] bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full">官方链接</span>
+            <span class="text-[10px] bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full">官方原文</span>
           </div>
-          <p class="text-xs text-gray-600 mb-4 line-clamp-2">涉及劳动合同订立、履行、变更、解除以及经济补偿金等核心法条指南。</p>
+          <p class="text-xs text-gray-600 mb-4 line-clamp-2">包含劳动合同订立、试用期、解除与终止、经济补偿金等关键法条指南。</p>
           <a href="https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/fl/202011/t20201102_394622.html" target="_blank" class="block w-full text-center py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 font-medium text-xs rounded-xl transition-all">
-            🔗 跳转阅读《劳动合同法》全文
+            🔗 调取《劳动合同法》全文
           </a>
         </div>
 
@@ -144,36 +163,66 @@
               <h3 class="font-bold text-gray-800 text-sm">《中华人民共和国劳动法》</h3>
               <p class="text-[11px] text-gray-400 mt-0.5">中国政府网 / 人社部</p>
             </div>
-            <span class="text-[10px] bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full">官方链接</span>
+            <span class="text-[10px] bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full">官方原文</span>
           </div>
           <p class="text-xs text-gray-600 mb-4 line-clamp-2">关于工时休息假期、工资支付、劳动安全卫生及劳动争议处理的基本法依据。</p>
           <a href="https://www.gov.cn/banshi/2005-05/25/content_905.htm" target="_blank" class="block w-full text-center py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-medium text-xs rounded-xl transition-all">
-            🔗 跳转阅读《劳动法》全文
+            🔗 调取《劳动法》全文
           </a>
         </div>
       </div>
     </section>
 
-    <!-- ===== 3. 影音与网易云音乐 App 联动 ===== -->
+    <!-- ===== SECTION 3: 生活小确幸 ===== -->
+    <section id="section-life" class="mb-8 scroll-mt-20">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="text-xl">🌸</span>
+        <h2 class="text-lg font-bold text-gray-800">生活小确幸</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-pink-100">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-bold text-xs text-gray-800">☕ 每日咖啡</span>
+            <span class="text-[10px] bg-pink-100 text-pink-700 px-2 py-0.5 rounded-full">好心情</span>
+          </div>
+          <p class="text-xs text-gray-600">下午的一杯美式，是开启高效工作的钥匙 ✨</p>
+        </div>
+        <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-orange-100">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-bold text-xs text-gray-800">🏃 户外散步</span>
+            <span class="text-[10px] bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full">放松</span>
+          </div>
+          <p class="text-xs text-gray-600">晚饭后散步 30 分钟，感受晚风与落日 🌅</p>
+        </div>
+        <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-teal-100">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-bold text-xs text-gray-800">🌱 绿植养护</span>
+            <span class="text-[10px] bg-teal-100 text-teal-700 px-2 py-0.5 rounded-full">治愈</span>
+          </div>
+          <p class="text-xs text-gray-600">桌上的龟背竹长出了新叶子 🪴</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECTION 4: 影音与网易云音乐 App 联动 ===== -->
     <section id="section-media" class="mb-8 scroll-mt-20">
       <div class="flex items-center gap-2 mb-3">
         <span class="text-xl">🎬</span>
         <h2 class="text-lg font-bold text-gray-800">影音与网易云音乐</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <!-- 网易云音乐直连 App -->
+        <!-- 网易云音乐 App 唤醒卡片 -->
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-red-100">
           <div class="flex items-center justify-between mb-2">
-            <span class="font-bold text-xs text-gray-800">🎵 每日音乐推荐</span>
-            <span class="text-[10px] bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-medium">网易云VIP</span>
+            <span class="font-bold text-xs text-gray-800">🎵 音乐角 (网易云)</span>
+            <span class="text-[10px] bg-red-100 text-red-700 px-2 py-0.5 rounded-full">已装 App</span>
           </div>
           <div class="bg-gradient-to-r from-red-600 to-rose-500 text-white rounded-xl p-3 mb-3">
-            <p class="font-bold text-xs">打开网易云 App</p>
-            <p class="text-[10px] text-red-100 mt-1">一键唤醒手机本地 App 继续听歌</p>
+            <p class="font-bold text-xs">打开网易云 App 听歌</p>
+            <p class="text-[10px] text-red-100 mt-1">智能调用手机本地 App 打开播放</p>
           </div>
-          <!-- 唤醒网易云 App 的协议 -->
           <button onclick="openNeteaseMusic()" class="w-full text-center py-2 bg-red-500 hover:bg-red-600 text-white text-xs font-semibold rounded-xl shadow-sm transition-all">
-            🎧 打开网易云音乐 App
+            🎧 唤醒网易云音乐 App
           </button>
         </div>
 
@@ -190,27 +239,45 @@
         </div>
 
         <!-- 影视推荐 -->
-        <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-rose-100">
+        <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-blue-100">
           <div class="flex items-center justify-between mb-2">
             <span class="font-bold text-xs text-gray-800">🍿 影视推荐</span>
-            <span class="text-[10px] bg-rose-100 text-rose-700 px-2 py-0.5 rounded-full">9.4分</span>
+            <span class="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">科幻</span>
           </div>
           <p class="font-bold text-xs text-gray-800">《星际穿越》</p>
-          <p class="text-[11px] text-gray-600 italic bg-rose-50/60 p-2.5 rounded-lg mt-2 border border-rose-100">
+          <p class="text-[11px] text-gray-600 italic bg-blue-50/60 p-2.5 rounded-lg mt-2 border border-blue-100">
             "Love is the one thing that transcends time and space."
           </p>
         </div>
       </div>
     </section>
 
+    <!-- ===== SECTION 5: 打卡追踪 ===== -->
+    <section id="section-tracking" class="mb-8 scroll-mt-20">
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">📊</span>
+          <h2 class="text-lg font-bold text-gray-800">打卡追踪</h2>
+        </div>
+      </div>
+      <div id="trackingContainer" class="grid grid-cols-2 lg:grid-cols-4 gap-3"></div>
+    </section>
+
   </div>
 </main>
 
 <script>
-// 日期显示
+// 基础打卡数据
+const DEFAULT_TRACKING = [
+  { id: "study", icon: "📝", title: "每日英语打卡", value: 12, color: "blue", btnText: "今日打卡" },
+  { id: "fit", icon: "💪", title: "健身运动", value: 4, color: "orange", btnText: "记录运动" },
+  { id: "water", icon: "💧", title: "饮水 2000ml", value: 6, color: "teal", btnText: "加一杯水" },
+  { id: "read", icon: "📚", title: "阅读 30 分钟", value: 8, color: "purple", btnText: "打卡读书" }
+];
+
 document.getElementById('currentDate').textContent = new Date().toLocaleDateString('zh-CN', { month: 'long', day: 'numeric', weekday: 'long' });
 
-// 1. 英语单词联网自动刷新逻辑
+// 1. 英语单词 API 请求
 async function loadDailyWords(forceRefresh = false) {
   const today = new Date().toISOString().split('T')[0];
   const savedDate = localStorage.getItem('word_date');
@@ -222,7 +289,7 @@ async function loadDailyWords(forceRefresh = false) {
   }
 
   const container = document.getElementById('wordContainer');
-  container.innerHTML = `<div class="col-span-full text-center text-xs text-gray-400 py-4">🌐 正在联网请求 30 个全新单词...</div>`;
+  container.innerHTML = `<div class="col-span-full text-center text-xs text-gray-400 py-4">🌐 正在联网拉取今日 30 词...</div>`;
 
   try {
     const res = await fetch('https://random-word-api.herokuapp.com/word?number=30');
@@ -233,8 +300,8 @@ async function loadDailyWords(forceRefresh = false) {
     localStorage.setItem('word_list', JSON.stringify(formattedWords));
     renderWords(formattedWords);
   } catch (err) {
-    console.error("网络请求失败", err);
-    container.innerHTML = `<div class="col-span-full text-center text-xs text-red-400 py-4">网络请求失败，请检查手机网络设置。</div>`;
+    console.error(err);
+    container.innerHTML = `<div class="col-span-full text-center text-xs text-red-400 py-4">网络连接超时，点击换一批重试</div>`;
   }
 }
 
@@ -244,10 +311,10 @@ function renderWords(words) {
   document.getElementById('wordProgress').textContent = `已掌握 ${doneCount} / ${words.length}`;
 
   container.innerHTML = words.map(item => `
-    <div onclick="toggleWord(${item.id})" class="cursor-pointer p-2.5 rounded-xl border transition-all text-center ${item.done ? 'bg-green-50 border-green-200 text-green-700' : 'bg-gray-50 border-gray-100 text-gray-800'}">
+    <div onclick="toggleWord(${item.id})" class="cursor-pointer p-2 rounded-xl border transition-all text-center ${item.done ? 'bg-green-50 border-green-200 text-green-700' : 'bg-gray-50 border-gray-100 text-gray-800'}">
       <p class="font-bold text-xs capitalize ${item.done ? 'line-through opacity-70' : ''}">${item.word}</p>
-      <span class="text-[9px] mt-1 inline-block ${item.done ? 'text-green-600 font-semibold' : 'text-gray-400'}">
-        ${item.done ? '✓ 已记住' : '点击完成'}
+      <span class="text-[9px] mt-0.5 block ${item.done ? 'text-green-600 font-semibold' : 'text-gray-400'}">
+        ${item.done ? '✓ 已掌握' : '点击完成'}
       </span>
     </div>
   `).join('');
@@ -263,20 +330,32 @@ function toggleWord(id) {
 }
 
 function refreshWords(force) {
-  if(confirm("确定强制重新获取 30 个全新词汇吗？")) {
-    loadDailyWords(force);
-  }
+  loadDailyWords(force);
 }
 
-// 2. 网易云音乐 APP 调起逻辑 (Deep Link)
+// 2. 网易云 App 唤醒
 function openNeteaseMusic() {
-  // 尝试使用 Deep Link 唤醒手机网易云音乐客户端
   window.location.href = "orpheus://";
-  
-  // 降级策略：如果手机未安装，1.5 秒后自动跳转至网易云网页版
-  setTimeout(() => {
-    window.location.href = "https://music.163.com";
-  }, 1500);
+  setTimeout(() => { window.location.href = "https://music.163.com"; }, 1500);
+}
+
+// 3. 渲染打卡板块
+function renderTracking() {
+  const container = document.getElementById('trackingContainer');
+  container.innerHTML = DEFAULT_TRACKING.map(item => `
+    <div class="bg-white rounded-2xl p-3 shadow-sm border border-gray-100 text-center">
+      <span class="text-2xl">${item.icon}</span>
+      <p class="text-xs text-gray-500 mt-1">${item.title}</p>
+      <p class="text-xl font-bold text-${item.color}-600 my-1">${item.value}</p>
+      <button onclick="checkIn(this)" class="w-full py-1 bg-${item.color}-50 text-${item.color}-600 rounded-lg text-xs font-medium">${item.btnText}</button>
+    </div>
+  `).join('');
+}
+
+function checkIn(btn) {
+  const text = btn.textContent;
+  btn.textContent = "✓ 已完成";
+  setTimeout(() => btn.textContent = text, 1500);
 }
 
 function toggleSidebar() {
@@ -284,8 +363,8 @@ function toggleSidebar() {
   document.getElementById('sidebarOverlay').classList.toggle('hidden');
 }
 
-// 页面加载自动拉取单词
 loadDailyWords();
+renderTracking();
 </script>
 </body>
 </html>
