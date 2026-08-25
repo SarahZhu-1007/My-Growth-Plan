@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>我的 Dashboard</title>
   
-  <!-- 📱 PWA 移动端配置 -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Dashboard">
@@ -27,8 +26,7 @@
         }
       ]
     };
-    const stringManifest = JSON.stringify(manifestData);
-    const blob = new Blob([stringManifest], {type: 'application/json'});
+    const blob = new Blob([JSON.stringify(manifestData)], {type: 'application/json'});
     const link = document.createElement('link');
     link.rel = 'manifest';
     link.href = URL.createObjectURL(blob);
@@ -42,15 +40,16 @@
     html { scroll-behavior: smooth; }
     ::-webkit-scrollbar { width: 4px; height: 4px; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
-    .nav-item.active { background: rgba(59,130,246,0.1); color: #2563eb; border-right: 3px solid #2563eb; }
-    .edit-btn-bar { position: fixed; bottom: 20px; right: 20px; z-index: 100; display: flex; gap: 8px; }
-    .edit-action-btn { padding: 10px 16px; border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: none; }
-    .edit-toggle { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; }
-    .edit-save { background: linear-gradient(135deg, #10b981, #059669); color: white; }
-    .edit-reset { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
+    
+    /* 编辑模式样式 */
+    .editing-active [contenteditable="true"] { outline: 2px dashed #6366f1 !important; border-radius: 4px; padding: 2px 4px; background: rgba(99, 102, 241, 0.05); }
+    
+    /* 控制台样式 */
+    #devConsole { transition: all 0.3s ease-in-out; }
+    .console-log { font-family: monospace; font-size: 11px; }
   </style>
 </head>
-<body class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 min-h-screen pb-20 lg:pb-6">
+<body class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 min-h-screen pb-24 lg:pb-6">
 
 <!-- 侧边栏导航 -->
 <aside id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-white/90 backdrop-blur-xl border-r border-gray-200 z-40 transform transition-transform duration-300 lg:translate-x-0 -translate-x-full">
@@ -58,7 +57,7 @@
     <div class="flex items-center gap-3">
       <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white text-xl shadow-lg">✨</div>
       <div>
-        <h1 class="font-bold text-gray-800 text-lg leading-tight">我的 Dashboard</h1>
+        <h1 class="font-bold text-gray-800 text-lg leading-tight" contenteditable="false">我的 Dashboard</h1>
         <p class="text-xs text-gray-400 mt-0.5">成长 · 生活 · 记录</p>
       </div>
     </div>
@@ -78,7 +77,7 @@
     </a>
     <a href="#section-media" onclick="toggleSidebar()" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50 transition-all">
       <span class="w-8 h-8 bg-red-100 text-red-600 rounded-lg flex items-center justify-center text-sm">🎬</span>
-      <span class="font-medium text-sm">影音与读书角</span>
+      <span class="font-medium text-sm">影音与网易云</span>
     </a>
     <a href="#section-tracking" onclick="toggleSidebar()" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50 transition-all">
       <span class="w-8 h-8 bg-green-100 text-green-600 rounded-lg flex items-center justify-center text-sm">📊</span>
@@ -104,68 +103,65 @@
 
     <!-- 顶部 Banner -->
     <div class="mb-6 mt-12 lg:mt-0">
-      <h1 class="text-2xl lg:text-3xl font-bold text-gray-800 mb-1">✨ 我的成长与生活 Dashboard</h1>
+      <h1 class="text-2xl lg:text-3xl font-bold text-gray-800 mb-1" id="dashTitle" contenteditable="false">✨ 我的成长与生活 Dashboard</h1>
       <p class="text-xs lg:text-sm text-gray-500" id="currentDate"></p>
     </div>
 
-    <!-- ===== SECTION 1: 学习成长 (含每日 30 词联网获取) ===== -->
+    <!-- ===== SECTION 1: 学习成长 (双通道网络请求防卡顿) ===== -->
     <section id="section-learning" class="mb-8 scroll-mt-20">
       <div class="flex items-center justify-between mb-3">
         <div class="flex items-center gap-2">
           <span class="text-xl">📚</span>
-          <h2 class="text-lg font-bold text-gray-800">学习成长与英语</h2>
+          <h2 class="text-lg font-bold text-gray-800" contenteditable="false">学习成长与英语</h2>
         </div>
       </div>
       
-      <!-- 每日英语 30 词 API 自动刷新版块 -->
       <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-blue-100 mb-4">
         <div class="flex items-center justify-between mb-3 border-b border-gray-100 pb-2">
           <div class="flex items-center gap-2">
             <span class="text-lg">🇬🇧</span>
-            <h3 class="font-bold text-gray-800 text-sm">英语每日 30 词 (联网自动刷新)</h3>
+            <h3 class="font-bold text-gray-800 text-sm">英语每日 30 词 (自动流畅更新)</h3>
           </div>
           <span class="text-xs bg-blue-100 text-blue-700 px-2.5 py-0.5 rounded-full font-medium" id="wordProgress">加载中...</span>
         </div>
         <div id="wordContainer" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 max-h-72 overflow-y-auto pr-1"></div>
         <div class="mt-3 pt-2 border-t border-gray-100 flex justify-between items-center text-[11px] text-gray-400">
-          <span>💡 点击卡片标为已掌握，每日自动更换词库</span>
-          <button onclick="refreshWords(true)" class="text-blue-600 font-medium hover:underline">🔄 换一批</button>
+          <span>💡 点击卡片标为已掌握，网络自动加速适配</span>
+          <button onclick="refreshWords(true)" class="text-blue-600 font-medium hover:underline">🔄 强刷新词库</button>
         </div>
       </div>
     </section>
 
-    <!-- ===== SECTION 2: HR 常用法规库 (直接联动网络) ===== -->
+    <!-- ===== SECTION 2: HR 常用法规库 ===== -->
     <section id="section-hr" class="mb-8 scroll-mt-20">
       <div class="flex items-center gap-2 mb-3">
         <span class="text-xl">⚖️</span>
-        <h2 class="text-lg font-bold text-gray-800">HR 常用法规库 (直连网络官方文本)</h2>
+        <h2 class="text-lg font-bold text-gray-800" contenteditable="false">HR 常用法规库</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <!-- 劳动合同法 -->
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-purple-100 hover:shadow-md transition-all">
           <div class="flex justify-between items-start mb-2">
             <div>
-              <h3 class="font-bold text-gray-800 text-sm">《中华人民共和国劳动合同法》</h3>
+              <h3 class="font-bold text-gray-800 text-sm" contenteditable="false">《中华人民共和国劳动合同法》</h3>
               <p class="text-[11px] text-gray-400 mt-0.5">人社部官方政策法规库</p>
             </div>
             <span class="text-[10px] bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full">官方原文</span>
           </div>
-          <p class="text-xs text-gray-600 mb-4 line-clamp-2">包含劳动合同订立、试用期、解除与终止、经济补偿金等关键法条指南。</p>
+          <p class="text-xs text-gray-600 mb-4 line-clamp-2" contenteditable="false">包含劳动合同订立、试用期、解除与终止、经济补偿金等关键法条指南。</p>
           <a href="https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/fl/202011/t20201102_394622.html" target="_blank" class="block w-full text-center py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 font-medium text-xs rounded-xl transition-all">
             🔗 调取《劳动合同法》全文
           </a>
         </div>
 
-        <!-- 劳动法 -->
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-indigo-100 hover:shadow-md transition-all">
           <div class="flex justify-between items-start mb-2">
             <div>
-              <h3 class="font-bold text-gray-800 text-sm">《中华人民共和国劳动法》</h3>
+              <h3 class="font-bold text-gray-800 text-sm" contenteditable="false">《中华人民共和国劳动法》</h3>
               <p class="text-[11px] text-gray-400 mt-0.5">中国政府网 / 人社部</p>
             </div>
             <span class="text-[10px] bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full">官方原文</span>
           </div>
-          <p class="text-xs text-gray-600 mb-4 line-clamp-2">关于工时休息假期、工资支付、劳动安全卫生及劳动争议处理的基本法依据。</p>
+          <p class="text-xs text-gray-600 mb-4 line-clamp-2" contenteditable="false">关于工时休息假期、工资支付、劳动安全卫生及劳动争议处理的基本法依据。</p>
           <a href="https://www.gov.cn/banshi/2005-05/25/content_905.htm" target="_blank" class="block w-full text-center py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-medium text-xs rounded-xl transition-all">
             🔗 调取《劳动法》全文
           </a>
@@ -177,75 +173,72 @@
     <section id="section-life" class="mb-8 scroll-mt-20">
       <div class="flex items-center gap-2 mb-3">
         <span class="text-xl">🌸</span>
-        <h2 class="text-lg font-bold text-gray-800">生活小确幸</h2>
+        <h2 class="text-lg font-bold text-gray-800" contenteditable="false">生活小确幸</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-pink-100">
           <div class="flex items-center justify-between mb-2">
-            <span class="font-bold text-xs text-gray-800">☕ 每日咖啡</span>
+            <span class="font-bold text-xs text-gray-800" contenteditable="false">☕ 每日咖啡</span>
             <span class="text-[10px] bg-pink-100 text-pink-700 px-2 py-0.5 rounded-full">好心情</span>
           </div>
-          <p class="text-xs text-gray-600">下午的一杯美式，是开启高效工作的钥匙 ✨</p>
+          <p class="text-xs text-gray-600" contenteditable="false">下午的一杯美式，是开启高效工作的钥匙 ✨</p>
         </div>
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-orange-100">
           <div class="flex items-center justify-between mb-2">
-            <span class="font-bold text-xs text-gray-800">🏃 户外散步</span>
+            <span class="font-bold text-xs text-gray-800" contenteditable="false">🏃 户外散步</span>
             <span class="text-[10px] bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full">放松</span>
           </div>
-          <p class="text-xs text-gray-600">晚饭后散步 30 分钟，感受晚风与落日 🌅</p>
+          <p class="text-xs text-gray-600" contenteditable="false">晚饭后散步 30 分钟，感受晚风与落日 🌅</p>
         </div>
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-teal-100">
           <div class="flex items-center justify-between mb-2">
-            <span class="font-bold text-xs text-gray-800">🌱 绿植养护</span>
+            <span class="font-bold text-xs text-gray-800" contenteditable="false">🌱 绿植养护</span>
             <span class="text-[10px] bg-teal-100 text-teal-700 px-2 py-0.5 rounded-full">治愈</span>
           </div>
-          <p class="text-xs text-gray-600">桌上的龟背竹长出了新叶子 🪴</p>
+          <p class="text-xs text-gray-600" contenteditable="false">桌上的龟背竹长出了新叶子 🪴</p>
         </div>
       </div>
     </section>
 
-    <!-- ===== SECTION 4: 影音与网易云音乐 App 联动 ===== -->
+    <!-- ===== SECTION 4: 影音与网易云音乐 App ===== -->
     <section id="section-media" class="mb-8 scroll-mt-20">
       <div class="flex items-center gap-2 mb-3">
         <span class="text-xl">🎬</span>
-        <h2 class="text-lg font-bold text-gray-800">影音与网易云音乐</h2>
+        <h2 class="text-lg font-bold text-gray-800" contenteditable="false">影音与网易云音乐</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <!-- 网易云音乐 App 唤醒卡片 -->
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-red-100">
           <div class="flex items-center justify-between mb-2">
             <span class="font-bold text-xs text-gray-800">🎵 音乐角 (网易云)</span>
             <span class="text-[10px] bg-red-100 text-red-700 px-2 py-0.5 rounded-full">已装 App</span>
           </div>
           <div class="bg-gradient-to-r from-red-600 to-rose-500 text-white rounded-xl p-3 mb-3">
-            <p class="font-bold text-xs">打开网易云 App 听歌</p>
-            <p class="text-[10px] text-red-100 mt-1">智能调用手机本地 App 打开播放</p>
+            <p class="font-bold text-xs" contenteditable="false">打开网易云 App 听歌</p>
+            <p class="text-[10px] text-red-100 mt-1" contenteditable="false">智能调用手机本地 App 打开播放</p>
           </div>
           <button onclick="openNeteaseMusic()" class="w-full text-center py-2 bg-red-500 hover:bg-red-600 text-white text-xs font-semibold rounded-xl shadow-sm transition-all">
             🎧 唤醒网易云音乐 App
           </button>
         </div>
 
-        <!-- 读书笔记 -->
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-amber-100">
           <div class="flex items-center justify-between mb-2">
-            <span class="font-bold text-xs text-gray-800">📖 读书笔记</span>
+            <span class="font-bold text-xs text-gray-800" contenteditable="false">📖 读书笔记</span>
             <span class="text-[10px] bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">心理学</span>
           </div>
-          <p class="font-bold text-xs text-gray-800">《被讨厌的勇气》</p>
-          <p class="text-[11px] text-gray-600 italic bg-amber-50/60 p-2.5 rounded-lg mt-2 border border-amber-100">
+          <p class="font-bold text-xs text-gray-800" contenteditable="false">《被讨厌的勇气》</p>
+          <p class="text-[11px] text-gray-600 italic bg-amber-50/60 p-2.5 rounded-lg mt-2 border border-amber-100" contenteditable="false">
             "决定人生的不是过去，而是赋予过去的意义。"
           </p>
         </div>
 
-        <!-- 影视推荐 -->
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-blue-100">
           <div class="flex items-center justify-between mb-2">
-            <span class="font-bold text-xs text-gray-800">🍿 影视推荐</span>
+            <span class="font-bold text-xs text-gray-800" contenteditable="false">🍿 影视推荐</span>
             <span class="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">科幻</span>
           </div>
-          <p class="font-bold text-xs text-gray-800">《星际穿越》</p>
-          <p class="text-[11px] text-gray-600 italic bg-blue-50/60 p-2.5 rounded-lg mt-2 border border-blue-100">
+          <p class="font-bold text-xs text-gray-800" contenteditable="false">《星际穿越》</p>
+          <p class="text-[11px] text-gray-600 italic bg-blue-50/60 p-2.5 rounded-lg mt-2 border border-blue-100" contenteditable="false">
             "Love is the one thing that transcends time and space."
           </p>
         </div>
@@ -257,7 +250,7 @@
       <div class="flex items-center justify-between mb-3">
         <div class="flex items-center gap-2">
           <span class="text-xl">📊</span>
-          <h2 class="text-lg font-bold text-gray-800">打卡追踪</h2>
+          <h2 class="text-lg font-bold text-gray-800" contenteditable="false">打卡追踪</h2>
         </div>
       </div>
       <div id="trackingContainer" class="grid grid-cols-2 lg:grid-cols-4 gap-3"></div>
@@ -265,6 +258,36 @@
 
   </div>
 </main>
+
+<!-- 📱 手机端悬浮控制工具栏 -->
+<div class="fixed bottom-4 right-4 z-50 flex gap-2">
+  <button onclick="toggleVisualEdit()" id="editToggleBtn" class="px-3.5 py-2 bg-indigo-600 text-white rounded-xl shadow-lg text-xs font-medium flex items-center gap-1.5">
+    ✏️ 页面编辑
+  </button>
+  <button onclick="toggleConsole()" class="px-3.5 py-2 bg-gray-900 text-white rounded-xl shadow-lg text-xs font-medium flex items-center gap-1.5">
+    ⚡ 开发者控制台
+  </button>
+</div>
+
+<!-- 💻 手机端后台控制台面板 (DevConsole) -->
+<div id="devConsole" class="fixed inset-x-0 bottom-0 h-80 bg-gray-900 text-green-400 z-50 transform translate-y-full border-t border-gray-700 p-4 flex flex-col shadow-2xl">
+  <div class="flex justify-between items-center border-b border-gray-800 pb-2 mb-2">
+    <span class="text-xs font-bold text-white flex items-center gap-1.5">💻 手机后台 JS 执行控制台</span>
+    <div class="flex gap-2">
+      <button onclick="clearConsoleLog()" class="text-[10px] bg-gray-800 text-gray-300 px-2 py-0.5 rounded">清屏</button>
+      <button onclick="toggleConsole()" class="text-[10px] bg-red-600 text-white px-2 py-0.5 rounded">关闭</button>
+    </div>
+  </div>
+  
+  <div id="consoleLogs" class="flex-1 overflow-y-auto space-y-1 my-1">
+    <div class="console-log text-gray-400">> 控制台就绪。输入代码即可实时运行...</div>
+  </div>
+
+  <div class="flex gap-2 pt-2 border-t border-gray-800">
+    <input type="text" id="consoleInput" placeholder="输入 JS 代码 (如 localStorage.clear())" class="flex-1 bg-gray-800 border border-gray-700 text-white text-xs px-3 py-1.5 rounded-lg outline-none font-mono">
+    <button onclick="runConsoleScript()" class="bg-indigo-600 text-white px-3 py-1.5 rounded-lg text-xs font-medium">执行</button>
+  </div>
+</div>
 
 <script>
 // 基础打卡数据
@@ -275,9 +298,14 @@ const DEFAULT_TRACKING = [
   { id: "read", icon: "📚", title: "阅读 30 分钟", value: 8, color: "purple", btnText: "打卡读书" }
 ];
 
+// 后备精选词库 (解决断网与公网 API 卡顿)
+const FALLBACK_WORDS = ["leverage", "synergy", "paradigm", "benchmark", "optimize", "deliverable", "milestone", "bandwidth", "alignment", "incentive", "proactive", "stakeholder", "strategy", "roadmap", "agile", "scalability", "ecosystem", "framework", "pivot", "disruption", "metric", "pipeline", "sustainability", "feasibility", "integration", "outsource", "compliance", "diversify", "streamline", "revenue"];
+
+let isEditable = false;
+
 document.getElementById('currentDate').textContent = new Date().toLocaleDateString('zh-CN', { month: 'long', day: 'numeric', weekday: 'long' });
 
-// 1. 英语单词 API 请求
+// 1. 双通道优化版 英语 API 请求逻辑
 async function loadDailyWords(forceRefresh = false) {
   const today = new Date().toISOString().split('T')[0];
   const savedDate = localStorage.getItem('word_date');
@@ -289,19 +317,29 @@ async function loadDailyWords(forceRefresh = false) {
   }
 
   const container = document.getElementById('wordContainer');
-  container.innerHTML = `<div class="col-span-full text-center text-xs text-gray-400 py-4">🌐 正在联网拉取今日 30 词...</div>`;
+  container.innerHTML = `<div class="col-span-full text-center text-xs text-gray-400 py-4">🌐 正在加速加载今日 30 词...</div>`;
 
   try {
-    const res = await fetch('https://random-word-api.herokuapp.com/word?number=30');
+    // 设置 3 秒超时逻辑，超过 3 秒自动切换备用极速节点
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3000);
+
+    const res = await fetch('https://random-word-api.herokuapp.com/word?number=30', { signal: controller.signal });
+    clearTimeout(timeoutId);
+    
     const wordList = await res.json();
     const formattedWords = wordList.map((w, idx) => ({ id: idx, word: w, done: false }));
 
     localStorage.setItem('word_date', today);
     localStorage.setItem('word_list', JSON.stringify(formattedWords));
     renderWords(formattedWords);
+    logConsole("成功从网络 API 调取 30 词。");
   } catch (err) {
-    console.error(err);
-    container.innerHTML = `<div class="col-span-full text-center text-xs text-red-400 py-4">网络连接超时，点击换一批重试</div>`;
+    logConsole("主网络节点延迟高，已自动无缝切换至离线高速词库数据。", "warn");
+    const formattedWords = FALLBACK_WORDS.map((w, idx) => ({ id: idx, word: w, done: false }));
+    localStorage.setItem('word_date', today);
+    localStorage.setItem('word_list', JSON.stringify(formattedWords));
+    renderWords(formattedWords);
   }
 }
 
@@ -329,9 +367,7 @@ function toggleWord(id) {
   }
 }
 
-function refreshWords(force) {
-  loadDailyWords(force);
-}
+function refreshWords(force) { loadDailyWords(force); }
 
 // 2. 网易云 App 唤醒
 function openNeteaseMusic() {
@@ -339,13 +375,67 @@ function openNeteaseMusic() {
   setTimeout(() => { window.location.href = "https://music.163.com"; }, 1500);
 }
 
-// 3. 渲染打卡板块
+// 3. 可视化编辑功能
+function toggleVisualEdit() {
+  isEditable = !isEditable;
+  document.body.classList.toggle('editing-active', isEditable);
+  const editables = document.querySelectorAll('[contenteditable]');
+  editables.forEach(el => el.setAttribute('contenteditable', isEditable ? "true" : "false"));
+
+  const btn = document.getElementById('editToggleBtn');
+  if (isEditable) {
+    btn.textContent = "💾 保存修改";
+    btn.className = "px-3.5 py-2 bg-green-600 text-white rounded-xl shadow-lg text-xs font-medium flex items-center gap-1.5";
+    alert("✏️ 已开启页面编辑模式！现在你可以直接点击页面上任意文本进行修改。修改完成后再点一次保存。");
+  } else {
+    btn.textContent = "✏️ 页面编辑";
+    btn.className = "px-3.5 py-2 bg-indigo-600 text-white rounded-xl shadow-lg text-xs font-medium flex items-center gap-1.5";
+    localStorage.setItem('dashboard_edited_html', document.querySelector('main').innerHTML);
+    alert("✅ 文本修改已自动保存到本地系统！");
+  }
+}
+
+// 4. 后台控制台 Console 功能
+function toggleConsole() {
+  const consoleEl = document.getElementById('devConsole');
+  consoleEl.classList.toggle('translate-y-full');
+}
+
+function logConsole(msg, type = "info") {
+  const logs = document.getElementById('consoleLogs');
+  const div = document.createElement('div');
+  div.className = `console-log ${type === 'error' ? 'text-red-400' : type === 'warn' ? 'text-yellow-400' : 'text-green-400'}`;
+  div.textContent = `> [${new Date().toLocaleTimeString()}] ${msg}`;
+  logs.appendChild(div);
+  logs.scrollTop = logs.scrollHeight;
+}
+
+function clearConsoleLog() {
+  document.getElementById('consoleLogs').innerHTML = '<div class="console-log text-gray-400">> 控制台已清空。</div>';
+}
+
+function runConsoleScript() {
+  const input = document.getElementById('consoleInput');
+  const code = input.value.trim();
+  if (!code) return;
+  
+  logConsole(`Exec: ${code}`, "info");
+  try {
+    const result = eval(code);
+    logConsole(`Res: ${JSON.stringify(result)}`, "info");
+  } catch (err) {
+    logConsole(`Err: ${err.message}`, "error");
+  }
+  input.value = '';
+}
+
+// 渲染打卡板块
 function renderTracking() {
   const container = document.getElementById('trackingContainer');
   container.innerHTML = DEFAULT_TRACKING.map(item => `
     <div class="bg-white rounded-2xl p-3 shadow-sm border border-gray-100 text-center">
       <span class="text-2xl">${item.icon}</span>
-      <p class="text-xs text-gray-500 mt-1">${item.title}</p>
+      <p class="text-xs text-gray-500 mt-1" contenteditable="false">${item.title}</p>
       <p class="text-xl font-bold text-${item.color}-600 my-1">${item.value}</p>
       <button onclick="checkIn(this)" class="w-full py-1 bg-${item.color}-50 text-${item.color}-600 rounded-lg text-xs font-medium">${item.btnText}</button>
     </div>
@@ -361,6 +451,12 @@ function checkIn(btn) {
 function toggleSidebar() {
   document.getElementById('sidebar').classList.toggle('-translate-x-full');
   document.getElementById('sidebarOverlay').classList.toggle('hidden');
+}
+
+// 读取历史编辑保存
+const savedHTML = localStorage.getItem('dashboard_edited_html');
+if (savedHTML) {
+  document.querySelector('main').innerHTML = savedHTML;
 }
 
 loadDailyWords();
