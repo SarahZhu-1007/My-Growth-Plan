@@ -2,49 +2,51 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>我的成长与生活 Dashboard - 升级版</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>我的 Dashboard</title>
+  
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Dashboard">
+  <meta name="theme-color" content="#6366f1">
+  
+  <script>
+    const manifestData = {
+      "name": "我的成长与生活 Dashboard",
+      "short_name": "Dashboard",
+      "start_url": "./",
+      "display": "standalone",
+      "background_color": "#ffffff",
+      "theme_color": "#6366f1",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>",
+          "sizes": "192x192 512x512",
+          "type": "image/svg+xml"
+        }
+      ]
+    };
+    const stringManifest = JSON.stringify(manifestData);
+    const blob = new Blob([stringManifest], {type: 'application/json'});
+    const link = document.createElement('link');
+    link.rel = 'manifest';
+    link.href = URL.createObjectURL(blob);
+    document.head.appendChild(link);
+  </script>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
-    body { font-family: 'Noto Sans SC', sans-serif; }
-    .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+    body { font-family: 'Noto Sans SC', sans-serif; -webkit-tap-highlight-color: transparent; }
     html { scroll-behavior: smooth; }
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
     .nav-item.active { background: rgba(59,130,246,0.1); color: #2563eb; border-right: 3px solid #2563eb; }
-    .hr-nav-item.active { background: linear-gradient(90deg, rgba(99,102,241,0.15) 0%, transparent 100%); color: #4f46e5; border-left: 3px solid #4f46e5; }
-    .edit-input { border: 2px dashed #6366f1; background: #eef2ff; border-radius: 6px; padding: 4px 8px; outline: none; width: 100%; }
-    .edit-input:focus { border-style: solid; background: #e0e7ff; }
-    .edit-number { border: 2px dashed #6366f1; background: #eef2ff; border-radius: 6px; padding: 2px 8px; outline: none; width: 80px; text-align: center; }
-    .edit-textarea { border: 2px dashed #6366f1; background: #eef2ff; border-radius: 8px; padding: 8px; outline: none; width: 100%; resize: vertical; min-height: 60px; }
-    .edit-mode .editable { position: relative; }
-    .edit-mode .editable::after { content: "✏️"; position: absolute; top: -4px; right: -4px; font-size: 10px; opacity: 0.5; }
-    .tag-input { border: 1px dashed #a5b4fc; background: #eef2ff; border-radius: 12px; padding: 2px 8px; font-size: 11px; outline: none; }
-    .edit-btn-bar { position: fixed; bottom: 20px; right: 20px; z-index: 100; display: flex; gap: 8px; }
-    .edit-action-btn { padding: 10px 16px; border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: none; }
-    .edit-toggle { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; }
-    .edit-toggle:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(99,102,241,0.3); }
-    .edit-save { background: linear-gradient(135deg, #10b981, #059669); color: white; }
-    .edit-reset { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
-    .edit-export { background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; }
-    .hidden { display: none !important; }
-    .hr-content::-webkit-scrollbar { width: 4px; }
-    .book-cover { box-shadow: 0 8px 24px rgba(0,0,0,0.15); transition: transform 0.3s ease; }
-    .book-cover:hover { transform: translateY(-4px) rotateY(-5deg); }
-    .movie-poster { box-shadow: 0 8px 24px rgba(0,0,0,0.2); transition: transform 0.3s ease; }
-    .movie-poster:hover { transform: scale(1.03); }
-    .music-disc { animation: spin 8s linear infinite; }
-    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    .lyrics-text { text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-    .quote-mark { font-size: 2rem; line-height: 1; color: #cbd5e1; font-family: Georgia, serif; }
-    .biz-word { background: linear-gradient(135deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   </style>
 </head>
-<body class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 min-h-screen">
+<body class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 min-h-screen pb-20 lg:pb-6">
 
+<!-- 侧边栏导航 -->
 <aside id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-white/90 backdrop-blur-xl border-r border-gray-200 z-40 transform transition-transform duration-300 lg:translate-x-0 -translate-x-full">
   <div class="p-6 border-b border-gray-100">
     <div class="flex items-center gap-3">
@@ -56,1072 +58,234 @@
     </div>
   </div>
   <nav class="p-4 space-y-1">
-    <p class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">快速导航</p>
-    <a href="#section-learning" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50 transition-all group">
-      <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center text-sm group-hover:scale-110 transition-transform">📚</span>
-      <span class="font-medium text-sm">学习成长计划</span>
+    <a href="#section-learning" onclick="toggleSidebar()" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50 transition-all">
+      <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center text-sm">🇬🇧</span>
+      <span class="font-medium text-sm">英语每日 30 词</span>
     </a>
-    <a href="#section-life" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50 transition-all group">
-      <span class="w-8 h-8 bg-pink-100 text-pink-600 rounded-lg flex items-center justify-center text-sm group-hover:scale-110 transition-transform">🌸</span>
-      <span class="font-medium text-sm">生活小确幸</span>
+    <a href="#section-hr" onclick="toggleSidebar()" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50 transition-all">
+      <span class="w-8 h-8 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center text-sm">⚖️</span>
+      <span class="font-medium text-sm">HR 常用法规库</span>
     </a>
-    <a href="#section-tracking" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50 transition-all group">
-      <span class="w-8 h-8 bg-green-100 text-green-600 rounded-lg flex items-center justify-center text-sm group-hover:scale-110 transition-transform">📊</span>
-      <span class="font-medium text-sm">打卡追踪</span>
+    <a href="#section-media" onclick="toggleSidebar()" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50 transition-all">
+      <span class="w-8 h-8 bg-red-100 text-red-600 rounded-lg flex items-center justify-center text-sm">🎵</span>
+      <span class="font-medium text-sm">网易云与影音角</span>
     </a>
-    <a href="#section-stats" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50 transition-all group">
-      <span class="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center text-sm group-hover:scale-110 transition-transform">📈</span>
-      <span class="font-medium text-sm">数据概览</span>
-    </a>
-    <div class="my-4 border-t border-gray-100"></div>
-    <p class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">快捷操作</p>
-    <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50 transition-all group">
-      <span class="w-8 h-8 bg-gray-100 text-gray-600 rounded-lg flex items-center justify-center text-sm group-hover:scale-110 transition-transform">⬆️</span>
-      <span class="font-medium text-sm">回到顶部</span>
-    </button>
   </nav>
-  <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-100 bg-white/50">
-    <div class="flex items-center gap-3">
-      <div class="w-9 h-9 bg-gradient-to-br from-pink-400 to-orange-400 rounded-full flex items-center justify-center text-white text-sm font-bold">我</div>
-      <div class="flex-1 min-w-0">
-        <p class="text-sm font-medium text-gray-800 truncate">个人分享账号</p>
-        <p class="text-xs text-gray-400 truncate" id="sidebarDate"></p>
-      </div>
-    </div>
-  </div>
 </aside>
 
 <div id="sidebarOverlay" class="fixed inset-0 bg-black/30 z-30 hidden lg:hidden" onclick="toggleSidebar()"></div>
-<header class="lg:hidden fixed top-0 left-0 right-0 h-16 bg-white/90 backdrop-blur-xl border-b border-gray-200 z-30 flex items-center px-4">
-  <button onclick="toggleSidebar()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors">
+
+<!-- 移动端 App 顶部栏 -->
+<header class="lg:hidden fixed top-0 left-0 right-0 h-14 bg-white/90 backdrop-blur-xl border-b border-gray-200 z-30 flex items-center justify-between px-4">
+  <button onclick="toggleSidebar()" class="p-2 rounded-lg hover:bg-gray-100">
     <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
   </button>
-  <span class="ml-3 font-bold text-gray-800">我的 Dashboard</span>
+  <span class="font-bold text-gray-800 text-sm">我的 Dashboard App</span>
+  <div class="w-8"></div>
 </header>
 
-<main class="lg:ml-64 min-h-screen p-6 pt-20 lg:pt-6">
+<!-- 主内容区域 -->
+<main class="lg:ml-64 min-h-screen p-4 pt-18 lg:p-6">
   <div class="max-w-6xl mx-auto">
 
-    <!-- Header -->
-    <div class="mb-8 text-center lg:text-left">
-      <h1 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-2">✨ 我的成长与生活 Dashboard</h1>
-      <p class="text-gray-500" id="currentDate"></p>
-      <div class="mt-4 inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm">
-        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-        <span class="text-sm text-gray-600">实时更新中</span>
-      </div>
+    <!-- 顶部 Header -->
+    <div class="mb-6 mt-12 lg:mt-0">
+      <h1 class="text-2xl lg:text-3xl font-bold text-gray-800 mb-1">✨ 我的成长与生活 Dashboard</h1>
+      <p class="text-xs lg:text-sm text-gray-500" id="currentDate"></p>
     </div>
 
-    <!-- ===== SECTION 1: 学习成长 ===== -->
-    <section id="section-learning" class="mb-10 scroll-mt-6">
-      <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center text-white text-xl shadow-sm">📚</div>
-          <h2 class="text-2xl font-bold text-gray-800">个人学习成长计划</h2>
+    <!-- ===== 1. 英语学习版块 (网络每日自动更新 30 词) ===== -->
+    <section id="section-learning" class="mb-8 scroll-mt-20">
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🇬🇧</span>
+          <h2 class="text-lg font-bold text-gray-800">每日英语单词 (联网自动刷新 30 词)</h2>
         </div>
-        <button onclick="addLearningItem()" class="edit-only hidden px-3 py-1.5 bg-blue-100 text-blue-600 rounded-lg text-sm font-medium hover:bg-blue-200 transition">+ 添加学习项</button>
+        <span class="text-xs bg-blue-100 text-blue-700 px-2.5 py-1 rounded-full font-medium" id="wordProgress">加载中...</span>
       </div>
-      <div id="learningContainer" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
-    </section>
-
-    <!-- ===== SECTION 2: 生活小确幸 ===== -->
-    <section id="section-life" class="mb-10 scroll-mt-6">
-      <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 bg-pink-500 rounded-xl flex items-center justify-center text-white text-xl shadow-sm">🌸</div>
-          <h2 class="text-2xl font-bold text-gray-800">个人生活小确幸</h2>
+      
+      <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-blue-100">
+        <div id="wordContainer" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 max-h-80 overflow-y-auto pr-1">
+          <!-- 动态渲染单词列表 -->
         </div>
-        <button onclick="addLifeItem()" class="edit-only hidden px-3 py-1.5 bg-pink-100 text-pink-600 rounded-lg text-sm font-medium hover:bg-pink-200 transition">+ 添加生活项</button>
-      </div>
-      <div id="lifeContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"></div>
-    </section>
-
-    <!-- ===== SECTION 3: 打卡追踪 ===== -->
-    <section id="section-tracking" class="mb-10 scroll-mt-6">
-      <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center text-white text-xl shadow-sm">📊</div>
-          <h2 class="text-2xl font-bold text-gray-800">个人打卡追踪</h2>
+        <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center text-xs text-gray-500">
+          <span>💡 单词每天自动更新，点击卡片标记为“已掌握”</span>
+          <button onclick="refreshWords(true)" class="text-blue-600 font-medium hover:underline">🔄 强制刷新今日单词</button>
         </div>
-        <button onclick="addTrackingItem()" class="edit-only hidden px-3 py-1.5 bg-green-100 text-green-600 rounded-lg text-sm font-medium hover:bg-green-200 transition">+ 添加追踪项</button>
-      </div>
-      <div id="trackingContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"></div>
-    </section>
-
-    <!-- ===== SECTION 4: 数据概览 ===== -->
-    <section id="section-stats" class="mb-10 scroll-mt-6">
-      <div class="bg-white/80 backdrop-blur rounded-2xl p-6 shadow-sm border border-gray-100">
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="font-bold text-gray-800">📈 本周数据概览</h3>
-          <button onclick="editStats()" class="edit-only hidden px-3 py-1 bg-indigo-100 text-indigo-600 rounded-lg text-xs font-medium">编辑数据</button>
-        </div>
-        <div id="statsContainer" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
       </div>
     </section>
 
-    <footer class="text-center text-gray-400 text-sm py-8">
-      <p>✨ 用心记录每一天的成长</p>
-    </footer>
+    <!-- ===== 2. HR 法规联动版块 ===== -->
+    <section id="section-hr" class="mb-8 scroll-mt-20">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="text-xl">⚖️</span>
+        <h2 class="text-lg font-bold text-gray-800">HR 常用劳动法规 (直接调取官方原文)</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- 劳动合同法 -->
+        <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-purple-100 hover:shadow-md transition-all">
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <h3 class="font-bold text-gray-800 text-sm">《中华人民共和国劳动合同法》</h3>
+              <p class="text-[11px] text-gray-400 mt-0.5">人社部官方政策法规库</p>
+            </div>
+            <span class="text-[10px] bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full">官方链接</span>
+          </div>
+          <p class="text-xs text-gray-600 mb-4 line-clamp-2">涉及劳动合同订立、履行、变更、解除以及经济补偿金等核心法条指南。</p>
+          <a href="https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/fl/202011/t20201102_394622.html" target="_blank" class="block w-full text-center py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 font-medium text-xs rounded-xl transition-all">
+            🔗 跳转阅读《劳动合同法》全文
+          </a>
+        </div>
+
+        <!-- 劳动法 -->
+        <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-indigo-100 hover:shadow-md transition-all">
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <h3 class="font-bold text-gray-800 text-sm">《中华人民共和国劳动法》</h3>
+              <p class="text-[11px] text-gray-400 mt-0.5">中国政府网 / 人社部</p>
+            </div>
+            <span class="text-[10px] bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full">官方链接</span>
+          </div>
+          <p class="text-xs text-gray-600 mb-4 line-clamp-2">关于工时休息假期、工资支付、劳动安全卫生及劳动争议处理的基本法依据。</p>
+          <a href="https://www.gov.cn/banshi/2005-05/25/content_905.htm" target="_blank" class="block w-full text-center py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-medium text-xs rounded-xl transition-all">
+            🔗 跳转阅读《劳动法》全文
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3. 影音与网易云音乐 App 联动 ===== -->
+    <section id="section-media" class="mb-8 scroll-mt-20">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="text-xl">🎬</span>
+        <h2 class="text-lg font-bold text-gray-800">影音与网易云音乐</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- 网易云音乐直连 App -->
+        <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-red-100">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-bold text-xs text-gray-800">🎵 每日音乐推荐</span>
+            <span class="text-[10px] bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-medium">网易云VIP</span>
+          </div>
+          <div class="bg-gradient-to-r from-red-600 to-rose-500 text-white rounded-xl p-3 mb-3">
+            <p class="font-bold text-xs">打开网易云 App</p>
+            <p class="text-[10px] text-red-100 mt-1">一键唤醒手机本地 App 继续听歌</p>
+          </div>
+          <!-- 唤醒网易云 App 的协议 -->
+          <button onclick="openNeteaseMusic()" class="w-full text-center py-2 bg-red-500 hover:bg-red-600 text-white text-xs font-semibold rounded-xl shadow-sm transition-all">
+            🎧 打开网易云音乐 App
+          </button>
+        </div>
+
+        <!-- 读书笔记 -->
+        <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-amber-100">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-bold text-xs text-gray-800">📖 读书笔记</span>
+            <span class="text-[10px] bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">心理学</span>
+          </div>
+          <p class="font-bold text-xs text-gray-800">《被讨厌的勇气》</p>
+          <p class="text-[11px] text-gray-600 italic bg-amber-50/60 p-2.5 rounded-lg mt-2 border border-amber-100">
+            "决定人生的不是过去，而是赋予过去的意义。"
+          </p>
+        </div>
+
+        <!-- 影视推荐 -->
+        <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-rose-100">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-bold text-xs text-gray-800">🍿 影视推荐</span>
+            <span class="text-[10px] bg-rose-100 text-rose-700 px-2 py-0.5 rounded-full">9.4分</span>
+          </div>
+          <p class="font-bold text-xs text-gray-800">《星际穿越》</p>
+          <p class="text-[11px] text-gray-600 italic bg-rose-50/60 p-2.5 rounded-lg mt-2 border border-rose-100">
+            "Love is the one thing that transcends time and space."
+          </p>
+        </div>
+      </div>
+    </section>
+
   </div>
 </main>
 
-<!-- 通用详情弹窗 -->
-<div id="detailModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center p-4 z-50">
-  <div class="bg-white rounded-2xl max-w-md w-full p-6 max-h-[80vh] overflow-y-auto shadow-2xl">
-    <div class="flex justify-between items-center mb-4">
-      <h3 class="text-xl font-bold text-gray-800" id="modalTitle">详情</h3>
-      <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
-    </div>
-    <div id="modalContent" class="space-y-3"></div>
-  </div>
-</div>
-
-<!-- HR劳动法知识库大弹窗 -->
-<div id="hrEncyclopediaModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50 p-4">
-  <div class="bg-white rounded-2xl w-full max-w-5xl h-[90vh] flex overflow-hidden shadow-2xl">
-    <aside class="w-64 bg-slate-50 border-r border-gray-200 flex flex-col hidden md:flex">
-      <div class="p-5 border-b border-gray-200 bg-white">
-        <div class="flex items-center gap-2">
-          <span class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-sm">💼</span>
-          <div>
-            <h3 class="font-bold text-gray-800 text-sm">HR劳动法知识库</h3>
-            <p class="text-[10px] text-gray-400">英格卡中国实务百科</p>
-          </div>
-        </div>
-      </div>
-      <nav class="flex-1 overflow-y-auto p-3 space-y-0.5" id="hrNav">
-        <button onclick="switchHrChapter('culture')" class="hr-nav-item w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-100 transition-all active"><span class="text-xs text-gray-400 mr-1">01</span>宜家精神与价值观</button>
-        <button onclick="switchHrChapter('recruitment')" class="hr-nav-item w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-100 transition-all"><span class="text-xs text-gray-400 mr-1">02</span>招聘、入职与回避</button>
-        <button onclick="switchHrChapter('contract')" class="hr-nav-item w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-100 transition-all"><span class="text-xs text-gray-400 mr-1">03</span>劳动合同全生命周期</button>
-        <button onclick="switchHrChapter('probation')" class="hr-nav-item w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-100 transition-all"><span class="text-xs text-gray-400 mr-1">04</span>试用期考核与闭环</button>
-        <button onclick="switchHrChapter('payroll')" class="hr-nav-item w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-100 transition-all"><span class="text-xs text-gray-400 mr-1">05</span>工时、排班与薪资</button>
-        <button onclick="switchHrChapter('benefits')" class="hr-nav-item w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-100 transition-all"><span class="text-xs text-gray-400 mr-1">06</span>全面薪酬福利与假期</button>
-        <button onclick="switchHrChapter('discipline')" class="hr-nav-item w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-100 transition-all"><span class="text-xs text-gray-400 mr-1">07</span>劳动纪律与违纪分级</button>
-        <button onclick="switchHrChapter('termination')" class="hr-nav-item w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-100 transition-all"><span class="text-xs text-gray-400 mr-1">08</span>解除与经济补偿精算</button>
-        <button onclick="switchHrChapter('offboarding')" class="hr-nav-item w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-100 transition-all"><span class="text-xs text-gray-400 mr-1">09</span>离职管理与退休返聘</button>
-      </nav>
-      <div class="p-3 border-t border-gray-200 bg-white">
-        <button onclick="closeHrEncyclopedia()" class="w-full py-2 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-lg text-sm font-medium transition-colors">关闭知识库</button>
-      </div>
-    </aside>
-    <div class="flex-1 flex flex-col min-w-0">
-      <div class="md:hidden flex items-center justify-between p-4 border-b border-gray-200 bg-white">
-        <h3 class="font-bold text-gray-800 text-sm">HR劳动法知识库</h3>
-        <button onclick="closeHrEncyclopedia()" class="text-gray-400 text-2xl">&times;</button>
-      </div>
-      <div class="flex-1 overflow-y-auto p-6 md:p-8 hr-content" id="hrContentArea"></div>
-    </div>
-  </div>
-</div>
-
-<!-- 编辑操作按钮栏 -->
-<div class="edit-btn-bar" id="editBar">
-  <button onclick="toggleEditMode()" class="edit-action-btn edit-toggle" id="editToggleBtn">✏️ 进入编辑模式</button>
-  <button onclick="saveData()" class="edit-action-btn edit-save hidden" id="saveBtn">💾 保存更改</button>
-  <button onclick="exportData()" class="edit-action-btn edit-export hidden" id="exportBtn">📤 导出数据</button>
-  <button onclick="resetData()" class="edit-action-btn edit-reset hidden" id="resetBtn">🔄 重置默认</button>
-</div>
-
-<!-- 导出数据弹窗 -->
-<div id="exportModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center p-4 z-50">
-  <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl">
-    <h3 class="text-lg font-bold text-gray-800 mb-3">📤 导出数据</h3>
-    <p class="text-sm text-gray-500 mb-3">复制下方JSON数据，可在其他设备导入或备份：</p>
-    <textarea id="exportArea" class="w-full h-40 bg-gray-50 border border-gray-200 rounded-xl p-3 text-xs font-mono text-gray-700 resize-none" readonly></textarea>
-    <div class="flex gap-2 mt-4">
-      <button onclick="copyExport()" class="flex-1 py-2 bg-blue-500 text-white rounded-lg text-sm font-medium hover:bg-blue-600">复制到剪贴板</button>
-      <button onclick="document.getElementById('exportModal').classList.add('hidden')" class="flex-1 py-2 bg-gray-100 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-200">关闭</button>
-    </div>
-  </div>
-</div>
-
 <script>
-// ===================== 默认数据 (升级版) =====================
-const DEFAULT_DATA = {
-  learning: [
-    {
-      id: "eng", icon: "🇬🇧", title: "英语学习", tag: "每日打卡", tagColor: "blue",
-      progressLabel: "本周进度", progressCurrent: 5, progressTotal: 7,
-      tasks: [
-        { text: "背单词 30 个", done: true },
-        { text: "听力练习 20 分钟", done: true },
-        { text: "口语跟读 15 分钟", done: false }
-      ],
-      btnText: "今日打卡 +1",
-      businessEnglish: {
-        word: "Leverage",
-        phonetic: "/ˈlevərɪdʒ/",
-        meaning: "v. 充分利用（资源、优势等）；n. 杠杆作用；影响力",
-        example: "We need to leverage our core competencies to gain a competitive advantage in the market.",
-        exampleTrans: "我们需要利用核心竞争力来获得市场竞争优势。",
-        links: [
-          { name: "🎓 BBC商务英语", url: "https://www.bbc.co.uk/learningenglish/english/features/6-minute-english" },
-          { name: "📖 剑桥商务词典", url: "https://dictionary.cambridge.org/dictionary/english-chinese-simplified/business-english/" },
-          { name: "🎧 ESL Pod商业", url: "https://www.eslpod.com/website/index_new.html" }
-        ]
-      }
-    },
-    {
-      id: "hr", icon: "💼", title: "HR专业知识", tag: "持续学习", tagColor: "purple",
-      progressLabel: "本月进度", progressCurrent: 12, progressTotal: 20,
-      tasks: [
-        { text: "绩效管理模块学习", done: true },
-        { text: "劳动法案例分析", done: true },
-        { text: "薪酬体系设计", done: false }
-      ],
-      btnText: "记录学习时长",
-      hasEncyclopedia: true
-    },
-    {
-      id: "ai", icon: "🤖", title: "AI 学习", tag: "探索中", tagColor: "emerald",
-      progressLabel: "项目进度", progressCurrent: 3, progressTotal: 5,
-      tasks: [
-        { text: "Prompt Engineering 基础", done: true },
-        { text: "AI 工具实践应用", done: true },
-        { text: "搭建个人 AI 工作流", done: false }
-      ],
-      btnText: "完成今日学习"
-    }
-  ],
-  life: [
-    {
-      id: "food", icon: "🍜", title: "美食分享", desc: "记录每一口幸福的味道",
-      tags: ["#自制早餐", "#探店打卡"], color: "orange",
-      previews: ["🥐", "🍱"], previewCount: 5
-    },
-    {
-      id: "cat", icon: "🐱", title: "养猫记录", desc: "毛孩子的日常点滴",
-      tags: ["#猫咪日常", "#萌宠时刻"], color: "yellow",
-      previews: ["😺", "😻"], previewCount: 12
-    },
-    {
-      id: "music", icon: "🎵", title: "音乐分享", desc: "旋律里的心情日记",
-      tags: ["#今日单曲", "#歌单推荐"], color: "cyan",
-      song: {
-        name: "莲 (Lit)",
-        artist: "张艺兴",
-        coverUrl: "https://y.gtimg.cn/music/photo_new/T002R300x300M000001m8pbd4Bew1g.jpg",
-        qqMusicUrl: "https://y.qq.com/n/ryqq/songDetail/001m8pbd4Bew1g",
-        lyrics: "太多人想把我绊倒 绊不倒\n太多的虚假 太多的泡沫 都在等我戳破\nI am the 莲 生长在不为人知的淤泥里面\nI am the 莲 我保证不会让他们轻易发现"
-      }
-    },
-    {
-      id: "books", icon: "📖", title: "读书分享", desc: "文字里的另一个世界",
-      tags: ["#读书笔记", "#书摘收藏"], color: "rose",
-      currentBook: {
-        title: "被讨厌的勇气",
-        author: "岸见一郎 / 古贺史健",
-        coverUrl: "https://img9.doubanio.com/view/subject/s/public/s33613641.jpg",
-        quote: "所谓的自由，就是被别人讨厌。",
-        quoteDetail: "如果你无法不在意他人的评价，无法不害怕被人讨厌，也不想付出可能得不到认可的代价，那么你根本无法贯彻自己的生活方式。"
-      }
-    },
-    {
-      id: "movies", icon: "🎬", title: "影视分享", desc: "光影交织的故事",
-      tags: ["#影评", "#经典台词"], color: "indigo",
-      currentMovie: {
-        title: "奥本海默",
-        director: "克里斯托弗·诺兰",
-        coverUrl: "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p28965509.jpg",
-        quote: "Now I am become Death, the destroyer of worlds.",
-        quoteTrans: "如今我成为了死神，世界的毁灭者。"
-      }
-    }
-  ],
-  tracking: [
-    {
-      id: "study-check", icon: "📝", title: "学习打卡", value: 12, valueLabel: "连续打卡天数",
-      color: "blue", streakDays: [1,1,1,1,1,0.5,0],
-      btnText: "今日已打卡 ✓", btnActive: true
-    },
-    {
-      id: "fit", icon: "💪", title: "减脂塑形", value: 8, valueLabel: "本周运动次数",
-      color: "orange", target: 55.0, current: 58.2, progress: 45,
-      btnText: "记录今日运动", btnActive: false
-    },
-    {
-      id: "travel", icon: "✈️", title: "旅游攻略", value: 3, valueLabel: "已规划行程",
-      color: "teal",
-      items: [
-        { title: "🇫🇷 欧洲几国游", detail: "法意瑞德 · 计划: 2027年5月", highlight: true },
-        { title: "🏔️ 新疆深度游", detail: "伊犁/喀什/独库公路 · 计划: 2026年10月", highlight: false },
-        { title: "🌸 云南慢游", detail: "大理/丽江/香格里拉 · 计划: 2026年12月", highlight: false }
-      ],
-      btnText: "查看详细攻略"
-    },
-    {
-      id: "finance", icon: "💰", title: "存钱理财", value: "¥12.5k", valueLabel: "本月储蓄进度",
-      color: "green", target: 20000, current: 12500, progress: 62,
-      btnText: "记录收支明细"
-    }
-  ],
-  stats: [
-    { label: "学习时长", value: "18.5h", color: "blue" },
-    { label: "运动次数", value: "4", color: "orange" },
-    { label: "小确幸记录", value: "7", color: "pink" },
-    { label: "本周储蓄", value: "¥3,200", color: "green" }
-  ],
-  details: {
-    food: { title: "🍜 美食分享记录", items: [
-      { date: "08-19", text: "自制牛油果吐司 + 拿铁", tag: "早餐" },
-      { date: "08-18", text: "探店：某日式拉面馆", tag: "外食" },
-      { date: "08-17", text: "自制麻辣香锅", tag: "晚餐" },
-      { date: "08-16", text: "提拉米苏蛋糕", tag: "甜点" }
-    ]},
-    cat: { title: "🐱 猫咪日常记录", items: [
-      { date: "08-19", text: "主子今天学会了握手！", tag: "技能" },
-      { date: "08-18", text: "买了新猫爬架，玩了一下午", tag: "玩具" },
-      { date: "08-17", text: "体检日，一切健康", tag: "健康" },
-      { date: "08-15", text: "晒着太阳打盹的午后", tag: "日常" }
-    ]},
-    music: { title: "🎵 音乐心情日记", items: [
-      { date: "08-19", text: "《莲》- 张艺兴", tag: "华语" },
-      { date: "08-18", text: "《Blinding Lights》- The Weeknd", tag: "欧美" },
-      { date: "08-17", text: "《起风了》- 买辣椒也用券", tag: "华语" },
-      { date: "08-16", text: "《Levitating》- Dua Lipa", tag: "流行" }
-    ]},
-    books: { title: "📖 读书笔记", items: [
-      { date: "08-19", text: "读完《被讨厌的勇气》—— 课题分离是获得自由的关键", tag: "心理学" },
-      { date: "08-15", text: "《人类简史》读到第5章，认知革命改变了人类的命运", tag: "历史" },
-      { date: "08-10", text: "《活着》—— 人是为了活着本身而活着", tag: "文学" }
-    ]},
-    movies: { title: "🎬 观影记录", items: [
-      { date: "08-17", text: "《奥本海默》—— 诺兰的叙事迷宫，科学与道德的博弈", tag: "传记" },
-      { date: "08-14", text: "《星际穿越》重映，再次为五维空间落泪", tag: "科幻" },
-      { date: "08-10", text: "《千与千寻》—— 不要忘记你的名字", tag: "动画" }
-    ]},
-    travel: { title: "✈️ 旅游攻略详情", items: [
-      { date: "计划中", text: "🇫🇷🇮🇹🇨🇭 欧洲四国游：法国·巴黎/意大利·罗马/瑞士·因特拉肯/德国·慕尼黑", tag: "欧洲" },
-      { date: "计划中", text: "🏔️ 新疆深度游：伊犁草原/喀什古城/独库公路/赛里木湖", tag: "新疆" },
-      { date: "计划中", text: "🌸 云南慢游：大理洱海/丽江古城/香格里拉/玉龙雪山", tag: "云南" }
-    ]},
-    finance: { title: "💰 收支明细", items: [
-      { date: "08-19", text: "工资收入 +¥15,000", tag: "收入" },
-      { date: "08-19", text: "定期储蓄 -¥5,000", tag: "储蓄" },
-      { date: "08-18", text: "餐饮支出 -¥85", tag: "支出" },
-      { date: "08-18", text: "理财收益 +¥125", tag: "收益" }
-    ]}
+// 日期显示
+document.getElementById('currentDate').textContent = new Date().toLocaleDateString('zh-CN', { month: 'long', day: 'numeric', weekday: 'long' });
+
+// 1. 英语单词联网自动刷新逻辑
+async function loadDailyWords(forceRefresh = false) {
+  const today = new Date().toISOString().split('T')[0];
+  const savedDate = localStorage.getItem('word_date');
+  const savedWords = localStorage.getItem('word_list');
+
+  if (!forceRefresh && savedDate === today && savedWords) {
+    renderWords(JSON.parse(savedWords));
+    return;
   }
-};
 
-// ===================== 数据管理 =====================
-let appData = JSON.parse(JSON.stringify(DEFAULT_DATA));
-let isEditMode = false;
+  const container = document.getElementById('wordContainer');
+  container.innerHTML = `<div class="col-span-full text-center text-xs text-gray-400 py-4">🌐 正在联网请求 30 个全新单词...</div>`;
 
-function loadData() {
-  const saved = localStorage.getItem('dashboardData');
-  if (saved) {
-    try {
-      const parsed = JSON.parse(saved);
-      appData = deepMerge(JSON.parse(JSON.stringify(DEFAULT_DATA)), parsed);
-    } catch(e) {
-      console.error("Load failed", e);
-    }
+  try {
+    const res = await fetch('https://random-word-api.herokuapp.com/word?number=30');
+    const wordList = await res.json();
+    const formattedWords = wordList.map((w, idx) => ({ id: idx, word: w, done: false }));
+
+    localStorage.setItem('word_date', today);
+    localStorage.setItem('word_list', JSON.stringify(formattedWords));
+    renderWords(formattedWords);
+  } catch (err) {
+    console.error("网络请求失败", err);
+    container.innerHTML = `<div class="col-span-full text-center text-xs text-red-400 py-4">网络请求失败，请检查手机网络设置。</div>`;
   }
 }
 
-function saveData() {
-  localStorage.setItem('dashboardData', JSON.stringify(appData));
-  toggleEditMode();
-  alert("✅ 数据已保存到浏览器本地存储！");
-}
+function renderWords(words) {
+  const container = document.getElementById('wordContainer');
+  const doneCount = words.filter(w => w.done).length;
+  document.getElementById('wordProgress').textContent = `已掌握 ${doneCount} / ${words.length}`;
 
-function deepMerge(defaults, custom) {
-  const result = JSON.parse(JSON.stringify(defaults));
-  for (const key in custom) {
-    if (Array.isArray(custom[key]) && Array.isArray(result[key])) {
-      result[key] = custom[key];
-    } else if (typeof custom[key] === 'object' && custom[key] !== null && !Array.isArray(custom[key])) {
-      result[key] = deepMerge(result[key] || {}, custom[key]);
-    } else {
-      result[key] = custom[key];
-    }
-  }
-  return result;
-}
-
-function resetData() {
-  if (confirm("确定要重置为默认数据吗？所有自定义内容将丢失！")) {
-    localStorage.removeItem('dashboardData');
-    appData = JSON.parse(JSON.stringify(DEFAULT_DATA));
-    renderAll();
-    if (isEditMode) toggleEditMode();
-  }
-}
-
-function exportData() {
-  const json = JSON.stringify(appData, null, 2);
-  document.getElementById('exportArea').value = json;
-  document.getElementById('exportModal').classList.remove('hidden');
-  document.getElementById('exportModal').classList.add('flex');
-}
-
-function copyExport() {
-  const area = document.getElementById('exportArea');
-  area.select();
-  document.execCommand('copy');
-  alert("已复制到剪贴板！");
-}
-
-// ===================== 编辑模式 =====================
-function toggleEditMode() {
-  isEditMode = !isEditMode;
-  document.body.classList.toggle('edit-mode', isEditMode);
-  const toggleBtn = document.getElementById('editToggleBtn');
-  const saveBtn = document.getElementById('saveBtn');
-  const exportBtn = document.getElementById('exportBtn');
-  const resetBtn = document.getElementById('resetBtn');
-  const editOnly = document.querySelectorAll('.edit-only');
-  if (isEditMode) {
-    toggleBtn.textContent = "❌ 退出编辑";
-    toggleBtn.classList.remove('edit-toggle');
-    toggleBtn.style.background = "linear-gradient(135deg, #ef4444, #dc2626)";
-    saveBtn.classList.remove('hidden');
-    exportBtn.classList.remove('hidden');
-    resetBtn.classList.remove('hidden');
-    editOnly.forEach(el => el.classList.remove('hidden'));
-  } else {
-    toggleBtn.textContent = "✏️ 进入编辑模式";
-    toggleBtn.classList.add('edit-toggle');
-    toggleBtn.style.background = "";
-    saveBtn.classList.add('hidden');
-    exportBtn.classList.add('hidden');
-    resetBtn.classList.add('hidden');
-    editOnly.forEach(el => el.classList.add('hidden'));
-  }
-  renderAll();
-}
-
-// ===================== 渲染函数 =====================
-function renderAll() {
-  renderLearning();
-  renderLife();
-  renderTracking();
-  renderStats();
-}
-
-function renderLearning() {
-  const container = document.getElementById('learningContainer');
-  container.innerHTML = appData.learning.map((item, idx) => {
-    const percent = Math.round((item.progressCurrent / item.progressTotal) * 100);
-    const colorMap = { blue: 'blue', purple: 'purple', emerald: 'emerald' };
-    const c = colorMap[item.tagColor] || 'blue';
-    const biz = item.businessEnglish || null;
-
-    if (isEditMode) {
-      return `<div class="bg-white rounded-2xl p-5 shadow-sm border-2 border-dashed border-indigo-300 relative">
-        <button onclick="deleteLearning(${idx})" class="absolute top-2 right-2 text-red-400 hover:text-red-600 text-lg">&times;</button>
-        <div class="space-y-3">
-          <div class="flex gap-2"><input class="edit-input text-lg w-12 text-center" value="${item.icon}" onchange="updateLearning(${idx},'icon',this.value)"><input class="edit-input font-bold" value="${item.title}" onchange="updateLearning(${idx},'title',this.value)"></div>
-          <input class="edit-input text-sm" value="${item.tag}" onchange="updateLearning(${idx},'tag',this.value)">
-          <div class="flex gap-2 text-sm"><span>进度:</span><input class="edit-number" type="number" value="${item.progressCurrent}" onchange="updateLearning(${idx},'progressCurrent',parseInt(this.value))"><span>/</span><input class="edit-number" type="number" value="${item.progressTotal}" onchange="updateLearning(${idx},'progressTotal',parseInt(this.value))"></div>
-          <div class="space-y-2">${item.tasks.map((t, tidx) => `
-            <div class="flex items-center gap-2"><input type="checkbox" ${t.done ? 'checked' : ''} onchange="updateTask(${idx},${tidx},'done',this.checked)"><input class="edit-input text-sm" value="${t.text}" onchange="updateTask(${idx},${tidx},'text',this.value)"><button onclick="deleteTask(${idx},${tidx})" class="text-red-400 text-xs">删除</button></div>
-          `).join('')}<button onclick="addTask(${idx})" class="text-xs text-indigo-600 hover:underline">+ 添加任务</button></div>
-          <input class="edit-input text-sm" value="${item.btnText}" onchange="updateLearning(${idx},'btnText',this.value)">
-          ${biz ? `
-          <div class="border-t border-dashed border-indigo-200 pt-3 mt-3">
-            <p class="text-xs font-bold text-indigo-600 mb-2">商务英语编辑</p>
-            <input class="edit-input text-sm mb-1" placeholder="单词" value="${biz.word}" onchange="updateBizEnglish(${idx},'word',this.value)">
-            <input class="edit-input text-sm mb-1" placeholder="音标" value="${biz.phonetic || ''}" onchange="updateBizEnglish(${idx},'phonetic',this.value)">
-            <input class="edit-input text-sm mb-1" placeholder="释义" value="${biz.meaning}" onchange="updateBizEnglish(${idx},'meaning',this.value)">
-            <textarea class="edit-textarea text-sm mb-1" placeholder="例句" onchange="updateBizEnglish(${idx},'example',this.value)">${biz.example}</textarea>
-            <textarea class="edit-textarea text-sm mb-1" placeholder="例句翻译" onchange="updateBizEnglish(${idx},'exampleTrans',this.value)">${biz.exampleTrans || ''}</textarea>
-            <div class="space-y-1">${(biz.links || []).map((lnk, lidx) => `
-              <div class="flex gap-1"><input class="edit-input text-xs flex-1" value="${lnk.name}" onchange="updateBizLink(${idx},${lidx},'name',this.value)"><input class="edit-input text-xs flex-1" value="${lnk.url}" onchange="updateBizLink(${idx},${lidx},'url',this.value)"><button onclick="deleteBizLink(${idx},${lidx})" class="text-red-400 text-xs">&times;</button></div>
-            `).join('')}<button onclick="addBizLink(${idx})" class="text-xs text-indigo-600 hover:underline">+ 添加链接</button></div>
-          </div>
-          ` : ''}
-        </div>
-      </div>`;
-    }
-
-    let bizHtml = '';
-    if (biz) {
-      bizHtml = `
-      <div class="mt-4 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-100">
-        <div class="flex items-center gap-2 mb-2">
-          <span class="text-xs font-bold text-blue-600 bg-blue-100 px-2 py-0.5 rounded">每日商务英语</span>
-        </div>
-        <div class="mb-2">
-          <span class="text-2xl font-black biz-word">${biz.word}</span>
-          <span class="text-sm text-gray-500 ml-2">${biz.phonetic || ''}</span>
-        </div>
-        <p class="text-xs text-gray-600 mb-2">${biz.meaning}</p>
-        <div class="bg-white/70 rounded-lg p-3 mb-3 border border-blue-100">
-          <p class="text-sm text-gray-800 italic">&quot;${biz.example}&quot;</p>
-          ${biz.exampleTrans ? `<p class="text-xs text-gray-500 mt-1">${biz.exampleTrans}</p>` : ''}
-        </div>
-        <div class="flex flex-wrap gap-2">
-          ${(biz.links || []).map(lnk => `<a href="${lnk.url}" target="_blank" class="text-xs bg-white hover:bg-blue-100 text-blue-600 px-3 py-1.5 rounded-full border border-blue-200 transition-colors">${lnk.name}</a>`).join('')}
-        </div>
-      </div>`;
-    }
-
-    return `<div class="bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow border border-${c}-100">
-      <div class="flex justify-between items-start mb-3">
-        <div class="flex items-center gap-2"><span class="text-2xl">${item.icon}</span><h3 class="font-bold text-gray-800">${item.title}</h3></div>
-        <span class="text-xs bg-${c}-100 text-${c}-700 px-2 py-1 rounded-full">${item.tag}</span>
-      </div>
-      <div class="mb-3">
-        <div class="flex justify-between text-sm text-gray-600 mb-1"><span>${item.progressLabel}</span><span>${item.progressCurrent}/${item.progressTotal}</span></div>
-        <div class="w-full bg-gray-100 rounded-full h-2"><div class="bg-${c}-500 h-2 rounded-full transition-all" style="width:${percent}%"></div></div>
-      </div>
-      <div class="space-y-2 text-sm">
-        ${item.tasks.map(t => `<div class="flex items-center gap-2 text-gray-600"><input type="checkbox" class="w-4 h-4 accent-${c}-500" ${t.done ? 'checked' : ''} onchange="toggleTask(${idx},this.checked)"><span>${t.text}</span></div>`).join('')}
-      </div>
-      ${bizHtml}
-      ${item.hasEncyclopedia ? `<div class="mt-3 space-y-2"><button onclick="checkIn(this,'${item.id}')" class="w-full bg-${c}-50 hover:bg-${c}-100 text-${c}-600 py-2 rounded-xl text-sm font-medium transition-colors">${item.btnText}</button><button onclick="openHrEncyclopedia()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-xl text-sm font-medium shadow-md flex items-center justify-center gap-2"><span>📖</span><span>查看劳动法知识库</span><span class="text-[10px] bg-white/20 px-1.5 py-0.5 rounded">9章</span></button></div>` : `<button onclick="checkIn(this,'${item.id}')" class="mt-4 w-full bg-${c}-50 hover:bg-${c}-100 text-${c}-600 py-2 rounded-xl text-sm font-medium transition-colors">${item.btnText}</button>`}
-    </div>`;
-  }).join('');
-}
-
-function renderLife() {
-  const container = document.getElementById('lifeContainer');
-  container.innerHTML = appData.life.map((item, idx) => {
-    const c = item.color;
-    if (isEditMode) {
-      let extraEdit = '';
-      if (item.song) {
-        extraEdit = `
-        <div class="border-t border-dashed border-cyan-200 pt-3 mt-3">
-          <p class="text-xs font-bold text-cyan-600 mb-2">音乐详情编辑</p>
-          <input class="edit-input text-sm mb-1" placeholder="歌曲名" value="${item.song.name}" onchange="updateSong(${idx},'name',this.value)">
-          <input class="edit-input text-sm mb-1" placeholder="歌手" value="${item.song.artist}" onchange="updateSong(${idx},'artist',this.value)">
-          <input class="edit-input text-sm mb-1" placeholder="封面图片URL" value="${item.song.coverUrl}" onchange="updateSong(${idx},'coverUrl',this.value)">
-          <input class="edit-input text-sm mb-1" placeholder="QQ音乐链接" value="${item.song.qqMusicUrl}" onchange="updateSong(${idx},'qqMusicUrl',this.value)">
-          <textarea class="edit-textarea text-sm" placeholder="歌词片段" onchange="updateSong(${idx},'lyrics',this.value)">${item.song.lyrics}</textarea>
-        </div>`;
-      } else if (item.currentBook) {
-        extraEdit = `
-        <div class="border-t border-dashed border-rose-200 pt-3 mt-3">
-          <p class="text-xs font-bold text-rose-600 mb-2">书籍详情编辑</p>
-          <input class="edit-input text-sm mb-1" placeholder="书名" value="${item.currentBook.title}" onchange="updateBook(${idx},'title',this.value)">
-          <input class="edit-input text-sm mb-1" placeholder="作者" value="${item.currentBook.author}" onchange="updateBook(${idx},'author',this.value)">
-          <input class="edit-input text-sm mb-1" placeholder="封面图片URL" value="${item.currentBook.coverUrl}" onchange="updateBook(${idx},'coverUrl',this.value)">
-          <input class="edit-input text-sm mb-1" placeholder="金句" value="${item.currentBook.quote}" onchange="updateBook(${idx},'quote',this.value)">
-          <textarea class="edit-textarea text-sm" placeholder="感悟/解读" onchange="updateBook(${idx},'quoteDetail',this.value)">${item.currentBook.quoteDetail || ''}</textarea>
-        </div>`;
-      } else if (item.currentMovie) {
-        extraEdit = `
-        <div class="border-t border-dashed border-indigo-200 pt-3 mt-3">
-          <p class="text-xs font-bold text-indigo-600 mb-2">影视详情编辑</p>
-          <input class="edit-input text-sm mb-1" placeholder="电影名" value="${item.currentMovie.title}" onchange="updateMovie(${idx},'title',this.value)">
-          <input class="edit-input text-sm mb-1" placeholder="导演" value="${item.currentMovie.director}" onchange="updateMovie(${idx},'director',this.value)">
-          <input class="edit-input text-sm mb-1" placeholder="海报图片URL" value="${item.currentMovie.coverUrl}" onchange="updateMovie(${idx},'coverUrl',this.value)">
-          <input class="edit-input text-sm mb-1" placeholder="经典台词" value="${item.currentMovie.quote}" onchange="updateMovie(${idx},'quote',this.value)">
-          <input class="edit-input text-sm" placeholder="台词翻译" value="${item.currentMovie.quoteTrans || ''}" onchange="updateMovie(${idx},'quoteTrans',this.value)">
-        </div>`;
-      }
-
-      return `<div class="bg-white rounded-2xl p-5 shadow-sm border-2 border-dashed border-pink-300 relative">
-        <button onclick="deleteLife(${idx})" class="absolute top-2 right-2 text-red-400 hover:text-red-600 text-lg">&times;</button>
-        <div class="space-y-3">
-          <input class="edit-input text-2xl w-16 text-center" value="${item.icon}" onchange="updateLife(${idx},'icon',this.value)">
-          <input class="edit-input font-bold" value="${item.title}" onchange="updateLife(${idx},'title',this.value)">
-          <input class="edit-input text-sm" value="${item.desc}" onchange="updateLife(${idx},'desc',this.value)">
-          <div class="flex flex-wrap gap-1">${item.tags.map((tag, tidx) => `<input class="tag-input" value="${tag}" onchange="updateLifeTag(${idx},${tidx},this.value)">`).join('')}<button onclick="addLifeTag(${idx})" class="text-xs text-pink-600 hover:underline">+</button></div>
-          ${extraEdit}
-        </div>
-      </div>`;
-    }
-
-    let extra = '';
-    if (item.previews) {
-      extra = `<div class="mt-3 flex -space-x-2">${item.previews.map(p => `<div class="w-8 h-8 bg-${c}-200 rounded-lg flex items-center justify-center text-xs">${p}</div>`).join('')}<div class="w-8 h-8 bg-${c}-400 rounded-lg flex items-center justify-center text-xs text-white">+${item.previewCount}</div></div>`;
-    } else if (item.song) {
-      extra = `
-      <div class="mt-4 bg-gradient-to-br from-cyan-50 to-blue-50 rounded-xl p-4 border border-cyan-100">
-        <div class="flex items-center gap-3 mb-3">
-          <div class="relative w-14 h-14 flex-shrink-0">
-            <img src="${item.song.coverUrl}" class="w-14 h-14 rounded-full object-cover music-disc shadow-md" alt="cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-            <div class="w-14 h-14 rounded-full bg-cyan-200 hidden items-center justify-center text-cyan-600 text-xl">🎵</div>
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="w-4 h-4 bg-white rounded-full border-2 border-cyan-300"></div>
-            </div>
-          </div>
-          <div class="flex-1 min-w-0">
-            <p class="text-sm font-bold text-gray-800 truncate">${item.song.name}</p>
-            <p class="text-xs text-gray-500">${item.song.artist}</p>
-          </div>
-        </div>
-        <div class="bg-white/60 rounded-lg p-3 mb-3 border border-cyan-100">
-          <p class="text-xs text-cyan-700 lyrics-text whitespace-pre-line leading-relaxed">${item.song.lyrics.replace(/\n/g, '<br>')}</p>
-        </div>
-        <a href="${item.song.qqMusicUrl}" target="_blank" class="flex items-center justify-center gap-2 w-full bg-cyan-500 hover:bg-cyan-600 text-white py-2 rounded-lg text-xs font-medium transition-colors">
-          <span>▶</span><span>在QQ音乐收听</span>
-        </a>
-      </div>`;
-    } else if (item.currentBook) {
-      extra = `
-      <div class="mt-4 bg-gradient-to-br from-rose-50 to-pink-50 rounded-xl p-4 border border-rose-100">
-        <div class="flex gap-3 mb-3">
-          <div class="flex-shrink-0 w-16 h-24 rounded-lg overflow-hidden book-cover bg-rose-200">
-            <img src="${item.currentBook.coverUrl}" class="w-full h-full object-cover" alt="book" onerror="this.style.display='none';this.parentElement.innerHTML='📖'">
-          </div>
-          <div class="flex-1 min-w-0 flex flex-col justify-center">
-            <p class="text-sm font-bold text-gray-800 leading-tight">${item.currentBook.title}</p>
-            <p class="text-xs text-gray-500 mt-1">${item.currentBook.author}</p>
-          </div>
-        </div>
-        <div class="relative bg-white/60 rounded-lg p-3 border border-rose-100">
-          <span class="quote-mark absolute -top-2 left-1">&ldquo;</span>
-          <p class="text-sm text-rose-800 italic pl-4">${item.currentBook.quote}</p>
-          ${item.currentBook.quoteDetail ? `<p class="text-xs text-gray-500 mt-2 pl-4 border-t border-rose-100 pt-2">${item.currentBook.quoteDetail}</p>` : ''}
-        </div>
-      </div>`;
-    } else if (item.currentMovie) {
-      extra = `
-      <div class="mt-4 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-4 border border-indigo-100">
-        <div class="relative w-full aspect-[2/3] max-h-40 rounded-lg overflow-hidden movie-poster mb-3 bg-indigo-200">
-          <img src="${item.currentMovie.coverUrl}" class="w-full h-full object-cover" alt="movie" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-indigo-400 text-4xl\'>🎬</div>'">
-        </div>
-        <p class="text-sm font-bold text-gray-800">${item.currentMovie.title}</p>
-        <p class="text-xs text-gray-500 mb-2">${item.currentMovie.director}</p>
-        <div class="relative bg-white/60 rounded-lg p-3 border border-indigo-100">
-          <span class="quote-mark absolute -top-2 left-1">&ldquo;</span>
-          <p class="text-sm text-indigo-800 italic pl-4">${item.currentMovie.quote}</p>
-          ${item.currentMovie.quoteTrans ? `<p class="text-xs text-gray-500 mt-1 pl-4">${item.currentMovie.quoteTrans}</p>` : ''}
-        </div>
-      </div>`;
-    }
-
-    return `<div class="bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow border border-${c}-100 cursor-pointer group" onclick="showDetail('${item.id}')">
-      <div class="text-3xl mb-3 group-hover:scale-110 transition-transform inline-block">${item.icon}</div>
-      <h3 class="font-bold text-gray-800 mb-2">${item.title}</h3>
-      <p class="text-sm text-gray-500 mb-3">${item.desc}</p>
-      <div class="flex flex-wrap gap-1">${item.tags.map(t => `<span class="text-xs bg-${c}-50 text-${c}-600 px-2 py-1 rounded-lg">${t}</span>`).join('')}</div>
-      ${extra}
-    </div>`;
-  }).join('');
-}
-
-function renderTracking() {
-  const container = document.getElementById('trackingContainer');
-  container.innerHTML = appData.tracking.map((item, idx) => {
-    const c = item.color;
-    if (isEditMode) {
-      return `<div class="bg-white rounded-2xl p-5 shadow-sm border-2 border-dashed border-green-300 relative">
-        <button onclick="deleteTracking(${idx})" class="absolute top-2 right-2 text-red-400 hover:text-red-600 text-lg">&times;</button>
-        <div class="space-y-3">
-          <div class="flex gap-2 items-center"><input class="edit-input text-lg w-12 text-center" value="${item.icon}" onchange="updateTracking(${idx},'icon',this.value)"><input class="edit-input font-bold" value="${item.title}" onchange="updateTracking(${idx},'title',this.value)"></div>
-          <div class="flex gap-2"><input class="edit-input text-sm" value="${item.value}" onchange="updateTracking(${idx},'value',this.value)"><input class="edit-input text-xs" value="${item.valueLabel}" onchange="updateTracking(${idx},'valueLabel',this.value)"></div>
-          ${item.items ? `<div class="space-y-2">${item.items.map((it, iidx) => `<div class="flex gap-1"><input class="edit-input text-xs flex-1" value="${it.title}" onchange="updateTrackingItem(${idx},${iidx},'title',this.value)"><input class="edit-input text-xs flex-1" value="${it.detail}" onchange="updateTrackingItem(${idx},${iidx},'detail',this.value)"><button onclick="deleteTrackingItem(${idx},${iidx})" class="text-red-400 text-xs">&times;</button></div>`).join('')}<button onclick="addTrackingItemDetail(${idx})" class="text-xs text-green-600 hover:underline">+ 添加行程</button></div>` : ''}
-          ${item.target !== undefined ? `<div class="text-xs space-y-1"><div class="flex gap-1"><span>目标:</span><input class="edit-number" type="number" value="${item.target}" onchange="updateTracking(${idx},'target',parseFloat(this.value))"></div><div class="flex gap-1"><span>当前:</span><input class="edit-number" type="number" value="${item.current}" onchange="updateTracking(${idx},'current',parseFloat(this.value))"></div></div>` : ''}
-          <input class="edit-input text-sm" value="${item.btnText || ''}" onchange="updateTracking(${idx},'btnText',this.value)">
-        </div>
-      </div>`;
-    }
-
-    let body = '';
-    if (item.streakDays) {
-      body = `<p class="text-sm text-gray-500 mb-3">${item.valueLabel}</p><div class="grid grid-cols-7 gap-1 mb-3">${item.streakDays.map(d => `<div class="aspect-square rounded ${d === 1 ? 'bg-blue-500' : d === 0.5 ? 'bg-blue-200' : 'bg-gray-100'}"></div>`).join('')}</div>`;
-    } else if (item.target !== undefined && item.current !== undefined && item.id === 'fit') {
-      const p = item.progress || Math.round((item.current / item.target) * 100);
-      body = `<p class="text-sm text-gray-500 mb-3">${item.valueLabel}</p><div class="space-y-2 mb-3"><div class="flex justify-between text-sm"><span class="text-gray-600">目标</span><span class="font-medium text-gray-800">${item.target} kg</span></div><div class="flex justify-between text-sm"><span class="text-gray-600">当前</span><span class="font-medium text-orange-600">${item.current} kg</span></div><div class="w-full bg-gray-100 rounded-full h-1.5"><div class="bg-orange-500 h-1.5 rounded-full" style="width:${p}%"></div></div></div>`;
-    } else if (item.items) {
-      body = `<p class="text-sm text-gray-500 mb-3">${item.valueLabel}</p><div class="space-y-2 mb-3">${item.items.map(it => `<div class="${it.highlight ? 'bg-teal-50' : 'bg-gray-50'} rounded-lg p-2 text-sm"><div class="font-medium ${it.highlight ? 'text-teal-800' : 'text-gray-700'}">${it.title}</div><div class="${it.highlight ? 'text-teal-600' : 'text-gray-500'} text-xs mt-1">${it.detail}</div></div>`).join('')}</div>`;
-    } else if (item.target !== undefined && item.current !== undefined && item.id === 'finance') {
-      const p = item.progress || Math.round((item.current / item.target) * 100);
-      body = `<p class="text-sm text-gray-500 mb-3">${item.valueLabel}</p><div class="space-y-2 mb-3"><div class="flex justify-between text-sm"><span class="text-gray-600">目标储蓄</span><span class="font-medium text-gray-800">¥${item.target.toLocaleString()}</span></div><div class="flex justify-between text-sm"><span class="text-gray-600">已完成</span><span class="font-medium text-green-600">¥${item.current.toLocaleString()}</span></div><div class="w-full bg-gray-100 rounded-full h-1.5"><div class="bg-green-500 h-1.5 rounded-full" style="width:${p}%"></div></div></div>`;
-    }
-
-    return `<div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-      <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center gap-2"><span class="text-2xl">${item.icon}</span><h3 class="font-bold text-gray-800">${item.title}</h3></div>
-        <span class="text-2xl font-bold text-${c}-600">${item.value}</span>
-      </div>
-      ${body}
-      <button onclick="${item.id === 'travel' || item.id === 'finance' ? `showDetail('${item.id}')` : `toggleCheck(this,'${item.id.split('-')[0]}')`}" class="w-full py-2 rounded-xl text-sm font-medium transition-all ${item.btnActive ? `bg-${c}-500 text-white hover:bg-${c}-600` : `bg-${c}-100 text-${c}-600 hover:bg-${c}-200`}">${item.btnText || '查看详情'}</button>
-    </div>`;
-  }).join('');
-}
-
-function renderStats() {
-  const container = document.getElementById('statsContainer');
-  container.innerHTML = appData.stats.map((s, idx) => {
-    if (isEditMode) {
-      return `<div class="text-center p-4 bg-${s.color}-50 rounded-xl border-2 border-dashed border-indigo-200">
-        <input class="edit-input text-center text-2xl font-bold text-${s.color}-600 mb-1" value="${s.value}" onchange="updateStat(${idx},'value',this.value)">
-        <input class="edit-input text-center text-sm text-${s.color}-600/70" value="${s.label}" onchange="updateStat(${idx},'label',this.value)">
-      </div>`;
-    }
-    return `<div class="text-center p-4 bg-${s.color}-50 rounded-xl"><div class="text-2xl font-bold text-${s.color}-600">${s.value}</div><div class="text-sm text-${s.color}-600/70 mt-1">${s.label}</div></div>`;
-  }).join('');
-}
-
-// ===================== 数据更新函数 =====================
-function updateLearning(idx, field, value) { appData.learning[idx][field] = value; renderLearning(); }
-function updateTask(lidx, tidx, field, value) { appData.learning[lidx].tasks[tidx][field] = value; renderLearning(); }
-function addTask(lidx) { appData.learning[lidx].tasks.push({ text: "新任务", done: false }); renderLearning(); }
-function deleteTask(lidx, tidx) { appData.learning[lidx].tasks.splice(tidx, 1); renderLearning(); }
-function deleteLearning(idx) { if (confirm('删除此项？')) { appData.learning.splice(idx, 1); renderLearning(); } }
-function addLearningItem() { appData.learning.push({ id: "new"+Date.now(), icon: "📚", title: "新学习项", tag: "自定义", tagColor: "blue", progressLabel: "进度", progressCurrent: 0, progressTotal: 10, tasks: [{ text: "新任务", done: false }], btnText: "打卡" }); renderLearning(); }
-
-// 商务英语更新
-function updateBizEnglish(lidx, field, value) {
-  if (!appData.learning[lidx].businessEnglish) appData.learning[lidx].businessEnglish = {};
-  appData.learning[lidx].businessEnglish[field] = value;
-  renderLearning();
-}
-function updateBizLink(lidx, linkIdx, field, value) {
-  if (appData.learning[lidx].businessEnglish && appData.learning[lidx].businessEnglish.links) {
-    appData.learning[lidx].businessEnglish.links[linkIdx][field] = value;
-    renderLearning();
-  }
-}
-function deleteBizLink(lidx, linkIdx) {
-  if (appData.learning[lidx].businessEnglish && appData.learning[lidx].businessEnglish.links) {
-    appData.learning[lidx].businessEnglish.links.splice(linkIdx, 1);
-    renderLearning();
-  }
-}
-function addBizLink(lidx) {
-  if (!appData.learning[lidx].businessEnglish) appData.learning[lidx].businessEnglish = {};
-  if (!appData.learning[lidx].businessEnglish.links) appData.learning[lidx].businessEnglish.links = [];
-  appData.learning[lidx].businessEnglish.links.push({ name: "新链接", url: "https://" });
-  renderLearning();
-}
-
-// 生活更新
-function updateLife(idx, field, value) { appData.life[idx][field] = value; renderLife(); }
-function updateLifeTag(idx, tidx, value) { appData.life[idx].tags[tidx] = value; renderLife(); }
-function addLifeTag(idx) { appData.life[idx].tags.push("#新标签"); renderLife(); }
-function deleteLife(idx) { if (confirm('删除此项？')) { appData.life.splice(idx, 1); renderLife(); } }
-function addLifeItem() { appData.life.push({ id: "new"+Date.now(), icon: "✨", title: "新生活项", desc: "描述", tags: ["#标签"], color: "pink" }); renderLife(); }
-
-// 歌曲更新
-function updateSong(idx, field, value) {
-  if (!appData.life[idx].song) appData.life[idx].song = {};
-  appData.life[idx].song[field] = value;
-  renderLife();
-}
-// 书籍更新
-function updateBook(idx, field, value) {
-  if (!appData.life[idx].currentBook) appData.life[idx].currentBook = {};
-  appData.life[idx].currentBook[field] = value;
-  renderLife();
-}
-// 影视更新
-function updateMovie(idx, field, value) {
-  if (!appData.life[idx].currentMovie) appData.life[idx].currentMovie = {};
-  appData.life[idx].currentMovie[field] = value;
-  renderLife();
-}
-
-function updateTracking(idx, field, value) { appData.tracking[idx][field] = value; renderTracking(); }
-function updateTrackingItem(idx, iidx, field, value) { appData.tracking[idx].items[iidx][field] = value; renderTracking(); }
-function addTrackingItemDetail(idx) { appData.tracking[idx].items.push({ title: "新行程", detail: "详情", highlight: false }); renderTracking(); }
-function deleteTrackingItem(idx, iidx) { appData.tracking[idx].items.splice(iidx, 1); renderTracking(); }
-function deleteTracking(idx) { if (confirm('删除此项？')) { appData.tracking.splice(idx, 1); renderTracking(); } }
-function addTrackingItem() { appData.tracking.push({ id: "new"+Date.now(), icon: "📌", title: "新追踪项", value: "0", valueLabel: "单位", color: "gray", btnText: "记录" }); renderTracking(); }
-
-function updateStat(idx, field, value) { appData.stats[idx][field] = value; renderStats(); }
-function editStats() { }
-
-function toggleTask(lidx, checked) { 
-  // 保持原有逻辑
-}
-
-// ===================== 原有交互函数 =====================
-function checkIn(btn, type) {
-  const originalText = btn.textContent;
-  btn.textContent = '✓ 已打卡';
-  btn.classList.add('opacity-75', 'cursor-not-allowed');
-  btn.disabled = true;
-  setTimeout(() => { btn.textContent = originalText; btn.classList.remove('opacity-75', 'cursor-not-allowed'); btn.disabled = false; }, 2000);
-}
-
-function toggleCheck(btn, type) {
-  const isChecked = btn.textContent.includes('已打卡');
-  if (isChecked) {
-    btn.textContent = type === 'study' ? '今日打卡' : '记录今日运动';
-    btn.className = 'w-full py-2 rounded-xl text-sm font-medium transition-all ' + (type === 'study' ? 'bg-blue-100 text-blue-600 hover:bg-blue-200' : 'bg-orange-100 text-orange-600 hover:bg-orange-200');
-  } else {
-    btn.textContent = '今日已打卡 ✓';
-    btn.className = 'w-full py-2 rounded-xl text-sm font-medium transition-all ' + (type === 'study' ? 'bg-blue-500 text-white hover:bg-blue-600' : 'bg-orange-500 text-white hover:bg-orange-600');
-  }
-}
-
-function showDetail(type) {
-  const modal = document.getElementById('detailModal');
-  const detail = appData.details[type];
-  if (!detail) return;
-  document.getElementById('modalTitle').textContent = detail.title;
-  document.getElementById('modalContent').innerHTML = detail.items.map(item => `
-    <div class="flex items-start gap-3 p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
-      <span class="text-xs text-gray-400 whitespace-nowrap mt-0.5">${item.date}</span>
-      <div class="flex-1"><p class="text-sm text-gray-800">${item.text}</p><span class="inline-block mt-1 text-xs bg-white px-2 py-0.5 rounded text-gray-500 border border-gray-200">${item.tag}</span></div>
+  container.innerHTML = words.map(item => `
+    <div onclick="toggleWord(${item.id})" class="cursor-pointer p-2.5 rounded-xl border transition-all text-center ${item.done ? 'bg-green-50 border-green-200 text-green-700' : 'bg-gray-50 border-gray-100 text-gray-800'}">
+      <p class="font-bold text-xs capitalize ${item.done ? 'line-through opacity-70' : ''}">${item.word}</p>
+      <span class="text-[9px] mt-1 inline-block ${item.done ? 'text-green-600 font-semibold' : 'text-gray-400'}">
+        ${item.done ? '✓ 已记住' : '点击完成'}
+      </span>
     </div>
   `).join('');
-  modal.classList.remove('hidden'); modal.classList.add('flex');
 }
 
-function closeModal() { const m = document.getElementById('detailModal'); m.classList.add('hidden'); m.classList.remove('flex'); }
-document.getElementById('detailModal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+function toggleWord(id) {
+  const savedWords = JSON.parse(localStorage.getItem('word_list') || '[]');
+  if (savedWords[id]) {
+    savedWords[id].done = !savedWords[id].done;
+    localStorage.setItem('word_list', JSON.stringify(savedWords));
+    renderWords(savedWords);
+  }
+}
 
-// ===================== 侧边栏 & 日期 =====================
-const now = new Date();
-const dateStr = now.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
-document.getElementById('currentDate').textContent = dateStr;
-document.getElementById('sidebarDate').textContent = dateStr;
+function refreshWords(force) {
+  if(confirm("确定强制重新获取 30 个全新词汇吗？")) {
+    loadDailyWords(force);
+  }
+}
+
+// 2. 网易云音乐 APP 调起逻辑 (Deep Link)
+function openNeteaseMusic() {
+  // 尝试使用 Deep Link 唤醒手机网易云音乐客户端
+  window.location.href = "orpheus://";
+  
+  // 降级策略：如果手机未安装，1.5 秒后自动跳转至网易云网页版
+  setTimeout(() => {
+    window.location.href = "https://music.163.com";
+  }, 1500);
+}
 
 function toggleSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  const overlay = document.getElementById('sidebarOverlay');
-  const isOpen = !sidebar.classList.contains('-translate-x-full');
-  if (isOpen) { sidebar.classList.add('-translate-x-full'); overlay.classList.add('hidden'); }
-  else { sidebar.classList.remove('-translate-x-full'); overlay.classList.remove('hidden'); }
+  document.getElementById('sidebar').classList.toggle('-translate-x-full');
+  document.getElementById('sidebarOverlay').classList.toggle('hidden');
 }
 
-const sections = document.querySelectorAll('section[id]');
-const navItems = document.querySelectorAll('.nav-item');
-function updateActiveNav() {
-  let current = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id'); });
-  navItems.forEach(item => { item.classList.remove('active'); if (item.getAttribute('href') === '#' + current) item.classList.add('active'); });
-}
-window.addEventListener('scroll', updateActiveNav);
-
-// ===================== HR Encyclopedia =====================
-function openHrEncyclopedia() { const m = document.getElementById('hrEncyclopediaModal'); m.classList.remove('hidden'); m.classList.add('flex'); document.body.style.overflow = 'hidden'; }
-function closeHrEncyclopedia() { const m = document.getElementById('hrEncyclopediaModal'); m.classList.add('hidden'); m.classList.remove('flex'); document.body.style.overflow = ''; }
-function switchHrChapter(chapterId) {
-  document.querySelectorAll('.hr-chapter').forEach(el => el.classList.add('hidden'));
-  const target = document.getElementById('hr-' + chapterId);
-  if (target) target.classList.remove('hidden');
-  document.querySelectorAll('.hr-nav-item').forEach(el => el.classList.remove('active'));
-  if (event && event.currentTarget) event.currentTarget.classList.add('active');
-}
-document.getElementById('hrEncyclopediaModal').addEventListener('click', function(e) { if (e.target === this) closeHrEncyclopedia(); });
-
-// ===================== 初始化 =====================
-loadData();
-renderAll();
-updateActiveNav();
-
-setInterval(() => {
-  const saveEl = document.getElementById('saveAmount');
-  if (saveEl) { const current = parseFloat(saveEl.textContent.replace(/[¥k]/g, '')); if (Math.random() > 0.7) saveEl.textContent = '¥' + (current + 0.1).toFixed(1) + 'k'; }
-}, 5000);
+// 页面加载自动拉取单词
+loadDailyWords();
 </script>
-<script>
-// HR Encyclopedia Content
-const hrContent = `
-<div id="hr-culture" class="hr-chapter">
-  <div class="flex items-center gap-3 mb-6"><span class="w-2 h-8 bg-blue-600 rounded-full"></span><h2 class="text-2xl font-bold text-gray-800">01. 宜家精神与八大核心价值观</h2></div>
-  <div class="bg-amber-50 border-l-4 border-amber-400 p-4 text-sm text-amber-900 mb-6 rounded-r-lg"><strong>HR 核心导向：</strong>宜家的招聘原则是"为价值观招聘，为技能培训"。</div>
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-    <div class="p-4 bg-blue-50 rounded-xl text-center border border-blue-100"><p class="text-sm font-bold text-blue-800">团结一致</p><p class="text-[10px] text-blue-600 mt-1 uppercase">Togetherness</p></div>
-    <div class="p-4 bg-blue-50 rounded-xl text-center border border-blue-100"><p class="text-sm font-bold text-blue-800">关爱人类与地球</p><p class="text-[10px] text-blue-600 mt-1 uppercase">Caring for people and planet</p></div>
-    <div class="p-4 bg-blue-50 rounded-xl text-center border border-blue-100"><p class="text-sm font-bold text-blue-800">成本意识</p><p class="text-[10px] text-blue-600 mt-1 uppercase">Cost-consciousness</p></div>
-    <div class="p-4 bg-blue-50 rounded-xl text-center border border-blue-100"><p class="text-sm font-bold text-blue-800">简单</p><p class="text-[10px] text-blue-600 mt-1 uppercase">Simplicity</p></div>
-    <div class="p-4 bg-blue-50 rounded-xl text-center border border-blue-100"><p class="text-sm font-bold text-blue-800">更新和改进</p><p class="text-[10px] text-blue-600 mt-1 uppercase">Renew and improve</p></div>
-    <div class="p-4 bg-blue-50 rounded-xl text-center border border-blue-100"><p class="text-sm font-bold text-blue-800">有意义的与众不同</p><p class="text-[10px] text-blue-600 mt-1 uppercase">Different with a meaning</p></div>
-    <div class="p-4 bg-blue-50 rounded-xl text-center border border-blue-100"><p class="text-sm font-bold text-blue-800">赋予和承担责任</p><p class="text-[10px] text-blue-600 mt-1 uppercase">Give and take responsibility</p></div>
-    <div class="p-4 bg-blue-50 rounded-xl text-center border border-blue-100"><p class="text-sm font-bold text-blue-800">以身作则</p><p class="text-[10px] text-blue-600 mt-1 uppercase">Lead by example</p></div>
-  </div>
-</div>
-
-<div id="hr-recruitment" class="hr-chapter hidden">
-  <div class="flex items-center gap-3 mb-6"><span class="w-2 h-8 bg-slate-700 rounded-full"></span><h2 class="text-2xl font-bold text-gray-800">02. 招聘、入职与回避制度</h2></div>
-  <div class="space-y-6">
-    <div class="bg-white border rounded-2xl p-5 shadow-sm">
-      <h4 class="font-bold text-gray-800 mb-3 flex items-center gap-2"><span class="w-6 h-6 bg-blue-100 text-blue-600 rounded flex items-center justify-center text-xs">📋</span>入职首日包 (Day 1 Bundle)</h4>
-      <ul class="text-sm text-gray-600 space-y-2 list-disc pl-5"><li>书面劳动合同 (入职首日即签)</li><li>《员工手册》签收与确认函</li><li>《IWAY 廉洁与商业准则承诺书》</li></ul>
-    </div>
-    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5">
-      <h4 class="font-bold text-amber-800 mb-2">⚠️ 亲属回避红线</h4>
-      <p class="text-sm text-amber-700 leading-relaxed">严禁存在直接或非直接汇报关系的亲属在同一实体任职。P&C、安保、商调部员工的亲属禁止在同一门店/中心任职。</p>
-    </div>
-    <div class="bg-white border rounded-2xl p-5 shadow-sm overflow-x-auto">
-      <h4 class="font-bold text-gray-800 mb-3">不同身份的雇佣协议</h4>
-      <table class="w-full text-sm border-collapse">
-        <thead><tr class="bg-slate-50"><th class="p-3 border text-left font-bold text-gray-700">人群</th><th class="p-3 border text-left font-bold text-gray-700">协议类型</th><th class="p-3 border text-left font-bold text-gray-700">解除规则</th></tr></thead>
-        <tbody class="text-gray-600">
-          <tr><td class="p-3 border">全职 / 退休兼职</td><td class="p-3 border">劳动合同</td><td class="p-3 border">预告30天</td></tr>
-          <tr class="bg-gray-50"><td class="p-3 border">社会兼职</td><td class="p-3 border">非全日制合同</td><td class="p-3 border">预告1周</td></tr>
-          <tr><td class="p-3 border">在校学生</td><td class="p-3 border">实习协议</td><td class="p-3 border">预告1周</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-<div id="hr-contract" class="hr-chapter hidden">
-  <div class="flex items-center gap-3 mb-6"><span class="w-2 h-8 bg-yellow-500 rounded-full"></span><h2 class="text-2xl font-bold text-gray-800">03. 劳动合同全生命周期管理</h2></div>
-  <div class="space-y-6">
-    <div class="bg-blue-50 border border-blue-200 rounded-2xl p-5">
-      <h4 class="font-bold text-blue-800 mb-2">英格卡"提前转正"路径</h4>
-      <p class="text-sm text-blue-700 mb-3">除法定"满10年"强制签署外，英格卡提供优于法律的政策：</p>
-      <div class="bg-white rounded-xl p-4 border border-blue-100">
-        <p class="text-base font-bold text-blue-800">连续工作满 3 年</p>
-        <p class="text-sm text-blue-600 mt-1">若绩效合格且公司决定续签，在续签时即可签署<strong>无固定期限合同</strong>。</p>
-      </div>
-    </div>
-    <div class="bg-white border rounded-2xl p-5 shadow-sm">
-      <h4 class="font-bold text-gray-800 mb-4">合同续订关键节点</h4>
-      <div class="flex items-center justify-between text-sm text-gray-600 bg-slate-50 rounded-xl p-4">
-        <div class="text-center flex-1"><div class="w-3 h-3 bg-blue-600 rounded-full mx-auto mb-1"></div><p class="font-bold text-blue-700">60天</p><p class="text-xs">启动评估</p></div>
-        <div class="h-px flex-1 bg-blue-200"></div>
-        <div class="text-center flex-1"><div class="w-3 h-3 bg-blue-500 rounded-full mx-auto mb-1"></div><p class="font-bold text-blue-700">30天</p><p class="text-xs">确认意向</p></div>
-        <div class="h-px flex-1 bg-blue-200"></div>
-        <div class="text-center flex-1"><div class="w-3 h-3 bg-blue-400 rounded-full mx-auto mb-1"></div><p class="font-bold text-blue-700">5天</p><p class="text-xs">签署新合同</p></div>
-      </div>
-      <p class="text-xs text-gray-400 mt-3 italic">到期日前完成签署，避免事实劳动关系风险</p>
-    </div>
-  </div>
-</div>
-
-<div id="hr-probation" class="hr-chapter hidden">
-  <div class="flex items-center gap-3 mb-6"><span class="w-2 h-8 bg-orange-500 rounded-full"></span><h2 class="text-2xl font-bold text-gray-800">04. 试用期考核与闭环</h2></div>
-  <div class="bg-amber-50 border-l-4 border-amber-400 p-4 text-sm text-amber-900 mb-6 rounded-r-lg"><strong>HR 实务建议：</strong>试用期解除合同是纠纷高发区。务必确保录用条件在《入职通知书》中已明确告知，且考核评估必须在试用期结束前完成送达。</div>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-    <div class="bg-white border rounded-2xl p-5 text-center shadow-sm"><div class="text-xs font-bold text-slate-400 mb-2">M1 (首月)</div><p class="text-lg font-bold text-blue-600 mb-2">设定考核目标</p><p class="text-sm text-gray-500">直线经理填写评估表，确立关键成果 (KPI)。</p></div>
-    <div class="bg-white border rounded-2xl p-5 text-center shadow-sm"><div class="text-xs font-bold text-slate-400 mb-2">M3 (中期)</div><p class="text-lg font-bold text-blue-600 mb-2">跟进评估</p><p class="text-sm text-gray-500">正式评估表现。若表现卓越可考虑提前转正。</p></div>
-    <div class="bg-white border border-red-200 rounded-2xl p-5 text-center shadow-sm"><div class="text-xs font-bold text-red-400 mb-2">END (转正前)</div><p class="text-lg font-bold text-red-600 mb-2">最终留用决定</p><p class="text-sm text-gray-500">解除必须提前3日通知。逾期即视为转正。</p></div>
-  </div>
-</div>
-
-<div id="hr-payroll" class="hr-chapter hidden">
-  <div class="flex items-center gap-3 mb-6"><span class="w-2 h-8 bg-green-600 rounded-full"></span><h2 class="text-2xl font-bold text-gray-800">05. 工时、排班与薪资结算</h2></div>
-  <div class="grid md:grid-cols-2 gap-4">
-    <div class="bg-white border rounded-2xl p-5 shadow-sm">
-      <h4 class="font-bold text-gray-800 mb-4">发薪时间表</h4>
-      <div class="space-y-3">
-        <div class="flex justify-between items-center border-b pb-2"><span class="text-sm text-gray-600">全职 / 退休兼职 / 学生</span><span class="font-bold text-blue-600">每月 25 日</span></div>
-        <div class="flex justify-between items-center border-b pb-2"><span class="text-sm text-gray-600">社会兼职</span><span class="font-bold text-blue-600">10日 & 25日分批</span></div>
-      </div>
-      <p class="text-xs text-gray-400 italic mt-3">若遇周末或法定节假日，发薪日通常提前至最近的工作日。</p>
-    </div>
-    <div class="bg-white border border-red-100 rounded-2xl p-5 shadow-sm">
-      <h4 class="font-bold text-red-700 mb-4">加班费计算逻辑</h4>
-      <div class="space-y-3 text-sm">
-        <div class="flex justify-between border-b pb-1"><span class="text-gray-600">平日加班</span><span class="font-bold text-gray-800">150%</span></div>
-        <div class="flex justify-between border-b pb-1"><span class="text-gray-600">休息日 (补休优先)</span><span class="font-bold text-gray-800">200%</span></div>
-        <div class="flex justify-between border-b pb-1"><span class="text-gray-600">法定节假日</span><span class="font-bold text-red-600 text-lg">300%</span></div>
-      </div>
-      <div class="bg-slate-50 p-3 rounded-lg mt-3 text-xs text-gray-500 leading-relaxed"><b>差旅工时：</b>城市间通行时间算工时。国内航班=飞行+1H；国际=飞行+2H；火车按运行实际时长。</div>
-    </div>
-  </div>
-</div>
-
-<div id="hr-benefits" class="hr-chapter hidden">
-  <div class="flex items-center gap-3 mb-6"><span class="w-2 h-8 bg-pink-500 rounded-full"></span><h2 class="text-2xl font-bold text-gray-800">06. 全面薪酬福利与假期政策</h2></div>
-  <div class="space-y-6">
-    <div class="bg-white border rounded-2xl p-5 shadow-sm">
-      <h4 class="font-bold text-gray-800 mb-4">英格卡带薪年假 vs 法定最低标准</h4>
-      <div class="space-y-3">
-        <div class="flex items-center gap-3 text-sm"><span class="text-gray-500 w-16">&lt;5年</span><div class="flex-1 h-6 bg-gray-100 rounded-full overflow-hidden flex"><div class="h-full bg-yellow-400 flex items-center justify-center text-xs font-bold text-yellow-900" style="width:20%">5天</div><div class="h-full bg-blue-600 flex items-center justify-center text-xs font-bold text-white" style="width:60%">15天</div></div></div>
-        <div class="flex items-center gap-3 text-sm"><span class="text-gray-500 w-16">5-10年</span><div class="flex-1 h-6 bg-gray-100 rounded-full overflow-hidden flex"><div class="h-full bg-yellow-400 flex items-center justify-center text-xs font-bold text-yellow-900" style="width:20%">5天</div><div class="h-full bg-blue-600 flex items-center justify-center text-xs font-bold text-white" style="width:68%">17天</div></div></div>
-        <div class="flex items-center gap-3 text-sm"><span class="text-gray-500 w-16">10-15年</span><div class="flex-1 h-6 bg-gray-100 rounded-full overflow-hidden flex"><div class="h-full bg-yellow-400 flex items-center justify-center text-xs font-bold text-yellow-900" style="width:40%">10天</div><div class="h-full bg-blue-600 flex items-center justify-center text-xs font-bold text-white" style="width:76%">19天</div></div></div>
-        <div class="flex items-center gap-3 text-sm"><span class="text-gray-500 w-16">15-20年</span><div class="flex-1 h-6 bg-gray-100 rounded-full overflow-hidden flex"><div class="h-full bg-yellow-400 flex items-center justify-center text-xs font-bold text-yellow-900" style="width:40%">10天</div><div class="h-full bg-blue-600 flex items-center justify-center text-xs font-bold text-white" style="width:84%">21天</div></div></div>
-        <div class="flex items-center gap-3 text-sm"><span class="text-gray-500 w-16">20-25年</span><div class="flex-1 h-6 bg-gray-100 rounded-full overflow-hidden flex"><div class="h-full bg-yellow-400 flex items-center justify-center text-xs font-bold text-yellow-900" style="width:60%">15天</div><div class="h-full bg-blue-600 flex items-center justify-center text-xs font-bold text-white" style="width:92%">23天</div></div></div>
-        <div class="flex items-center gap-3 text-sm"><span class="text-gray-500 w-16">25年+</span><div class="flex-1 h-6 bg-gray-100 rounded-full overflow-hidden flex"><div class="h-full bg-yellow-400 flex items-center justify-center text-xs font-bold text-yellow-900" style="width:60%">15天</div><div class="h-full bg-blue-600 flex items-center justify-center text-xs font-bold text-white" style="width:100%">25天</div></div></div>
-      </div>
-      <div class="flex gap-4 mt-3 text-xs"><span class="flex items-center gap-1"><span class="w-3 h-3 bg-yellow-400 rounded"></span>法定最低</span><span class="flex items-center gap-1"><span class="w-3 h-3 bg-blue-600 rounded"></span>英格卡全薪年假</span></div>
-    </div>
-    <div class="grid md:grid-cols-3 gap-4">
-      <div class="bg-slate-50 rounded-xl p-4 border border-slate-200"><h5 class="font-bold text-sm text-slate-800 mb-2">第13个月工资</h5><p class="text-xs text-slate-500">每年 1 月发放。当年入职满半年但不足一年的按比例折算。</p></div>
-      <div class="bg-slate-50 rounded-xl p-4 border border-slate-200"><h5 class="font-bold text-sm text-slate-800 mb-2">One IKEA 奖金</h5><p class="text-xs text-slate-500">基于年度目标达成的激励奖金计划。兼职及学生亦可按比例参与。</p></div>
-      <div class="bg-slate-50 rounded-xl p-4 border border-slate-200"><h5 class="font-bold text-sm text-slate-800 mb-2">Tack! 忠诚奖</h5><p class="text-xs text-slate-500">基于宜家集团利润的利润分享计划，奖励长期服务的员工。</p></div>
-    </div>
-    <div class="bg-green-50 border border-green-200 rounded-2xl p-5">
-      <h4 class="font-bold text-sm text-green-800 mb-3">特色福利小贴士</h4>
-      <ul class="text-sm text-green-700 grid grid-cols-2 gap-2"><li>• 15% 员工购物折扣 (全球通用)</li><li>• 婚假：10 个工作日 (全薪)</li><li>• 病假：14 个工作日 / 年 (全薪)</li><li>• 住院假：46 个工作日 / 年 (全薪)</li></ul>
-    </div>
-  </div>
-</div>
-
-<div id="hr-discipline" class="hr-chapter hidden">
-  <div class="flex items-center gap-3 mb-6"><span class="w-2 h-8 bg-red-600 rounded-full"></span><h2 class="text-2xl font-bold text-gray-800">07. 劳动纪律与违纪/失职分级管理</h2></div>
-  <div class="bg-red-50 border-l-4 border-red-500 p-4 text-sm text-red-900 mb-6 rounded-r-lg"><strong>HR 核心准则：</strong>处分记录有效期为 <strong>1年</strong>。英格卡实行警告累积制度：2次口头警告 = 1次书面警告；2次书面警告（或2次口头+1次书面）= 1次最后警告（可解雇）。</div>
-  <div class="space-y-4">
-    <div class="bg-white border rounded-2xl p-5 shadow-sm border-l-4 border-l-slate-400">
-      <div class="flex justify-between items-center mb-3"><h4 class="font-bold text-slate-800">一级：一般违纪 / 一般失职</h4><span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold">书面形式的"口头警告"</span></div>
-      <div class="grid md:grid-cols-2 gap-4 text-sm">
-        <div><p class="font-bold text-slate-500 mb-2">典型行为：</p><ul class="text-gray-600 space-y-1 list-disc pl-4 text-sm"><li>未能如期或按质按量完成工作安排</li><li>因保管不当造成资产损失或遗失（金额 &lt; 1,000元）</li><li>披露非敏感内部资料</li><li>违反考勤审批规定（3个月内补签满5次）</li><li>在社交媒体吐槽顾客的言行（未涉及隐私）</li></ul></div>
-        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200"><p class="font-bold text-slate-400 text-xs mb-2">处理程序：</p><ol class="text-slate-600 space-y-1 text-sm"><li>1. 直线经理进行调查与违纪确认</li><li>2. 填写警告单，报上级经理审核</li><li>3. 经理与员工沟通违纪事实及改进要求</li><li>4. 员工签字确认，警告单提交 P&C 留档</li></ol></div>
-      </div>
-    </div>
-    <div class="bg-white border rounded-2xl p-5 shadow-sm border-l-4 border-l-orange-400">
-      <div class="flex justify-between items-center mb-3"><h4 class="font-bold text-orange-800">二级：较重违纪 / 较重失职</h4><span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-bold">书面警告 (Written Warning)</span></div>
-      <div class="grid md:grid-cols-2 gap-4 text-sm">
-        <div><p class="font-bold text-orange-700 mb-2">典型行为：</p><ul class="text-gray-600 space-y-1 list-disc pl-4 text-sm"><li>操作失误致使设备损毁或伤及他人</li><li>财产损失金额在 <strong>1,000元 至 10,000元</strong> 之间</li><li>管理人员知情不报，隐瞒或庇护下属的违纪行为</li><li><strong>一年内累计犯有一般违纪/失职行为 2 次者</strong></li><li>因疏忽造成潜在法律风险或中度名誉损害</li></ul></div>
-        <div class="bg-orange-50 p-3 rounded-xl border border-orange-100"><p class="font-bold text-orange-400 text-xs mb-2">处理程序：</p><ol class="text-orange-800 space-y-1 text-sm"><li>1. 经理协同财务/运营部核算直接损失</li><li>2. 填写警告单并提交 P&C 经理共同审核</li><li>3. 必要时启动正式的调查听证流程</li><li>4. 多方确认后下发警告，记录至绩效档案</li></ol></div>
-      </div>
-    </div>
-    <div class="bg-white border rounded-2xl p-5 shadow-sm border-l-4 border-l-red-600">
-      <div class="flex justify-between items-center mb-3"><h4 class="font-bold text-red-800">三级：严重违纪 / 严重失职</h4><span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-bold">最后警告 + 立即解职 (0赔偿)</span></div>
-      <div class="grid md:grid-cols-2 gap-4 text-sm">
-        <div><p class="font-bold text-red-700 mb-2">红线行为 (Zero Tolerance)：</p><ul class="text-gray-600 space-y-1 list-disc pl-4 text-sm"><li><strong>诚信缺失</strong>：盗窃、挪用公款、收受贿赂、简历欺诈、伪造病假条或发票报销</li><li><strong>资产/名誉损失</strong>：造成经济损失达 <strong>10,000元及以上</strong>；散播谣言致使名誉受损</li><li><strong>安全红线</strong>：禁烟区吸烟、工位酗酒、携带危险品、参与非法组织</li><li><strong>职场秩序</strong>：打架斗殴、职场性骚扰、连续旷工 3 日</li><li><strong>累积违纪</strong>：一年内 2次较重违纪 或 4次一般违纪者</li></ul></div>
-        <div class="bg-red-50 p-3 rounded-xl border border-red-100"><p class="font-bold text-red-400 text-xs mb-2">强制处理程序：</p><ol class="text-red-800 space-y-1 text-sm"><li>1. <strong>即时停职</strong>：调查期间公司有权要求员工停职（如违纪属实，停职期间不发薪）</li><li>2. <strong>联合调查</strong>：直线经理、安保经理及 P&C 经理共同形成调查报告</li><li>3. <strong>高层裁决</strong>：报国家经理或业务单元负责人确认</li><li>4. <strong>即时解除</strong>：依据《劳动合同法》第39条下发解除通知书</li></ol></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="hr-termination" class="hr-chapter hidden">
-  <div class="flex items-center gap-3 mb-6"><span class="w-2 h-8 bg-red-700 rounded-full"></span><h2 class="text-2xl font-bold text-gray-800">08. 劳动合同解除与经济补偿精算</h2></div>
-  <div class="bg-red-50 border-l-4 border-red-500 p-4 text-sm text-red-900 mb-6 rounded-r-lg"><strong>HR 核心算法定义：</strong><br>• <b>N (经济补偿金)</b>：工作每满1年支付1个月工资；6个月以上按1年算，不满6个月按半个月算。工资基数为离职前12个月平均应发工资。<br>• <b>+1 (代通知金)</b>：未提前30天书面通知解除时，需额外支付1个月工资。<br>• <b>2N (赔偿金)</b>：用人单位违法解除或终止劳动合同时，按经济补偿标准的二倍支付。</div>
-  <div class="space-y-6">
-    <div class="bg-white border rounded-2xl p-5 shadow-sm border-l-4 border-blue-500">
-      <h4 class="font-bold text-gray-800 mb-3">A. 双方协商解除 (Article 36)</h4>
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="bg-slate-50 rounded-xl p-4"><p class="font-bold text-blue-800 text-sm mb-2">情形 1：由用人单位提出协商</p><p class="text-xs text-slate-600 mb-2">公司基于组织架构调整或业务优化，向员工发起沟通。</p><p class="text-base font-bold text-slate-800">赔偿标准：N</p><p class="text-xs text-slate-400 italic mt-2">英格卡通常会提供略高于N的方案（如N+1或N+2）以鼓励员工签署协议，规避后续法律风险。</p></div>
-        <div class="bg-slate-50 rounded-xl p-4"><p class="font-bold text-blue-800 text-sm mb-2">情形 2：由员工提出协商</p><p class="text-xs text-slate-600 mb-2">员工因个人原因、职业发展等向公司申请解除合同。</p><p class="text-base font-bold text-slate-800">赔偿标准：0</p><p class="text-xs text-slate-400 italic mt-2">法律依据：员工主动辞职，且公司不涉及违法行为，无须支付经济补偿。</p></div>
-      </div>
-    </div>
-    <div class="bg-white border rounded-2xl p-5 shadow-sm border-l-4 border-red-600">
-      <h4 class="font-bold text-gray-800 mb-4">B. 单方解除 (Unilateral)</h4>
-      <div class="overflow-x-auto">
-        <table class="w-full text-xs text-left border mb-4">
-          <tr class="bg-slate-100 font-bold"><th class="p-3 border">具体情形</th><th class="p-3 border">依据条文</th><th class="p-3 border">赔偿标准</th><th class="p-3 border">HR 注意事项</th></tr>
-          <tr><td class="p-3 border font-bold">严重违纪 (Misconduct)</td><td class="p-3 border">Art. 39</td><td class="p-3 border text-red-600 font-black">0</td><td class="p-3 border">需证据链完整（监控、谈话记录、员工手册签收）。必须履行告知工会程序。</td></tr>
-          <tr class="bg-gray-50"><td class="p-3 border font-bold">不胜任工作 / 医疗期满</td><td class="p-3 border">Art. 40</td><td class="p-3 border text-orange-600 font-bold">N + 1</td><td class="p-3 border">不胜任需经过"培训或调岗"流程。+1 可通过提前30天书面通知免除。</td></tr>
-          <tr><td class="p-3 border font-bold text-red-800">违法解除 (Illegal)</td><td class="p-3 border">Art. 87</td><td class="p-3 border text-red-800 font-black text-sm underline">2N</td><td class="p-3 border">如在三期（孕产哺乳）、工伤期间非法辞退，或程序缺失。</td></tr>
-        </table>
-      </div>
-      <div class="grid md:grid-cols-2 gap-4 mt-4">
-        <div class="p-4 border rounded-xl"><p class="font-bold text-xs text-slate-500 mb-2 underline">常规辞职 (Art. 37)</p><p class="text-xs text-slate-600">提前30天通知。公司无需支付任何补偿。</p></div>
-        <div class="p-4 border border-red-200 bg-red-50 rounded-xl"><p class="font-bold text-xs text-red-700 mb-2 underline">被迫辞职 (Art. 38)</p><p class="text-xs text-red-600">因公司欠薪、未缴社保等。员工即时走人，<b>公司须支付 N</b>。</p></div>
-      </div>
-    </div>
-    <div class="bg-slate-800 text-white p-6 rounded-2xl">
-      <h4 class="text-yellow-400 font-bold text-sm mb-3">英格卡 HR 高级精算：高收入员工封顶规则 (Cap Rules)</h4>
-      <p class="text-xs opacity-80 leading-relaxed">如果员工月平均工资高于当地上年度职工月平均工资的<strong>3倍</strong>：<br>1. <b>工资基数：</b> 按当地平均工资的3倍封顶计算。<br>2. <b>计发年限：</b> 最高不超过<strong>12年</strong>。<br><span class="italic text-yellow-400 mt-2 block">*注：对于一般员工，年限不受12年限制，按实际工龄计算。</span></p>
-    </div>
-  </div>
-</div>
-
-<div id="hr-offboarding" class="hr-chapter hidden">
-  <div class="flex items-center gap-3 mb-6"><span class="w-2 h-8 bg-blue-900 rounded-full"></span><h2 class="text-2xl font-bold text-gray-800">09. 离职管理与退休返聘</h2></div>
-  <div class="grid md:grid-cols-2 gap-6">
-    <div class="bg-white border rounded-2xl p-6 shadow-sm">
-      <h4 class="text-blue-800 font-bold mb-4 flex items-center gap-2"><span class="w-6 h-6 bg-blue-100 text-blue-600 rounded flex items-center justify-center text-xs">👴</span>退休人员管理实务</h4>
-      <p class="text-sm text-gray-600 mb-4">全职员工到达法定退休年龄时，劳动合同<strong>自动终止</strong>。</p>
-      <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
-        <p class="text-sm font-bold text-blue-800 mb-2">返聘路径：</p>
-        <ul class="text-xs text-blue-700 space-y-2"><li>1. 签署《退休返聘协议》或《劳务合同》。</li><li>2. 不再属于劳动法调整对象，无经济补偿金纠纷。</li><li>3. 可参加社会保险之外的补充商业意外险。</li></ul>
-      </div>
-    </div>
-    <div class="bg-white border rounded-2xl p-6 shadow-sm">
-      <h4 class="text-blue-800 font-bold mb-4 flex items-center gap-2"><span class="w-6 h-6 bg-blue-100 text-blue-600 rounded flex items-center justify-center text-xs">📋</span>HR 离职交接检查单</h4>
-      <ul class="space-y-3 text-sm text-gray-600">
-        <li class="flex items-center gap-2"><input type="checkbox" class="w-4 h-4 accent-blue-500"> 离职证明出具 (不得包含负面评价)</li>
-        <li class="flex items-center gap-2"><input type="checkbox" class="w-4 h-4 accent-blue-500"> 考勤系统 (Kronos) 结清余额</li>
-        <li class="flex items-center gap-2"><input type="checkbox" class="w-4 h-4 accent-blue-500"> 办公资产 (电脑、工牌) 归还</li>
-        <li class="flex items-center gap-2"><input type="checkbox" class="w-4 h-4 accent-blue-500"> 社保/公积金减员手续完成</li>
-        <li class="flex items-center gap-2"><input type="checkbox" class="w-4 h-4 accent-blue-500"> 签署离职协议 (包含保密与竞业承诺)</li>
-      </ul>
-    </div>
-  </div>
-</div>
-`;
-
-// Inject HR content
-document.getElementById('hrContentArea').innerHTML = hrContent;
-</script>
-
 </body>
 </html>
