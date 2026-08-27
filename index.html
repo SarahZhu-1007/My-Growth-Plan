@@ -41,11 +41,7 @@
     ::-webkit-scrollbar { width: 4px; height: 4px; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
     
-    /* 编辑模式样式 */
     .editing-active [contenteditable="true"] { outline: 2px dashed #6366f1 !important; border-radius: 4px; padding: 2px 4px; background: rgba(99, 102, 241, 0.05); }
-    
-    /* 控制台样式 */
-    #devConsole { transition: all 0.3s ease-in-out; }
     .console-log { font-family: monospace; font-size: 11px; }
   </style>
 </head>
@@ -69,7 +65,7 @@
     </a>
     <a href="#section-hr" onclick="toggleSidebar()" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50 transition-all">
       <span class="w-8 h-8 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center text-sm">⚖️</span>
-      <span class="font-medium text-sm">HR 常用法规库</span>
+      <span class="font-medium text-sm">HR 学习与面试指南</span>
     </a>
     <a href="#section-life" onclick="toggleSidebar()" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-gray-50 transition-all">
       <span class="w-8 h-8 bg-pink-100 text-pink-600 rounded-lg flex items-center justify-center text-sm">🌸</span>
@@ -107,7 +103,7 @@
       <p class="text-xs lg:text-sm text-gray-500" id="currentDate"></p>
     </div>
 
-    <!-- ===== SECTION 1: 学习成长 (双通道网络请求防卡顿) ===== -->
+    <!-- ===== SECTION 1: 学习成长 ===== -->
     <section id="section-learning" class="mb-8 scroll-mt-20">
       <div class="flex items-center justify-between mb-3">
         <div class="flex items-center gap-2">
@@ -132,12 +128,34 @@
       </div>
     </section>
 
-    <!-- ===== SECTION 2: HR 常用法规库 ===== -->
+    <!-- ===== SECTION 2: HR 学习与面试指南 ===== -->
     <section id="section-hr" class="mb-8 scroll-mt-20">
       <div class="flex items-center gap-2 mb-3">
         <span class="text-xl">⚖️</span>
-        <h2 class="text-lg font-bold text-gray-800" contenteditable="false">HR 常用法规库</h2>
+        <h2 class="text-lg font-bold text-gray-800" contenteditable="false">HR 学习与面试实战指南</h2>
       </div>
+
+      <!-- HR 面试高频问题手册卡片（已同步最新培训自动化+SZ Learning Hub话术） -->
+      <div class="bg-gradient-to-r from-amber-500/10 via-purple-500/10 to-indigo-500/10 backdrop-blur rounded-2xl p-4 shadow-sm border border-purple-200 mb-4">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">📖</span>
+            <div>
+              <h3 class="font-bold text-gray-800 text-sm">HR 面试高频问题与应答话术手册 (最新升级版)</h3>
+              <p class="text-[11px] text-purple-700 mt-0.5">建筑设计转行至宜家 P&C 部门实战量身定制</p>
+            </div>
+          </div>
+          <span class="text-[10px] bg-purple-600 text-white px-2.5 py-1 rounded-full font-medium">必背宝典</span>
+        </div>
+        <p class="text-xs text-gray-600 mb-3 leading-relaxed">
+          涵盖 6 大跨行 HR 高频必考题。重点升级 Q3 行为题：揉合“苏州商场学习日历”线下课程管理与 AI 搭建“SZ Learning Hub”线上数字化学习入口[cite: 3]。
+        </p>
+        <button onclick="toggleHrModal()" class="w-full py-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-1.5">
+          ✨ 点击展开阅读完整 HR 面试手册全文
+        </button>
+      </div>
+
+      <!-- 法律法规外链 -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-purple-100 hover:shadow-md transition-all">
           <div class="flex justify-between items-start mb-2">
@@ -200,7 +218,7 @@
       </div>
     </section>
 
-    <!-- ===== SECTION 4: 影音与网易云音乐 App ===== -->
+    <!-- ===== SECTION 4: 影音与网易云 ===== -->
     <section id="section-media" class="mb-8 scroll-mt-20">
       <div class="flex items-center gap-2 mb-3">
         <span class="text-xl">🎬</span>
@@ -259,6 +277,101 @@
   </div>
 </main>
 
+<!-- 📱 HR 手册全屏模态弹窗 (实时更新版) -->
+<div id="hrModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+    <div class="p-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white flex justify-between items-center">
+      <h3 class="font-bold text-sm flex items-center gap-2">📄 HR 面试高频问题与应答话术手册</h3>
+      <button onclick="toggleHrModal()" class="text-white hover:bg-white/20 p-1 rounded-lg text-xs">✕ 关闭</button>
+    </div>
+    
+    <div class="p-5 overflow-y-auto space-y-6 text-gray-700 text-xs leading-relaxed">
+      <div class="p-3 bg-purple-50 rounded-xl border border-purple-100 text-purple-900">
+        <p class="font-bold">🎯 手册说明[cite: 3]：</p>
+        <p class="mt-1">本手册专为从建筑设计成功转型至宜家 P&C 部门的候选人 Sarah 量身定制[cite: 3]。涵盖 6 道高频面试题、精准回答思路、专业话术与核心关键词[cite: 3]。</p>
+      </div>
+
+      <!-- 问题一 -->
+      <div class="border-b border-gray-100 pb-4">
+        <h4 class="font-bold text-sm text-purple-700 mb-1">Q1：“你为什么从建筑设计转行做 HR？”（必考题）[cite: 3]</h4>
+        <p class="text-amber-700 bg-amber-50 p-2 rounded-lg my-1.5 font-medium">💡 思路：强调主动选择和内在驱动，绝不说“设计院太累了”[cite: 3]。</p>
+        <p class="bg-gray-50 p-3 rounded-xl border border-gray-100 mb-2">“在设计院工作的几年里，我独立负责了多个大型项目，锻炼了很强的项目统筹和跨部门协调能力[cite: 3]。但我逐渐发现，比起和图纸打交道，我更享受和人协作的过程——比如在项目中协调各方需求、推动团队达成共识的那些时刻，是我最有成就感的时候[cite: 3]。<br><br>所以当有机会来到宜家P&C部门时，我毫不犹豫地抓住了[cite: 3]。这一年让我确认了自己的判断：HR不是我’逃避’设计院的选择，而是我’主动走向’的方向[cite: 3]。在这里，我学会了用SOP去优化培训流程，用员工视角去设计活动体验，这些都是我真正热爱并愿意深耕的事情[cite: 3]。”</p>
+        <div class="flex gap-2">
+          <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-[10px]">主动选择[cite: 3]</span>
+          <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-[10px]">可迁移能力[cite: 3]</span>
+          <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-[10px]">已验证的热爱[cite: 3]</span>
+        </div>
+      </div>
+
+      <!-- 问题二 -->
+      <div class="border-b border-gray-100 pb-4">
+        <h4 class="font-bold text-sm text-purple-700 mb-1">Q2：“你只有一年兼职 HR 经验，为什么我们应该录用你做全职？”[cite: 3]</h4>
+        <p class="text-amber-700 bg-amber-50 p-2 rounded-lg my-1.5 font-medium">💡 思路：承认经验时间短，但强调密度高、成长快、底层能力成熟[cite: 3]。</p>
+        <p class="bg-gray-50 p-3 rounded-xl border border-gray-100 mb-2">“确实，我的HR从业时间不算长，但我认为关键不在于时间长短，而在于这段时间里我做了什么、沉淀了什么[cite: 3]。<br><br>在宜家这一年，我独立负责了Training Calendar的全流程跟进，从零建立了异常处理SOP，还作为核心成员统筹了商场十周年大型员工活动[cite: 3]。这些不是’打杂’，而是实打实的项目管理和执行[cite: 3]。<br><br>更重要的是，我在设计院积累的多年项目管理经验，让我具备了比普通HR新人更强的多任务处理能力和抗压能力[cite: 3]。我不是从零开始的HR新人，而是带着成熟的职场底层能力，进入了一个新的专业领域[cite: 3]。”</p>
+        <div class="flex gap-2">
+          <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-[10px]">高密度成长[cite: 3]</span>
+          <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-[10px]">不是打杂[cite: 3]</span>
+          <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-[10px]">底层能力成熟[cite: 3]</span>
+        </div>
+      </div>
+
+      <!-- 问题三 (已同步最新实战话术) -->
+      <div class="border-b border-gray-100 pb-4">
+        <h4 class="font-bold text-sm text-purple-700 mb-1">Q3：“你在跟进培训时遇到过什么困难？你是怎么解决的？”（STAR法则）[cite: 3]</h4>
+        <p class="text-amber-700 bg-amber-50 p-2 rounded-lg my-1.5 font-medium">💡 思路：用 STAR 法则讲述真实故事，突出“线下日历 + 线上平台”双管齐下的系统化思维[cite: 3]。</p>
+        <p class="bg-gray-50 p-3 rounded-xl border border-gray-100 mb-2 space-y-2">
+          <span><strong>（Situation）</strong>在跟进 Training Calendar 时，我最初的工作方式只是追踪数据——谁完成了、谁没完成，然后催收反馈[cite: 3]。但很多时候业务部门不回应，进度就停滞了[cite: 3]。</span><br>
+          <span><strong>（Task）</strong>我的 HR Manager 告诉我，不能只是观察和催办，需要有进一步解决问题的应对措施[cite: 3]。</span><br>
+          <span><strong>（Action）</strong>于是我做了两件事：</span><br>
+          <span><strong>第一，线下课程管理：</strong>我整合了各部门直线经理提交的本财年需要学习的课程，制作了一份完整的苏州商场年度学习日历（Training Calendar）[cite: 3]。这份日历覆盖了三大课程类别——IKEA Mandatory（宜家必修课）、Compliance（合法合规课程）和Business Competence（业务培训），涉及IF（餐饮）、CR（客户关系）、Com-in、Sales（销售）、BNOM等多个业务部门，时间跨度从3月到11月[cite: 3]。每条课程都详细标注了课程名称、讲师、培训目标、目标群体、月份安排、培训链接和时长[cite: 3]。这份日历供全体员工随时查阅，也便于我针对线下课程的完成情况，及时登记录入系统[cite: 3]。</span><br>
+          <span><strong>第二，线上课程数字化：</strong>我将所有线上课程单独归纳，利用AI平台搭建了一个名为"SZ Learning Hub"的数字化学习入口[cite: 3]。员工可以通过手机或电脑访问Site链接，输入个人工号（Staff ID）完成身份识别后，即可进入学习平台[cite: 3]。平台左侧导航栏按部门分类展示课程，右侧搜索栏支持按课程名称快速检索，点击课程即可一键跳转到IKEA CSD学习平台开始学习[cite: 3]。同时，我还单独设置了管理员后台界面，可以查看每位员工的累计学习时长（如0.0H、2.0H、20H等），方便我定期从后台主动了解员工学习进度并提供支持，而不是干等回复[cite: 3]。</span><br>
+          <span><strong>（Result）</strong>调整之后，培训数据的收集效率明显提升，业务部门的配合度也好了很多，因为他们感受到 HR 不是来’催债’的，而是来帮忙解决问题的[cite: 3]。</span>
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-[10px]">有具体场景[cite: 3]</span>
+          <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-[10px]">有转折[cite: 3]</span>
+          <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-[10px]">线下日历+线上平台[cite: 3]</span>
+          <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-[10px]">有结果[cite: 3]</span>
+        </div>
+      </div>
+
+      <!-- 问题四 -->
+      <div class="border-b border-gray-100 pb-4">
+        <h4 class="font-bold text-sm text-purple-700 mb-1">Q4：“你对未来的职业规划是什么？”[cite: 3]</h4>
+        <p class="text-amber-700 bg-amber-50 p-2 rounded-lg my-1.5 font-medium">💡 思路：展现目标清晰和务实态度，不要说“三年做到经理”这类空话[cite: 3]。</p>
+        <p class="bg-gray-50 p-3 rounded-xl border border-gray-100 mb-2">“短期来看，我希望能在招聘（Talent Acquisition）或培训（Learning & Development）模块找到全职机会，系统地把这两个传统HR模块的基本功打扎实[cite: 3]。在宜家这一年，我在培训和员工活动方面有了实操经验，但招聘对我来说还是一个需要深入学习的新领域[cite: 3]。<br><br>长期来看，我希望自己能成长为一名HRBP——既能懂业务、又能用专业的HR工具去解决组织问题[cite: 3]。我相信，我跨行业的背景会让我更容易理解不同业务部门的语言和痛点[cite: 3]。”</p>
+        <div class="flex gap-2">
+          <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-[10px]">短期务实[cite: 3]</span>
+          <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-[10px]">长期有方向[cite: 3]</span>
+          <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-[10px]">跨界是优势[cite: 3]</span>
+        </div>
+      </div>
+
+      <!-- 问题五 -->
+      <div class="border-b border-gray-100 pb-4">
+        <h4 class="font-bold text-sm text-purple-700 mb-1">Q5：“你最大的优点和缺点分别是什么？”[cite: 3]</h4>
+        <p class="bg-gray-50 p-3 rounded-xl border border-gray-100 mb-2">“<strong>优点：</strong>我最大的优点是能把’对人的关注’转化为’可执行的方案’[cite: 3]。很多做HR的人有同理心，但容易停留在感性层面[cite: 3]。我的建筑设计背景让我习惯了把抽象需求变成具体的图纸和流程[cite: 3]。比如在做员工活动时，我不仅关心’大家开不开心’，更会提前用员工视角预演整个动线，把每个环节的体验细节落到执行清单上[cite: 3]。<br><br><strong>缺点：</strong>我之前在跨部门沟通时，有时候会因为太在意对方的感受而不敢直接推动进度[cite: 3]。后来我意识到，温和和坚定并不矛盾[cite: 3]。现在我学会了用制度和SOP去推动工作——当我拿着标准化的流程去沟通时，对方感受到的不是’你在催我’，而是’这是标准流程，我们一起遵守’[cite: 3]。这个转变对我帮助很大[cite: 3]。”</p>
+      </div>
+
+      <!-- 问题六 -->
+      <div class="border-b border-gray-100 pb-4">
+        <h4 class="font-bold text-sm text-purple-700 mb-1">Q6：“你对薪资有什么期望？”[cite: 3]</h4>
+        <p class="bg-gray-50 p-3 rounded-xl border border-gray-100 mb-2">“作为一个正在从建筑设计转型到HR的候选人，我更看重的是这个岗位能给我带来的成长空间和学习机会，而不仅仅是薪资数字[cite: 3]。当然，我也希望薪资能符合市场水平[cite: 3]。方便的话，您能先介绍一下这个岗位的薪资范围和整体薪酬结构吗？[cite: 3]”</p>
+      </div>
+
+      <!-- 通用加分贴士 -->
+      <div class="p-3 bg-indigo-50 rounded-xl border border-indigo-100">
+        <p class="font-bold text-indigo-900 mb-1">💡 面试通用加分小贴士[cite: 3]：</p>
+        <ul class="list-disc pl-4 space-y-1 text-[11px] text-indigo-800">
+          <td><strong>准备 2-3 个“宜家故事”：</strong>培训跟进SOP、十周年活动、从被动观察到主动解决问题的转变[cite: 3]。</td>
+          <td><strong>带一份你的 SOP 去面试：</strong>把《培训跟进异常处理SOP》打印出来展示，更有说服力[cite: 3]。</td>
+          <td><strong>结尾反问：</strong>准备 1-2 个高质量反问，如“岗位未来半年最重要的 KPI 是什么？”“团队培训体系搭建进度？”[cite: 3]。</td>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- 📱 手机端悬浮控制工具栏 -->
 <div class="fixed bottom-4 right-4 z-50 flex gap-2">
   <button onclick="toggleVisualEdit()" id="editToggleBtn" class="px-3.5 py-2 bg-indigo-600 text-white rounded-xl shadow-lg text-xs font-medium flex items-center gap-1.5">
@@ -290,7 +403,6 @@
 </div>
 
 <script>
-// 基础打卡数据
 const DEFAULT_TRACKING = [
   { id: "study", icon: "📝", title: "每日英语打卡", value: 12, color: "blue", btnText: "今日打卡" },
   { id: "fit", icon: "💪", title: "健身运动", value: 4, color: "orange", btnText: "记录运动" },
@@ -298,14 +410,13 @@ const DEFAULT_TRACKING = [
   { id: "read", icon: "📚", title: "阅读 30 分钟", value: 8, color: "purple", btnText: "打卡读书" }
 ];
 
-// 后备精选词库 (解决断网与公网 API 卡顿)
 const FALLBACK_WORDS = ["leverage", "synergy", "paradigm", "benchmark", "optimize", "deliverable", "milestone", "bandwidth", "alignment", "incentive", "proactive", "stakeholder", "strategy", "roadmap", "agile", "scalability", "ecosystem", "framework", "pivot", "disruption", "metric", "pipeline", "sustainability", "feasibility", "integration", "outsource", "compliance", "diversify", "streamline", "revenue"];
 
 let isEditable = false;
 
 document.getElementById('currentDate').textContent = new Date().toLocaleDateString('zh-CN', { month: 'long', day: 'numeric', weekday: 'long' });
 
-// 1. 双通道优化版 英语 API 请求逻辑
+// 1. 单词加载与网络容错
 async function loadDailyWords(forceRefresh = false) {
   const today = new Date().toISOString().split('T')[0];
   const savedDate = localStorage.getItem('word_date');
@@ -317,10 +428,9 @@ async function loadDailyWords(forceRefresh = false) {
   }
 
   const container = document.getElementById('wordContainer');
-  container.innerHTML = `<div class="col-span-full text-center text-xs text-gray-400 py-4">🌐 正在加速加载今日 30 词...</div>`;
+  container.innerHTML = `<div class="col-span-full text-center text-xs text-gray-400 py-4">🌐 正在加载今日 30 词...</div>`;
 
   try {
-    // 设置 3 秒超时逻辑，超过 3 秒自动切换备用极速节点
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 3000);
 
@@ -333,9 +443,7 @@ async function loadDailyWords(forceRefresh = false) {
     localStorage.setItem('word_date', today);
     localStorage.setItem('word_list', JSON.stringify(formattedWords));
     renderWords(formattedWords);
-    logConsole("成功从网络 API 调取 30 词。");
   } catch (err) {
-    logConsole("主网络节点延迟高，已自动无缝切换至离线高速词库数据。", "warn");
     const formattedWords = FALLBACK_WORDS.map((w, idx) => ({ id: idx, word: w, done: false }));
     localStorage.setItem('word_date', today);
     localStorage.setItem('word_list', JSON.stringify(formattedWords));
@@ -369,13 +477,18 @@ function toggleWord(id) {
 
 function refreshWords(force) { loadDailyWords(force); }
 
-// 2. 网易云 App 唤醒
+// 2. HR 手册模态框切换
+function toggleHrModal() {
+  document.getElementById('hrModal').classList.toggle('hidden');
+}
+
+// 3. 网易云唤醒
 function openNeteaseMusic() {
   window.location.href = "orpheus://";
   setTimeout(() => { window.location.href = "https://music.163.com"; }, 1500);
 }
 
-// 3. 可视化编辑功能
+// 4. 页面可视化编辑
 function toggleVisualEdit() {
   isEditable = !isEditable;
   document.body.classList.toggle('editing-active', isEditable);
@@ -386,25 +499,23 @@ function toggleVisualEdit() {
   if (isEditable) {
     btn.textContent = "💾 保存修改";
     btn.className = "px-3.5 py-2 bg-green-600 text-white rounded-xl shadow-lg text-xs font-medium flex items-center gap-1.5";
-    alert("✏️ 已开启页面编辑模式！现在你可以直接点击页面上任意文本进行修改。修改完成后再点一次保存。");
   } else {
     btn.textContent = "✏️ 页面编辑";
     btn.className = "px-3.5 py-2 bg-indigo-600 text-white rounded-xl shadow-lg text-xs font-medium flex items-center gap-1.5";
     localStorage.setItem('dashboard_edited_html', document.querySelector('main').innerHTML);
-    alert("✅ 文本修改已自动保存到本地系统！");
+    alert("✅ 修改已自动保存！");
   }
 }
 
-// 4. 后台控制台 Console 功能
+// 5. 控制台功能
 function toggleConsole() {
-  const consoleEl = document.getElementById('devConsole');
-  consoleEl.classList.toggle('translate-y-full');
+  document.getElementById('devConsole').classList.toggle('translate-y-full');
 }
 
 function logConsole(msg, type = "info") {
   const logs = document.getElementById('consoleLogs');
   const div = document.createElement('div');
-  div.className = `console-log ${type === 'error' ? 'text-red-400' : type === 'warn' ? 'text-yellow-400' : 'text-green-400'}`;
+  div.className = `console-log ${type === 'error' ? 'text-red-400' : 'text-green-400'}`;
   div.textContent = `> [${new Date().toLocaleTimeString()}] ${msg}`;
   logs.appendChild(div);
   logs.scrollTop = logs.scrollHeight;
@@ -418,18 +529,15 @@ function runConsoleScript() {
   const input = document.getElementById('consoleInput');
   const code = input.value.trim();
   if (!code) return;
-  
-  logConsole(`Exec: ${code}`, "info");
   try {
     const result = eval(code);
-    logConsole(`Res: ${JSON.stringify(result)}`, "info");
+    logConsole(`Res: ${JSON.stringify(result)}`);
   } catch (err) {
     logConsole(`Err: ${err.message}`, "error");
   }
   input.value = '';
 }
 
-// 渲染打卡板块
 function renderTracking() {
   const container = document.getElementById('trackingContainer');
   container.innerHTML = DEFAULT_TRACKING.map(item => `
@@ -451,12 +559,6 @@ function checkIn(btn) {
 function toggleSidebar() {
   document.getElementById('sidebar').classList.toggle('-translate-x-full');
   document.getElementById('sidebarOverlay').classList.toggle('hidden');
-}
-
-// 读取历史编辑保存
-const savedHTML = localStorage.getItem('dashboard_edited_html');
-if (savedHTML) {
-  document.querySelector('main').innerHTML = savedHTML;
 }
 
 loadDailyWords();
