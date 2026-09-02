@@ -97,7 +97,7 @@
     </div>
   </aside>
 
-  <!-- 手机端底部固定快捷导航 (Mobile Bottom Bar) -->
+  <!-- 手机端底部固定快捷导航 -->
   <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-slate-200 z-30 px-2 py-1.5 flex items-center justify-around md:hidden shadow-lg">
     <a href="#section-checkin" class="flex flex-col items-center text-slate-600 hover:text-blue-600 py-1 px-2 text-[10px] font-medium">
       <span class="text-base">✅</span>打卡
@@ -122,7 +122,7 @@
   <!-- 主体区域 -->
   <main class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 space-y-5 sm:space-y-8">
 
-    <!-- 0. 手机端便捷打卡面板 (新增) -->
+    <!-- 0. 打卡面板 -->
     <section id="section-checkin" class="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-4 sm:p-6 text-white shadow-md">
       <div class="flex items-center justify-between mb-3">
         <div class="flex items-center gap-2">
@@ -153,7 +153,7 @@
       </div>
     </section>
 
-    <!-- 1. 每日学习与英语模块 -->
+    <!-- 1. 英语模块 -->
     <section id="section-daily" class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200/80">
       <div class="flex items-center justify-between mb-3 sm:mb-4">
         <div class="flex items-center gap-2">
@@ -165,15 +165,11 @@
           <span>🔄</span> 重置
         </button>
       </div>
-      <!-- 单词网格容器 -->
-      <div id="wordContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-        <!-- JS 动态渲染 -->
-      </div>
+      <div id="wordContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3"></div>
     </section>
 
-    <!-- 2. 工作与 HR 专业能力模块 -->
+    <!-- 2. 工作与 HR 模块 -->
     <section id="section-work" class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-      <!-- HR 常用指南 -->
       <div class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200/80 flex flex-col justify-between">
         <div>
           <div class="flex items-center justify-between mb-3">
@@ -189,7 +185,6 @@
         </button>
       </div>
 
-      <!-- 劳动法与合规指南 -->
       <div class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200/80 flex flex-col justify-between">
         <div>
           <div class="flex items-center justify-between mb-3">
@@ -216,7 +211,7 @@
       </div>
     </section>
 
-    <!-- 3. 健康与睡眠改善模块 -->
+    <!-- 3. 睡眠模块 -->
     <section id="section-life" class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200/80">
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
         <div>
@@ -230,36 +225,27 @@
         </button>
       </div>
 
-      <!-- 快速睡眠要点卡片 -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         <div class="p-3.5 rounded-xl bg-indigo-50/50 border border-indigo-100">
-          <div class="font-bold text-indigo-900 text-xs sm:text-sm mb-1 flex items-center gap-1.5">
-            <span>🛏️</span> 环境构建
-          </div>
+          <div class="font-bold text-indigo-900 text-xs sm:text-sm mb-1">🛏️ 环境构建</div>
           <p class="text-[11px] sm:text-xs text-indigo-700/80 leading-relaxed editable-field" contenteditable="false">维持卧室温度 18-22℃，使用遮光窗帘，减少光声干扰。</p>
         </div>
         <div class="p-3.5 rounded-xl bg-purple-50/50 border border-purple-100">
-          <div class="font-bold text-purple-900 text-xs sm:text-sm mb-1 flex items-center gap-1.5">
-            <span>🌿</span> 身心放松
-          </div>
+          <div class="font-bold text-purple-900 text-xs sm:text-sm mb-1">🌿 身心放松</div>
           <p class="text-[11px] sm:text-xs text-purple-700/80 leading-relaxed editable-field" contenteditable="false">睡前 30 分钟无蓝光环境，采用腹式呼吸缓解神经焦虑。</p>
         </div>
         <div class="p-3.5 rounded-xl bg-blue-50/50 border border-blue-100">
-          <div class="font-bold text-blue-900 text-xs sm:text-sm mb-1 flex items-center gap-1.5">
-            <span>🥛</span> 营养干预
-          </div>
+          <div class="font-bold text-blue-900 text-xs sm:text-sm mb-1">🥛 营养干预</div>
           <p class="text-[11px] sm:text-xs text-blue-700/80 leading-relaxed editable-field" contenteditable="false">睡前可适量饮用温牛奶，避免过饱或摄入咖啡因。</p>
         </div>
         <div class="p-3.5 rounded-xl bg-teal-50/50 border border-teal-100">
-          <div class="font-bold text-teal-900 text-xs sm:text-sm mb-1 flex items-center gap-1.5">
-            <span>⏰</span> 昼夜节律
-          </div>
+          <div class="font-bold text-teal-900 text-xs sm:text-sm mb-1">⏰ 昼夜节律</div>
           <p class="text-[11px] sm:text-xs text-teal-700/80 leading-relaxed editable-field" contenteditable="false">固定起床时间，清晨接受日光照射，建立规律生物钟。</p>
         </div>
       </div>
     </section>
 
-    <!-- 4. 生活小确幸板块（美食/爱宠/影视音乐） -->
+    <!-- 4. 生活小确幸板块 -->
     <section id="section-joy" class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200/80">
       <div class="flex items-center justify-between mb-4">
         <div>
@@ -271,54 +257,44 @@
         <span class="text-[11px] bg-pink-100 text-pink-700 px-2 py-0.5 rounded-full font-medium">治愈系</span>
       </div>
 
-      <!-- 小确幸格子 -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        <!-- 卡片 1 -->
         <div class="p-3.5 rounded-xl bg-amber-50/40 border border-amber-100 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-2">
-              <span class="font-bold text-amber-900 text-xs sm:text-sm flex items-center gap-1.5">
-                <span>🍜</span> <span class="editable-field" contenteditable="false">深夜食堂与风味美食</span>
-              </span>
+              <span class="font-bold text-amber-900 text-xs sm:text-sm">🍜 深夜食堂与风味美食</span>
               <span class="text-[10px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded">味蕾</span>
             </div>
             <p class="text-[11px] sm:text-xs text-amber-800/80 leading-relaxed editable-field" contenteditable="false">周末尝试手作了一道番茄浓汤意面，配上煎得恰到好处的黑椒牛排，幸福感直接拉满。</p>
           </div>
-          <div class="mt-3 pt-2 border-t border-amber-100/60 text-[10px] sm:text-[11px] text-amber-700/70 italic flex items-center justify-between">
+          <div class="mt-3 pt-2 border-t border-amber-100/60 text-[10px] text-amber-700/70 italic flex items-center justify-between">
             <span class="editable-field" contenteditable="false">📍 推荐指数：⭐⭐⭐⭐⭐</span>
             <span class="editable-field" contenteditable="false">#私房烘焙</span>
           </div>
         </div>
 
-        <!-- 卡片 2 -->
         <div class="p-3.5 rounded-xl bg-orange-50/40 border border-orange-100 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-2">
-              <span class="font-bold text-orange-900 text-xs sm:text-sm flex items-center gap-1.5">
-                <span>🐱</span> <span class="editable-field" contenteditable="false">毛孩子治愈日常</span>
-              </span>
+              <span class="font-bold text-orange-900 text-xs sm:text-sm">🐱 毛孩子治愈日常</span>
               <span class="text-[10px] bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded">萌宠</span>
             </div>
             <p class="text-[11px] sm:text-xs text-orange-800/80 leading-relaxed editable-field" contenteditable="false">今天回家一开门，小家伙四脚朝天躺在阳光地毯上打呼噜，瞬间治愈了一整天的职场疲惫。</p>
           </div>
-          <div class="mt-3 pt-2 border-t border-orange-100/60 text-[10px] sm:text-[11px] text-orange-700/70 italic flex items-center justify-between">
+          <div class="mt-3 pt-2 border-t border-orange-100/60 text-[10px] text-orange-700/70 italic flex items-center justify-between">
             <span class="editable-field" contenteditable="false">🐾 今日贴贴：+100分</span>
             <span class="editable-field" contenteditable="false">#吸猫日记</span>
           </div>
         </div>
 
-        <!-- 卡片 3 -->
         <div class="p-3.5 rounded-xl bg-pink-50/40 border border-pink-100 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-2">
-              <span class="font-bold text-pink-900 text-xs sm:text-sm flex items-center gap-1.5">
-                <span>🎧</span> <span class="editable-field" contenteditable="false">治愈音乐 & 影视</span>
-              </span>
+              <span class="font-bold text-pink-900 text-xs sm:text-sm">🎧 治愈音乐 & 影视</span>
               <span class="text-[10px] bg-pink-100 text-pink-800 px-1.5 py-0.5 rounded">充电</span>
             </div>
             <p class="text-[11px] sm:text-xs text-pink-800/80 leading-relaxed editable-field" contenteditable="false">重温了电影《心灵奇旅》，伴随着爵士乐的律动，重新找回了生活本身的微小热情与节奏。</p>
           </div>
-          <div class="mt-3 pt-2 border-t border-pink-100/60 text-[10px] sm:text-[11px] text-pink-700/70 italic flex items-center justify-between">
+          <div class="mt-3 pt-2 border-t border-pink-100/60 text-[10px] text-pink-700/70 italic flex items-center justify-between">
             <span class="editable-field" contenteditable="false">💿 单曲循环中...</span>
             <span class="editable-field" contenteditable="false">#爵士乐</span>
           </div>
@@ -329,15 +305,13 @@
   </main>
 
   <!-- 弹窗 1：睡眠全景指南 Modal -->
-  <div id="sleepModal" class="fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
-    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
-      <div class="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between bg-indigo-50/50">
-        <h3 class="font-bold text-slate-800 text-base sm:text-lg flex items-center gap-2">
-          <span>🌙</span> 深度睡眠改善全景图
-        </h3>
-        <button onclick="toggleSleepModal()" class="text-slate-400 hover:text-slate-600 p-1">✕</button>
+  <div id="sleepModal" class="fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-3 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-indigo-50/50">
+        <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">🌙 深度睡眠改善全景图</h3>
+        <button onclick="toggleSleepModal()" class="text-slate-400 hover:text-slate-600 p-1 font-bold text-lg">✕</button>
       </div>
-      <div class="p-4 sm:p-6 overflow-y-auto space-y-4 custom-scrollbar text-xs sm:text-sm text-slate-600">
+      <div class="p-4 overflow-y-auto space-y-3 custom-scrollbar text-xs sm:text-sm text-slate-600">
         <div class="border-l-4 border-indigo-500 pl-3 py-1 bg-indigo-50/30 rounded-r-lg">
           <h4 class="font-bold text-slate-800">1. 环境构建</h4>
           <p class="text-xs text-slate-600 mt-1">使用遮光窗帘达到 100% 避光；保持卧室温度在 18~22 摄氏度；搭配 30-40dB 的粉红噪音或白噪音环境。</p>
@@ -355,82 +329,72 @@
           </ul>
         </div>
       </div>
-      <div class="p-4 border-t border-slate-100 text-right bg-slate-50">
-        <button onclick="toggleSleepModal()" class="px-4 py-2 bg-slate-800 text-white rounded-xl text-xs font-medium hover:bg-slate-700 transition-colors">
-          关闭
-        </button>
+      <div class="p-3 border-t border-slate-100 text-right bg-slate-50">
+        <button onclick="toggleSleepModal()" class="px-4 py-2 bg-slate-800 text-white rounded-xl text-xs font-medium">关闭</button>
       </div>
     </div>
   </div>
 
   <!-- 弹窗 2：HR 全景手册 Modal -->
-  <div id="hrModal" class="fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
-    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
-      <div class="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between bg-emerald-50/50">
-        <h3 class="font-bold text-slate-800 text-base sm:text-lg flex items-center gap-2">
-          <span>📖</span> HR 业务速查手册（完整版）
-        </h3>
-        <button onclick="toggleHrModal()" class="text-slate-400 hover:text-slate-600 p-1">✕</button>
+  <div id="hrModal" class="fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-3 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-emerald-50/50">
+        <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">📖 HR 业务速查手册（完整版）</h3>
+        <button onclick="toggleHrModal()" class="text-slate-400 hover:text-slate-600 p-1 font-bold text-lg">✕</button>
       </div>
-      <div class="p-4 sm:p-6 overflow-y-auto space-y-4 custom-scrollbar text-xs sm:text-sm text-slate-600">
+      <div class="p-4 overflow-y-auto space-y-4 custom-scrollbar text-xs sm:text-sm text-slate-600">
         <div class="space-y-2">
-          <h4 class="font-bold text-slate-800 text-sm sm:text-base border-l-4 border-emerald-500 pl-2">一、薪酬与工时计算基本公式</h4>
+          <h4 class="font-bold text-slate-800 border-l-4 border-emerald-500 pl-2">一、薪酬与工时计算基本公式</h4>
           <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 font-mono space-y-1">
-            <p>• 月计薪天数 = (365天 - 104天休息日) ÷ 12个月 = 21.75 天</p>
+            <p>• 月计薪天数 = (365天 - 104天) ÷ 12个月 = 21.75 天</p>
             <p>• 日工资 = 月工资收入 ÷ 21.75</p>
-            <p>• 小时工资 = 月工资收入 ÷ (21.75 × 8小时)</p>
-            <p>• 加班费：平时150%，休息日200%，法定节假日300%</p>
+            <p>• 小时工资 = 月工资收入 ÷ (21.75 × 8)</p>
+            <p>• 加班费：平时150%，休息日200%，法定300%</p>
           </div>
         </div>
         <div class="space-y-2">
-          <h4 class="font-bold text-slate-800 text-sm sm:text-base border-l-4 border-emerald-500 pl-2">二、结构化面试 STAR 提问模型</h4>
-          <p class="leading-relaxed bg-emerald-50/30 p-3 rounded-xl border border-emerald-100">
-            <b>S (Situation - 情境):</b> 描述当时具体的背景或挑战。<br>
-            <b>T (Task - 任务):</b> 当时需要达成什么具体目标？<br>
-            <b>A (Action - 行动):</b> 采取了哪些具体的步骤或策略？<br>
-            <b>R (Result - 结果):</b> 最终取得了什么成果或收获？
+          <h4 class="font-bold text-slate-800 border-l-4 border-emerald-500 pl-2">二、结构化面试 STAR 模型</h4>
+          <p class="leading-relaxed bg-emerald-50/30 p-3 rounded-xl border border-emerald-100 space-y-1">
+            <span><b>S (Situation - 情境):</b> 描述当时具体的背景或挑战。</span><br>
+            <span><b>T (Task - 任务):</b> 当时需要达成什么具体目标？</span><br>
+            <span><b>A (Action - 行动):</b> 采取了哪些具体的步骤或策略？</span><br>
+            <span><b>R (Result - 结果):</b> 最终取得了什么成果或收获？</span>
           </p>
         </div>
         <div class="space-y-2">
-          <h4 class="font-bold text-slate-800 text-sm sm:text-base border-l-4 border-emerald-500 pl-2">三、绩效考核 (KPI / OKR / 9宫格)</h4>
-          <p class="leading-relaxed">
-            • <b>KPI:</b> 结果导向，强调量化指标达成（如营收、转化率）。<br>
+          <h4 class="font-bold text-slate-800 border-l-4 border-emerald-500 pl-2">三、绩效考核 (KPI / OKR / 九宫格)</h4>
+          <p class="leading-relaxed space-y-1">
+            • <b>KPI:</b> 结果导向，强调量化指标达成。<br>
             • <b>OKR:</b> 关注对齐与挑战性，适合创新型、研发型团队。<br>
             • <b>人才盘点九宫格:</b> 以“绩效”和“潜力”区分核心人才。
           </p>
         </div>
       </div>
-      <div class="p-4 border-t border-slate-100 text-right bg-slate-50">
-        <button onclick="toggleHrModal()" class="px-4 py-2 bg-slate-800 text-white rounded-xl text-xs font-medium hover:bg-slate-700 transition-colors">
-          关闭手册
-        </button>
+      <div class="p-3 border-t border-slate-100 text-right bg-slate-50">
+        <button onclick="toggleHrModal()" class="px-4 py-2 bg-slate-800 text-white rounded-xl text-xs font-medium">关闭</button>
       </div>
     </div>
   </div>
 
-  <!-- 弹窗 3：劳动法与合同法全景查阅 Modal -->
-  <div id="laborLawModal" class="fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
-    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
-      <div class="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between bg-amber-50/50">
-        <h3 id="laborLawTitle" class="font-bold text-slate-800 text-base sm:text-lg flex items-center gap-2">
-          <span>⚖️</span> 劳动法律规范速查
-        </h3>
-        <button onclick="closeLaborLawModal()" class="text-slate-400 hover:text-slate-600 p-1">✕</button>
+  <!-- 弹窗 3：劳动法与合同法全景查阅 Modal (强化滚动展示) -->
+  <div id="laborLawModal" class="fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-3 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-amber-50/50">
+        <h3 id="laborLawTitle" class="font-bold text-slate-800 text-base flex items-center gap-2">⚖️ 劳动法律规范速查</h3>
+        <button onclick="closeLaborLawModal()" class="text-slate-400 hover:text-slate-600 p-1 font-bold text-lg">✕</button>
       </div>
-      <div id="laborLawContent" class="p-4 sm:p-6 overflow-y-auto space-y-4 custom-scrollbar text-xs sm:text-sm text-slate-600">
-        <!-- 动态内容 -->
+      <!-- 重点优化：增加 h-[65vh] 滚动视口和自定义滚动条，保证长文本绝不加载不全 -->
+      <div id="laborLawContent" class="p-4 overflow-y-auto h-[65vh] space-y-3 custom-scrollbar text-xs sm:text-sm text-slate-600">
+        <!-- 动态内容填充区 -->
       </div>
-      <div class="p-4 border-t border-slate-100 text-right bg-slate-50">
-        <button onclick="closeLaborLawModal()" class="px-4 py-2 bg-slate-800 text-white rounded-xl text-xs font-medium hover:bg-slate-700 transition-colors">
-          关闭
-        </button>
+      <div class="p-3 border-t border-slate-100 text-right bg-slate-50">
+        <button onclick="closeLaborLawModal()" class="px-4 py-2 bg-slate-800 text-white rounded-xl text-xs font-medium">关闭</button>
       </div>
     </div>
   </div>
 
-  <!-- 脚本部分 -->
+  <!-- 脚本逻辑 -->
   <script>
-    // ==================== 1. 英语单词模块数据 ====================
     const DEFAULT_WORDS = [
       { word: "resilience", phonetic: "/rɪˈzɪliəns/", translation: "n. 恢复力；韧性", example: "Her resilience helped her overcome difficulties." },
       { word: "empathy", phonetic: "/ˈempəθi/", translation: "n. 共情；同理心", example: "Empathy is crucial for effective HR management." },
@@ -457,7 +421,6 @@
       const container = document.getElementById("wordContainer");
       const progress = document.getElementById("wordProgress");
       if (!container) return;
-
       const words = getStoredWords();
       if (progress) progress.innerText = `${words.length} 词`;
 
@@ -466,18 +429,14 @@
           <div>
             <div class="flex items-center justify-between">
               <span class="font-bold text-gray-800 text-xs sm:text-sm">${item.word}</span>
-              <button onclick="speakWord('${item.word}')" class="text-blue-600 hover:text-blue-800 p-1 rounded hover:bg-blue-100 transition-colors" title="播放发音">
-                🔊
-              </button>
+              <button onclick="speakWord('${item.word}')" class="text-blue-600 hover:text-blue-800 p-1 rounded hover:bg-blue-100 transition-colors" title="播放发音">🔊</button>
             </div>
             <p class="text-[10px] text-gray-400 mt-0.5">${item.phonetic || ''}</p>
             <p class="text-xs text-gray-700 font-medium mt-1">${item.translation}</p>
             ${item.example ? `<p class="text-[10px] text-gray-500 italic mt-1 bg-white/60 p-1.5 rounded border border-blue-50">${item.example}</p>` : ''}
           </div>
           <div class="mt-2 pt-1 border-t border-blue-100/50 flex justify-end">
-            <a href="https://dict.youdao.com/w/${encodeURIComponent(item.word)}" target="_blank" class="text-[10px] text-indigo-600 hover:underline flex items-center gap-0.5">
-              🔍 查词典
-            </a>
+            <a href="https://dict.youdao.com/w/${encodeURIComponent(item.word)}" target="_blank" class="text-[10px] text-indigo-600 hover:underline flex items-center gap-0.5">🔍 查词典</a>
           </div>
         </div>
       `).join('');
@@ -502,7 +461,6 @@
       renderWords();
     }
 
-    // ==================== 2. 打卡进度保存逻辑 ====================
     function updateCheckinProgress() {
       const items = document.querySelectorAll(".checkin-item");
       let checkedCount = 0;
@@ -511,23 +469,18 @@
         localStorage.setItem(`checkin_${index}`, item.checked);
       });
       const statusEl = document.getElementById("checkinStatus");
-      if (statusEl) {
-        statusEl.innerText = `已完成 ${checkedCount} / ${items.length}`;
-      }
+      if (statusEl) statusEl.innerText = `已完成 ${checkedCount} / ${items.length}`;
     }
 
     function loadCheckinState() {
       const items = document.querySelectorAll(".checkin-item");
       items.forEach((item, index) => {
         const saved = localStorage.getItem(`checkin_${index}`);
-        if (saved === "true") {
-          item.checked = true;
-        }
+        if (saved === "true") item.checked = true;
       });
       updateCheckinProgress();
     }
 
-    // ==================== 3. 弹窗与全局交互 ====================
     function toggleSidebar() {
       const sidebar = document.getElementById("sidebar");
       const overlay = document.getElementById("sidebarOverlay");
@@ -554,44 +507,56 @@
       if (!modal) return;
 
       if (lawType === 'contract') {
-        if(title) title.innerText = "📜 劳动合同规范";
+        if(title) title.innerText = "📜 劳动合同签署与试用期规范";
         if(content) content.innerHTML = `
           <div class="space-y-3">
-            <div>
-              <p class="font-bold text-slate-800">1. 试用期上限：</p>
-              <p class="text-xs leading-relaxed mt-1">3个月-1年：不超过1个月；1年-3年：不超过2个月；3年以上/无固定期限：不超过6个月。</p>
+            <div class="bg-amber-50/40 p-3 rounded-xl border border-amber-100">
+              <p class="font-bold text-slate-800">1. 试用期法定上限：</p>
+              <p class="text-xs leading-relaxed mt-1">• 劳动合同期限 3 个月以上不满 1 年的，试用期不得超过 1 个月。<br>• 合同期限 1 年以上不满 3 年的，试用期不得超过 2 个月。<br>• 3 年以上固定期限和无固定期限劳动合同，试用期不得超过 6 个月。</p>
             </div>
-            <div>
-              <p class="font-bold text-slate-800">2. 书面合同：</p>
-              <p class="text-xs leading-relaxed mt-1">用人单位自用工之日起一个月内应当与劳动者订立书面劳动合同。</p>
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <p class="font-bold text-slate-800">2. 书面合同订立期限：</p>
+              <p class="text-xs leading-relaxed mt-1">建立劳动关系，应当订立书面劳动合同。已建立劳动关系，未同时订立书面劳动合同的，应当自用工之日起一个月内订立书面劳动合同。</p>
             </div>
           </div>
         `;
       } else if (lawType === 'compensation') {
-        if(title) title.innerText = "💰 经济补偿金规则";
+        if(title) title.innerText = "💰 经济补偿金 N / N+1 规则";
         if(content) content.innerHTML = `
           <div class="space-y-3">
-            <div>
-              <p class="font-bold text-slate-800">1. 标准 (N)：</p>
-              <p class="text-xs leading-relaxed mt-1">按工作年限每满一年支付一个月工资。六个月以上不满一年按一年计算；不满六个月支付半个月工资。</p>
+            <div class="bg-amber-50/40 p-3 rounded-xl border border-amber-100">
+              <p class="font-bold text-slate-800">1. 标准 (N) 计算规则：</p>
+              <p class="text-xs leading-relaxed mt-1">按劳动者在本单位工作的年限，每满一年支付一个月工资的标准向劳动者支付。六个月以上不满一年的，按一年计算；不满六个月的，向劳动者支付半个月工资的经济补偿。</p>
             </div>
-            <div>
-              <p class="font-bold text-slate-800">2. 代通知金 (N+1)：</p>
-              <p class="text-xs leading-relaxed mt-1">未提前30日以书面形式通知解除的，额外支付一个月工资。</p>
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <p class="font-bold text-slate-800">2. 代通知金 (N+1) 规则：</p>
+              <p class="text-xs leading-relaxed mt-1">用人单位依照法律规定提前三十日以书面形式通知劳动者本人或者额外支付劳动者一个月工资后，可以解除劳动合同。</p>
             </div>
           </div>
         `;
       } else if (lawType === 'fullText') {
-        if(title) title.innerText = "📖 《中华人民共和国劳动合同法》核心条例";
+        if(title) title.innerText = "📖 《中华人民共和国劳动合同法》核心全文条例";
         if(content) content.innerHTML = `
           <div class="space-y-3 text-xs leading-relaxed">
-            <div class="bg-amber-50/50 p-2.5 rounded-xl border border-amber-100">
-              <p class="font-bold text-slate-800 mb-1">第三条【基本原则】</p>
-              <p>订立劳动合同，应当遵循合法、公平、平等自愿、协商一致、诚实信用的原则。</p>
+            <div class="bg-amber-50/50 p-3 rounded-xl border border-amber-100">
+              <p class="font-bold text-slate-800 text-sm mb-1">【总则·第三条】基本原则</p>
+              <p>订立劳动合同，应当遵循合法、公平、平等自愿、协商一致、诚实信用的原则。依法订立的劳动合同具有约束力，用人单位与劳动者应当履行劳动合同规定的义务。</p>
             </div>
-            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-              <p class="font-bold text-slate-800 mb-1">第十四条【无固定期限】</p>
-              <p>劳动者在该用人单位连续工作满十年的，或者连续工作满十年且距法定退休年龄不足十年的，应当订立无固定期限劳动合同。</p>
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <p class="font-bold text-slate-800 text-sm mb-1">【订立·第十条】书面劳动合同</p>
+              <p>建立劳动关系，应当订立书面劳动合同。已建立劳动关系，未同时订立书面劳动合同的，应当自用工之日起一个月内订立书面劳动合同。</p>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <p class="font-bold text-slate-800 text-sm mb-1">【无固定期限·第十四条】无固定期限劳动合同</p>
+              <p>劳动者在该用人单位连续工作满十年的，或者用人单位初次实行劳动人事制度改革时依法建立劳动关系，劳动者连续工作满十年且距法定退休年龄不足十年的，应当订立无固定期限劳动合同。</p>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <p class="font-bold text-slate-800 text-sm mb-1">【解除·第三十九条】用人单位单方解除（过失性辞退）</p>
+              <p>劳动者有下列情形之一的，用人单位可以解除劳动合同：(一)在试用期间被证明不符合录用条件的；(二)严重违反用人单位的规章制度的；(三)严重失职，营私舞弊，给用人单位造成重大损害的；(四)劳动者同时与其他用人单位建立劳动关系，对完成本单位的工作任务造成严重影响，或者经用人单位提出，拒不改正的...</p>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <p class="font-bold text-slate-800 text-sm mb-1">【经济补偿·第四十六条】应当支付经济补偿的情形</p>
+              <p>有下列情形之一的，用人单位应当向劳动者支付经济补偿：(一)劳动者依照本法第三十八条规定解除劳动合同的；(二)用人单位依照本法第三十六条规定向劳动者提出解除劳动合同并与劳动者协商一致解除劳动合同的；(三)用人单位依照本法第四十条规定解除劳动合同的...</p>
             </div>
           </div>
         `;
@@ -611,7 +576,6 @@
       }, 1500);
     }
 
-    // 编辑模式
     let isEditMode = false;
     function toggleEditMode() {
       isEditMode = !isEditMode;
@@ -620,13 +584,8 @@
       const btnText = document.getElementById("editBtnText");
       const sidebarEditBtn = document.getElementById("sidebarEditBtn");
 
-      fields.forEach(field => {
-        field.contentEditable = isEditMode;
-      });
-
-      if (document.body) {
-        document.body.classList.toggle("editing-mode", isEditMode);
-      }
+      fields.forEach(field => { field.contentEditable = isEditMode; });
+      if (document.body) document.body.classList.toggle("editing-mode", isEditMode);
 
       if (btnIcon && btnText && sidebarEditBtn) {
         if (isEditMode) {
@@ -634,7 +593,7 @@
           btnText.innerText = "锁定并保存修改";
           sidebarEditBtn.className = "w-full text-left px-3 py-2 rounded-lg text-xs font-semibold bg-green-50 text-green-700 hover:bg-green-100 transition-colors flex items-center gap-2";
         } else {
-          btnIcon.innerText = "✏️";
+          btnIcon.innerText = "️✏️";
           btnText.innerText = "开启直接编辑页面";
           sidebarEditBtn.className = "w-full text-left px-3 py-2 rounded-lg text-xs font-semibold bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors flex items-center gap-2";
         }
@@ -657,7 +616,6 @@
       a.click();
     }
 
-    // 初始化
     document.addEventListener("DOMContentLoaded", function () {
       const dateEl = document.getElementById("currentDate");
       if (dateEl) {
