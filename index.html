@@ -114,9 +114,9 @@
             <h3 class="text-md font-bold text-slate-800 flex items-center gap-2">
               <span>📘</span> HR 业务速查手册
             </h3>
-            <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">实用工具</span>
+            <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">核心精选</span>
           </div>
-          <p class="text-sm text-slate-600 mb-4">涵盖薪酬计算、绩效考核评级、招聘面试问答模板及常用HR英文词汇快捷查阅。</p>
+          <p class="text-sm text-slate-600 mb-4">涵盖薪酬计算、结构化面试 STAR 法、绩效考核（KPI/OKR）与常用 HR 专业词汇。</p>
         </div>
         <button onclick="toggleHrModal()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm rounded-xl transition-colors shadow-sm shadow-emerald-200 flex items-center justify-center gap-2">
           📖 打开 HR 全景手册
@@ -159,7 +159,7 @@
         </button>
       </div>
 
-      <!-- 快速睡眠要点卡片（精简去重后） -->
+      <!-- 快速睡眠要点卡片 -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="p-4 rounded-xl bg-indigo-50/50 border border-indigo-100">
           <div class="font-bold text-indigo-900 text-sm mb-1 flex items-center gap-1.5">
@@ -240,37 +240,64 @@
     </div>
   </div>
 
-  <!-- 弹窗 2：HR 全景手册 Modal -->
+  <!-- 弹窗 2：HR 全景手册 Modal（已恢复完整核心知识库） -->
   <div id="hrModal" class="fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
     <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
       <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-emerald-50/50">
         <h3 class="font-bold text-slate-800 text-lg flex items-center gap-2">
-          <span>📖</span> HR 业务速查手册
+          <span>📖</span> HR 业务速查手册（完整版）
         </h3>
         <button onclick="toggleHrModal()" class="text-slate-400 hover:text-slate-600 p-1">✕</button>
       </div>
       <div class="p-6 overflow-y-auto space-y-4 custom-scrollbar text-sm text-slate-600">
+        
+        <!-- 板块一 -->
         <div class="space-y-2">
-          <h4 class="font-bold text-slate-800 text-base">一、薪酬与工时计算基本公式</h4>
+          <h4 class="font-bold text-slate-800 text-base border-l-4 border-emerald-500 pl-2">一、薪酬与工时计算基本公式</h4>
           <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs font-mono space-y-1">
             <p>• 月计薪天数 = (365天 - 104天休息日) ÷ 12个月 = 21.75 天</p>
             <p>• 日工资 = 月工资收入 ÷ 21.75</p>
             <p>• 小时工资 = 月工资收入 ÷ (21.75 × 8小时)</p>
+            <p>• 加班费折算基数：平时不低于 150%，休息日不低于 200%，法定节假日不低于 300%</p>
           </div>
         </div>
+
+        <!-- 板块二 -->
         <div class="space-y-2">
-          <h4 class="font-bold text-slate-800 text-base">二、结构化面试 STAR 提问法</h4>
-          <p class="text-xs leading-relaxed">
-            <b>S (Situation):</b> 请描述一下您当时面临的情境/背景。<br>
-            <b>T (Task):</b> 为了应对上述情境，您需要完成的具体任务是什么？<br>
-            <b>A (Action):</b> 针对该任务，您具体采取了哪些行动？采用了什么方法？<br>
-            <b>R (Result):</b> 最终取得了怎样的结果？有何量化指标或总结经验？
+          <h4 class="font-bold text-slate-800 text-base border-l-4 border-emerald-500 pl-2">二、结构化面试 STAR 提问模型</h4>
+          <p class="text-xs leading-relaxed bg-emerald-50/30 p-3 rounded-xl border border-emerald-100">
+            <b>S (Situation - 情境):</b> 请候选人描述当时面对的具体工作背景或挑战。<br>
+            <b>T (Task - 任务):</b> 当时需要达成什么具体目标或解决什么问题？<br>
+            <b>A (Action - 行动):</b> 候选人采取了哪些具体的步骤、方法或策略？<br>
+            <b>R (Result - 结果):</b> 最终取得了什么量化或质化的成果？学到了什么经验？
           </p>
         </div>
+
+        <!-- 板块三 -->
+        <div class="space-y-2">
+          <h4 class="font-bold text-slate-800 text-base border-l-4 border-emerald-500 pl-2">三、绩效考核与人才盘点 (KPI / OKR / 9宫格)</h4>
+          <p class="text-xs leading-relaxed">
+            • <b>KPI (关键绩效指标):</b> 关注结果导向，强调量化指标的达成（如营收、转化率、交付时效）。<br>
+            • <b>OKR (目标与关键结果):</b> 关注对齐与挑战性，适合创新型、研发型团队。<br>
+            • <b>人才盘点九宫格:</b> 以横轴“绩效”和纵轴“潜力”对核心人才进行区分，制定差异化的培养与激励方案。
+          </p>
+        </div>
+
+        <!-- 板块四 -->
+        <div class="space-y-2">
+          <h4 class="font-bold text-slate-800 text-base border-l-4 border-emerald-500 pl-2">四、常用 HR 专业英语词汇</h4>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div class="bg-slate-50 p-2 rounded border border-slate-200"><b>Talent Acquisition (TA):</b> 人才获取/招聘</div>
+            <div class="bg-slate-50 p-2 rounded border border-slate-200"><b>C&B:</b> 薪酬福利 (Compensation & Benefits)</div>
+            <div class="bg-slate-50 p-2 rounded border border-slate-200"><b>OD:</b> 组织发展 (Organization Development)</div>
+            <div class="bg-slate-50 p-2 rounded border border-slate-200"><b>Employee Engagement:</b> 员工敬业度</div>
+          </div>
+        </div>
+
       </div>
       <div class="p-4 border-t border-slate-100 text-right bg-slate-50">
         <button onclick="toggleHrModal()" class="px-4 py-2 bg-slate-800 text-white rounded-xl text-xs font-medium hover:bg-slate-700 transition-colors">
-          关闭
+          关闭手册
         </button>
       </div>
     </div>
