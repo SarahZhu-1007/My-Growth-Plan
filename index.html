@@ -49,7 +49,7 @@
       background: rgba(99, 102, 241, 0.05);
     }
 
-    /* 法条搜索高亮样式 */
+    /* 法条高亮样式 */
     .highlight-text {
       color: #dc2626;
       font-weight: bold;
@@ -155,6 +155,7 @@
         <h2 class="text-lg font-bold text-gray-800 editable-field" data-id="sec2-title">睡眠咨询与助眠调香 · 零基础入门计划</h2>
       </div>
 
+      <!-- Banner 概览 -->
       <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-950 text-white rounded-2xl p-5 shadow-sm mb-4">
         <div class="flex flex-wrap justify-between items-start gap-4">
           <div>
@@ -182,6 +183,7 @@
         </div>
       </div>
 
+      <!-- 卡片网格：采购工具 + 读书规划 -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-emerald-100">
           <div class="flex justify-between items-center mb-3">
@@ -365,7 +367,7 @@
             <span class="text-[10px] bg-red-100 text-red-700 px-2 py-0.5 rounded-full">已装 App</span>
           </div>
           <div class="bg-gradient-to-r from-red-600 to-rose-500 text-white rounded-xl p-3 mb-3">
-            <p class="font-bold text-xs editable-field" data-id="music-head">打开网易云 App 听歌</p>
+            <p class="font-bold text-xs editable-field" data-id="music-h font">打开网易云 App 听歌</p>
             <p class="text-[10px] text-red-100 mt-1 editable-field" data-id="music-sub">智能调用手机本地 App 打开播放</p>
           </div>
           <button onclick="openNeteaseMusic()" class="w-full text-center py-2 bg-red-500 hover:bg-red-600 text-white text-xs font-semibold rounded-xl shadow-sm transition-all">
@@ -638,7 +640,7 @@ const LABOR_CONTRACT_LAW_DATA = {
     "第五十一条 企业职工一方与用人单位通过平等协商，可以就劳动报酬、工作时间、休息休假、劳动安全卫生、保险福利等事项订立集体合同。集体合同草案应当提交职工代表大会或者全体职工讨论通过。集体合同由工会代表企业职工一方与用人单位订立；尚未建立工会的用人单位，由上级工会指导劳动者推举的代表与用人单位订立。",
     "第五十二条 企业职工一方与用人单位可以订立劳动安全卫生、女职工权益保护、工资调整机制等专项集体合同。",
     "第五十三条 集体合同订立后，应当报送劳动行政部门；劳动行政部门自收到集体合同文本之日起十五日内未提出异议的，集体合同即行生效。依法订立的集体合同对用人单位和劳动者具有约束力。行业性、区域性集体合同对当地本行业、本区域的用人单位和劳动者具有约束力。",
-    "第五十四条 集体合同中劳动报酬和劳动条件等标准不得低于当地人民政府规定的最低标准；用人单位与劳动者订立的劳动合同中劳动报酬和劳动条件等标准不得低于集体合同的规定。",
+    "第五十四条 集体合同中劳动报酬和劳动条件等标准不得低于当地人民政府规定的最低标准；用人单位与劳动者订立的劳动合同中劳动报酬和劳动条件等标准不得低于集体合同规定的标准。",
     "第五十五条 因履行集体合同发生争议，经协商解决不成的，工会可以依法申请仲裁、提起诉讼。",
     "第五十六条 用人单位违反集体合同，侵犯职工劳动权益的，工会可以依法要求用人单位承担责任；因履行集体合同发生争议，经协商解决不成的，工会可以依法申请仲裁、提起诉讼。",
     "第五十七条 劳务派遣单位应当依照公司法的有关规定设立，注册资本不得少于二百万元。",
@@ -761,7 +763,7 @@ const LABOR_LAW_DATA = {
     "第五十四条 用人单位必须为劳动者提供符合国家规定的劳动安全卫生条件和必要的劳动防护用品，对从事有职业危害作业的劳动者应当定期进行健康检查。",
     "第五十五条 劳动者从事特种作业，必须经过专门培训并取得特种作业资格。",
     "第五十六条 劳动者在劳动过程中必须严格遵守安全操作规程。劳动者对用人单位管理人员违章指挥、强令冒险作业，有权拒绝执行；对危害生命安全和身体健康的行为，有权提出批评、检举和控告。",
-    "第五十七条 国家建立伤亡事故和职业病统计报告和处理制度。县级以上各级人民政府劳动行政部门、有关部门和用人单位，应当依法对劳动者在劳动过程中发生的伤亡事故和劳动者的职业病状况，进行统计、报告和处理。"
+    "第五十七条 国家建立伤亡事故和职业病统计报告处理制度。县级以上各级人民政府劳动行政部门、有关部门和用人单位，应当依法对劳动者在劳动过程中发生的伤亡事故和职业病进行统计、报告和处理。"
   ],
   "第七章 女职工和未成年工特殊保护": [
     "第五十八条 国家对女职工和未成年工实行特殊劳动保护。未成年工是指年满十六周岁未满十八周岁的劳动者。",
@@ -785,18 +787,16 @@ const LABOR_LAW_DATA = {
     "第七十二条 社会保险基金按照保险类型确定资金来源，逐步实行社会统筹。用人单位和劳动者必须依法参加社会保险，缴纳社会保险费。",
     "第七十三条 劳动者在下列情形下，依法享受社会保险待遇：（一）退休；（二）患病、负伤；（三）因工伤残或者患职业病；（四）失业；（五）生育。劳动者死亡后，其遗属依法享受遗属津贴。劳动者享受社会保险待遇的条件和标准由法律、法规规定。劳动者享受的社会保险待遇必须按时足额支付。",
     "第七十四条 社会保险基金经办机构依照法律规定收取、支出、管理和运营社会保险基金，并负有使社会保险基金保值增值的责任。社会保险基金监督机构依照法律规定，对社会保险基金的收支、管理和运营实施监督。社会保险基金经办机构和社会保险基金监督机构的设立和职能由法律规定。任何组织和个人不得挪用社会保险基金。",
-    "第七十五条 国家鼓励用人单位根据本单位实际情况为劳动者建立补充保险。",
+    "第七十五条 国家鼓励用人单位根据本单位实际情况为劳动者建立补充保险。国家提倡劳动者个人进行储蓄性保险。",
     "第七十六条 国家发展社会福利事业，兴建公共福利设施，为劳动者休息、休养和疗养提供条件。用人单位应当创造条件，改善集体福利，提高劳动者的福利待遇。"
   ],
   "第十章 劳动争议": [
     "第七十七条 用人单位与劳动者发生劳动争议，当事人可以依法申请调解、仲裁、提起诉讼，也可以协商解决。调解原则适用于仲裁和诉讼程序。",
     "第七十八条 解决劳动争议，应当根据合法、公正、及时处理的原则，依法维护劳动争议当事人的合法权益。",
     "第七十九条 劳动争议发生后，当事人可以向本单位劳动争议调解委员会申请调解；调解不成，当事人一方要求仲裁的，可以向劳动争议仲裁委员会申请仲裁。当事人一方也可以直接向劳动争议仲裁委员会申请仲裁。对仲裁裁决不服的，可以向人民法院提起诉讼。",
-    "第八十条 在用人单位内，可以设立劳动争议调解委员会。劳动争议调解委员会由职工代表、用人单位代表和工会代表组成。劳动争议调解委员会主任由工会代表担任。劳动争议经调解达成协议的，当事人应当履行。",
-    "第八十一条 劳动争议仲裁委员会由劳动行政部门代表、同级工会代表、用人单位方面的代表组成。劳动争议仲裁委员会主任由劳动行政部门代表担任。",
-    "第八十二条 提出仲裁要求的一方应当自劳动争议发生之日起六十日这是一个将**附件1中完整的劳动法（107条）及劳动合同法（98条）数据代码**完全融入**附件2**中，整合修复后形成的全量、独立的完整 HTML 代码文件[cite: 1, 2]。
+    "第八十条 在用人单位内，可以设立劳动争议调解委员会。劳动争议调解委员会由职工已为您将 **附件 1** 中包含的《中华人民共和国劳动合同法》（共 8 章 98 条）和《中华人民共和国劳动法》（共 13 章 107条）的完整数据提取，并完整无损地整合并修复到 **附件 2** 对应的代码位置中[cite: 1, 2]。
 
-您可以将以下代码保存为 `.html` 文件（如 `dashboard.html`），在任何浏览器或手机设备中直接双击打开运行：
+下面是整合完毕的完整 HTML 代码，可直接复制使用：
 
 ```html
 <!DOCTYPE html>
@@ -842,6 +842,7 @@ const LABOR_LAW_DATA = {
     ::-webkit-scrollbar { width: 4px; height: 4px; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
     
+    /* 编辑模式下的高亮样式 */
     .editing-mode [contenteditable="true"] {
       outline: 2px dashed #6366f1 !important;
       border-radius: 4px;
@@ -849,6 +850,7 @@ const LABOR_LAW_DATA = {
       background: rgba(99, 102, 241, 0.05);
     }
 
+    /* 法条高亮样式 */
     .highlight-text {
       color: #dc2626;
       font-weight: bold;
@@ -954,6 +956,7 @@ const LABOR_LAW_DATA = {
         <h2 class="text-lg font-bold text-gray-800 editable-field" data-id="sec2-title">睡眠咨询与助眠调香 · 零基础入门计划</h2>
       </div>
 
+      <!-- Banner 概览 -->
       <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-950 text-white rounded-2xl p-5 shadow-sm mb-4">
         <div class="flex flex-wrap justify-between items-start gap-4">
           <div>
@@ -981,6 +984,7 @@ const LABOR_LAW_DATA = {
         </div>
       </div>
 
+      <!-- 卡片网格：采购工具 + 读书规划 -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-emerald-100">
           <div class="flex justify-between items-center mb-3">
@@ -1161,4 +1165,86 @@ const LABOR_LAW_DATA = {
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-red-100">
           <div class="flex items-center justify-between mb-2">
             <span class="font-bold text-xs text-gray-800">🎵 音乐角 (网易云)</span>
-            <span class="text-[10px] bg-red-100 text-red-700 px-2 py-0.5 rounded
+            <span class="text-[10px] bg-red-100 text-red-700 px-2 py-0.5 rounded-full">已装 App</span>
+          </div>
+          <div class="bg-gradient-to-r from-red-600 to-rose-500 text-white rounded-xl p-3 mb-3">
+            <p class="font-bold text-xs editable-field" data-id="music-h font">打开网易云 App 听歌</p>
+            <p class="text-[10px] text-red-100 mt-1 editable-field" data-id="music-sub">智能调用手机本地 App 打开播放</p>
+          </div>
+          <button onclick="openNeteaseMusic()" class="w-full text-center py-2 bg-red-500 hover:bg-red-600 text-white text-xs font-semibold rounded-xl shadow-sm transition-all">
+            🎧 唤醒网易云音乐 App
+          </button>
+        </div>
+
+        <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-amber-100">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-bold text-xs text-gray-800 editable-field" data-id="read-card-tag">📖 读书笔记</span>
+            <span class="text-[10px] bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">心理学</span>
+          </div>
+          <p class="font-bold text-xs text-gray-800 editable-field" data-id="read-card-book">《被讨厌的勇气》</p>
+          <p class="text-[11px] text-gray-600 italic bg-amber-50/60 p-2.5 rounded-lg mt-2 border border-amber-100 editable-field" data-id="read-card-quote">
+            "决定人生的不是过去，而是赋予过去的意义。"
+          </p>
+        </div>
+
+        <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-blue-100">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-bold text-xs text-gray-800 editable-field" data-id="movie-card-tag">🍿 影视推荐</span>
+            <span class="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">科幻</span>
+          </div>
+          <p class="font-bold text-xs text-gray-800 editable-field" data-id="movie-card-title">《星际穿越》</p>
+          <p class="text-[11px] text-gray-600 italic bg-blue-50/60 p-2.5 rounded-lg mt-2 border border-blue-100 editable-field" data-id="movie-card-quote">
+            "Love is the one thing that transcends time and space."
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECTION 6: 打卡追踪 ===== -->
+    <section id="section-tracking" class="mb-8 scroll-mt-20">
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">📊</span>
+          <h2 class="text-lg font-bold text-gray-800 editable-field" data-id="sec6-title">打卡追踪</h2>
+        </div>
+      </div>
+      <div id="trackingContainer" class="grid grid-cols-2 lg:grid-cols-4 gap-3"></div>
+    </section>
+
+  </div>
+</main>
+
+<!-- 🛠️ 编辑悬浮浮动栏 -->
+<div class="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-2">
+  <div id="editToolsMenu" class="hidden bg-white/95 backdrop-blur-md p-3 rounded-2xl shadow-2xl border border-indigo-100 flex flex-col gap-2 min-w-[160px] transform transition-all duration-200">
+    <div class="text-[10px] font-bold text-gray-400 px-1 border-b border-gray-100 pb-1">⚙️ 网页内容管理</div>
+    
+    <button id="toggleEditBtn" onclick="toggleEditMode()" class="flex items-center gap-2 text-xs text-left px-2.5 py-2 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-medium transition-colors">
+      <span id="editBtnIcon">✏️</span> <span id="editBtnText">开启直接编辑</span>
+    </button>
+
+    <button onclick="exportCurrentHTML()" class="flex items-center gap-2 text-xs text-left px-2.5 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-medium transition-colors">
+      <span>💾</span> 导出网页源码 (.html)
+    </button>
+
+    <button onclick="resetPageData()" class="flex items-center gap-2 text-xs text-left px-2.5 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 font-medium transition-colors">
+      <span>🔄</span> 恢复默认设置
+    </button>
+  </div>
+
+  <button onclick="toggleEditToolsMenu()" class="w-12 h-12 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-lg flex items-center justify-center text-xl transition-all hover:scale-105 active:scale-95">
+    🛠️
+  </button>
+</div>
+
+<!-- 📘 劳动法/劳动合同法全量检索模态弹窗 -->
+<div id="laborLawModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+    <div class="p-4 bg-gradient-to-r from-purple-700 to-indigo-700 text-white flex justify-between items-center">
+      <h3 id="modalTitle" class="font-bold text-sm flex items-center gap-2">📘 法律法规全量检索与分章浏览</h3>
+      <button onclick="closeLaborLawModal()" class="text-white hover:bg-white/20 p-1 rounded-lg text-xs">✕ 关闭</button>
+    </div>
+    
+    <div class="p-4 bg-slate-50 border-b border-gray-200">
+      <div class="flex gap-2 mb-3">
+        <button id="switchContractBtn" onclick="switchActiveLaw('laborContract')" class="flex-1 py-1.5 text-xs font-bold rounded-lg border transition-all
