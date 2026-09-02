@@ -38,8 +38,8 @@
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
     body { font-family: 'Noto Sans SC', sans-serif; -webkit-tap-highlight-color: transparent; }
     html { scroll-behavior: smooth; }
-    ::-webkit-scrollbar { width: 5px; height: 5px; }
-    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
     
     .editing-mode [contenteditable="true"] {
       outline: 2px dashed #6366f1 !important;
@@ -179,6 +179,86 @@
           </div>
         </div>
       </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-emerald-100">
+          <div class="flex justify-between items-center mb-3">
+            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-1.5 editable-field" data-id="tool-title">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              首批调香工具包采购清单
+            </h3>
+            <span class="text-[10px] bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full">入门首选</span>
+          </div>
+          <ul class="space-y-2 text-xs text-gray-600">
+            <li class="flex items-start gap-1.5">
+              <span class="text-emerald-500">•</span>
+              <span class="editable-field" data-id="tool-item1"><strong>助眠精油 (5ml)：</strong>真正薰衣草、苦橙叶、大西洋雪松、甜橘、岩兰草、罗马洋甘菊。</span>
+            </li>
+            <li class="flex items-start gap-1.5">
+              <span class="text-emerald-500">•</span>
+              <span class="editable-field" data-id="tool-item2"><strong>基底溶剂：</strong>荷荷巴油/甜杏仁油 (100ml)、医用无水乙醇/植物香水溶剂 (100ml)。</span>
+            </li>
+            <li class="flex items-start gap-1.5">
+              <span class="text-emerald-500">•</span>
+              <span class="editable-field" data-id="tool-item3"><strong>包材耗材：</strong>5ml 滚珠瓶、10ml 喷雾瓶、专业闻香纸、塑料滴管、50ml 烧杯。</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-purple-100">
+          <div class="flex justify-between items-center mb-3">
+            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-1.5 editable-field" data-id="book-title">
+              <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+              核心必读书籍规划
+            </h3>
+            <span class="text-[10px] bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full">理论建质</span>
+          </div>
+          <div class="space-y-2 text-xs text-gray-600">
+            <div class="p-2.5 bg-purple-50/50 rounded-xl flex flex-wrap sm:flex-nowrap justify-between items-center gap-2 border border-purple-100/50">
+              <div class="min-w-[140px]">
+                <div class="flex items-center gap-1.5">
+                  <p class="font-bold text-gray-800 editable-field" data-id="book1-name">《我们为什么要睡觉》</p>
+                  <span class="text-[9px] text-purple-600 bg-purple-100 px-1 py-0.2 rounded">睡眠科学</span>
+                </div>
+                <p class="text-[10px] text-gray-400 mt-0.5 editable-field" data-id="book1-desc">掌握睡眠周期与节律影响</p>
+              </div>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <a href="https://weread.qq.com/web/search/我们为什么要睡觉" target="_blank" class="px-2 py-1 bg-sky-100 hover:bg-sky-200 text-sky-700 text-[10px] font-medium rounded-lg transition-colors flex items-center gap-0.5">📖 读物</a>
+                <a href="https://search.bilibili.com/all?keyword=Matthew+Walker+睡眠是你的超级能力" target="_blank" class="px-2 py-1 bg-pink-100 hover:bg-pink-200 text-pink-700 text-[10px] font-medium rounded-lg transition-colors flex items-center gap-0.5">🎥 视频</a>
+              </div>
+            </div>
+
+            <div class="p-2.5 bg-purple-50/50 rounded-xl flex flex-wrap sm:flex-nowrap justify-between items-center gap-2 border border-purple-100/50">
+              <div class="min-w-[140px]">
+                <div class="flex items-center gap-1.5">
+                  <p class="font-bold text-gray-800 editable-field" data-id="book2-name">《晚安，失眠》</p>
+                  <span class="text-[9px] text-purple-600 bg-purple-100 px-1 py-0.2 rounded">行为调理</span>
+                </div>
+                <p class="text-[10px] text-gray-400 mt-0.5 editable-field" data-id="book2-desc">学习 CBT-I 失眠认知行为疗法</p>
+              </div>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <a href="https://weread.qq.com/web/search/晚安失眠" target="_blank" class="px-2 py-1 bg-sky-100 hover:bg-sky-200 text-sky-700 text-[10px] font-medium rounded-lg transition-colors flex items-center gap-0.5">📖 读物</a>
+                <a href="https://search.bilibili.com/all?keyword=CBT-I+失眠认知行为疗法" target="_blank" class="px-2 py-1 bg-pink-100 hover:bg-pink-200 text-pink-700 text-[10px] font-medium rounded-lg transition-colors flex items-center gap-0.5">🎥 视频</a>
+              </div>
+            </div>
+
+            <div class="p-2.5 bg-purple-50/50 rounded-xl flex flex-wrap sm:flex-nowrap justify-between items-center gap-2 border border-purple-100/50">
+              <div class="min-w-[140px]">
+                <div class="flex items-center gap-1.5">
+                  <p class="font-bold text-gray-800 editable-field" data-id="book3-name">《芳香疗法大百科》</p>
+                  <span class="text-[9px] text-purple-600 bg-purple-100 px-1 py-0.2 rounded">芳香疗法</span>
+                </div>
+                <p class="text-[10px] text-gray-400 mt-0.5 editable-field" data-id="book3-desc">查阅减压配方与植物化学成分</p>
+              </div>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <a href="https://weread.qq.com/web/search/芳香疗法" target="_blank" class="px-2 py-1 bg-sky-100 hover:bg-sky-200 text-sky-700 text-[10px] font-medium rounded-lg transition-colors flex items-center gap-0.5">📖 读物</a>
+                <a href="https://search.bilibili.com/all?keyword=芳香疗法+精油调香教程" target="_blank" class="px-2 py-1 bg-pink-100 hover:bg-pink-200 text-pink-700 text-[10px] font-medium rounded-lg transition-colors flex items-center gap-0.5">🎥 视频</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ===== SECTION 3: HR 学习与面试指南 ===== -->
@@ -207,33 +287,33 @@
         </button>
       </div>
 
-      <!-- 法律查阅面板 (已升级为全量检索) -->
+      <!-- 法律查阅面板 -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-purple-100 hover:shadow-md transition-all">
           <div class="flex justify-between items-start mb-2">
             <div>
-              <h3 class="font-bold text-gray-800 text-sm editable-field" data-id="law1-title">《中华人民共和国劳动合同法》</h3>
-              <p class="text-[11px] text-gray-400 mt-0.5 editable-field" data-id="law1-sub">官方完整版（8章98条全量收录）</p>
+              <h3 class="font-bold text-gray-800 text-sm editable-field" data-id="law1-title">《中华人民共和国劳动合同法》全量库</h3>
+              <p class="text-[11px] text-gray-400 mt-0.5 editable-field" data-id="law1-sub">包含全部8章共98条完整法条</p>
             </div>
-            <span class="text-[10px] bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full font-bold">完整官方全文</span>
+            <span class="text-[10px] bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full font-bold">已载入98条全文</span>
           </div>
-          <p class="text-xs text-gray-600 mb-4 line-clamp-2 editable-field" data-id="law1-desc">完整收录劳动合同订立、履行、变更、解除、终止、特别规定、监督检查及法律责任全量条款。</p>
+          <p class="text-xs text-gray-600 mb-4 line-clamp-2 editable-field" data-id="law1-desc">涵盖订立、试用期、无固定期限、解除终止、经济补偿金（N/N+1/2N）等全量条款。</p>
           <button onclick="showLaborLawDialog('laborContract')" class="w-full py-2 bg-purple-600 hover:bg-purple-700 text-white font-medium text-xs rounded-xl shadow transition-all flex items-center justify-center gap-1">
-            📘 打开《劳动合同法》官方全文库
+            📘 打开《劳动合同法》98条全文检索
           </button>
         </div>
 
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-indigo-100 hover:shadow-md transition-all">
           <div class="flex justify-between items-start mb-2">
             <div>
-              <h3 class="font-bold text-gray-800 text-sm editable-field" data-id="law2-title">《中华人民共和国劳动法》</h3>
-              <p class="text-[11px] text-gray-400 mt-0.5 editable-field" data-id="law2-sub">官方完整版（13章107条全量收录）</p>
+              <h3 class="font-bold text-gray-800 text-sm editable-field" data-id="law2-title">《中华人民共和国劳动法》全量库</h3>
+              <p class="text-[11px] text-gray-400 mt-0.5 editable-field" data-id="law2-sub">包含全部13章共107条完整法条</p>
             </div>
-            <span class="text-[10px] bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full font-bold">完整官方全文</span>
+            <span class="text-[10px] bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full font-bold">已载入107条全文</span>
           </div>
-          <p class="text-xs text-gray-600 mb-4 line-clamp-2 editable-field" data-id="law2-desc">完整收录就业促进、工作时间休假、工资、劳动安全、女职工特殊保护、社会保险及争议处理全量条款。</p>
+          <p class="text-xs text-gray-600 mb-4 line-clamp-2 editable-field" data-id="law2-desc">涵盖工时休息、加班工资计算、女工保护、职业培训、劳动争议仲裁等全量法规。</p>
           <button onclick="showLaborLawDialog('laborLaw')" class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-xs rounded-xl shadow transition-all flex items-center justify-center gap-1">
-            ⚖️ 打开《劳动法》官方全文库
+            ⚖️ 打开《劳动法》107条全文检索
           </button>
         </div>
       </div>
@@ -290,6 +370,28 @@
             🎧 唤醒网易云音乐 App
           </button>
         </div>
+
+        <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-amber-100">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-bold text-xs text-gray-800 editable-field" data-id="read-card-tag">📖 读书笔记</span>
+            <span class="text-[10px] bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">心理学</span>
+          </div>
+          <p class="font-bold text-xs text-gray-800 editable-field" data-id="read-card-book">《被讨厌的勇气》</p>
+          <p class="text-[11px] text-gray-600 italic bg-amber-50/60 p-2.5 rounded-lg mt-2 border border-amber-100 editable-field" data-id="read-card-quote">
+            "决定人生的不是过去，而是赋予过去的意义。"
+          </p>
+        </div>
+
+        <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-blue-100">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-bold text-xs text-gray-800 editable-field" data-id="movie-card-tag">🍿 影视推荐</span>
+            <span class="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">科幻</span>
+          </div>
+          <p class="font-bold text-xs text-gray-800 editable-field" data-id="movie-card-title">《星际穿越》</p>
+          <p class="text-[11px] text-gray-600 italic bg-blue-50/60 p-2.5 rounded-lg mt-2 border border-blue-100 editable-field" data-id="movie-card-quote">
+            "Love is the one thing that transcends time and space."
+          </p>
+        </div>
       </div>
     </section>
 
@@ -307,7 +409,7 @@
   </div>
 </main>
 
-<!-- 🛠️ 悬浮浮动工具栏 -->
+<!-- 🛠️ 编辑悬浮浮动栏 -->
 <div class="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-2">
   <div id="editToolsMenu" class="hidden bg-white/95 backdrop-blur-md p-3 rounded-2xl shadow-2xl border border-indigo-100 flex flex-col gap-2 min-w-[160px] transform transition-all duration-200">
     <div class="text-[10px] font-bold text-gray-400 px-1 border-b border-gray-100 pb-1">⚙️ 网页内容管理</div>
@@ -331,31 +433,28 @@
 </div>
 
 <!-- 📘 劳动法/劳动合同法全量检索模态弹窗 -->
-<div id="laborLawModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4">
-  <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
-    <!-- Header -->
-    <div class="p-4 bg-gradient-to-r from-purple-700 to-indigo-700 text-white flex justify-between items-center shrink-0">
-      <h3 id="modalTitle" class="font-bold text-sm sm:text-base flex items-center gap-2">📘 法律法规全文检索与浏览</h3>
+<div id="laborLawModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+    <div class="p-4 bg-gradient-to-r from-purple-700 to-indigo-700 text-white flex justify-between items-center">
+      <h3 id="modalTitle" class="font-bold text-sm flex items-center gap-2">📘 法律法规全量检索与分章浏览</h3>
       <button onclick="closeLaborLawModal()" class="text-white hover:bg-white/20 p-1 rounded-lg text-xs">✕ 关闭</button>
     </div>
     
-    <!-- Search Controls -->
-    <div class="p-4 bg-slate-50 border-b border-gray-200 shrink-0 space-y-2.5">
-      <div class="flex gap-2">
-        <button id="switchContractBtn" onclick="switchActiveLaw('laborContract')" class="flex-1 py-2 text-xs font-bold rounded-xl border transition-all bg-purple-600 text-white border-purple-600 shadow">《劳动合同法》全文(98条)</button>
-        <button id="switchLawBtn" onclick="switchActiveLaw('laborLaw')" class="flex-1 py-2 text-xs font-bold rounded-lg border transition-all bg-white text-gray-600 border-gray-300 hover:bg-gray-100">《劳动法》全文(107条)</button>
+    <div class="p-4 bg-slate-50 border-b border-gray-200">
+      <div class="flex gap-2 mb-3">
+        <button id="switchContractBtn" onclick="switchActiveLaw('laborContract')" class="flex-1 py-1.5 text-xs font-bold rounded-lg border transition-all bg-purple-600 text-white border-purple-600">《劳动合同法》(全98条)</button>
+        <button id="switchLawBtn" onclick="switchActiveLaw('laborLaw')" class="flex-1 py-1.5 text-xs font-bold rounded-lg border transition-all bg-white text-gray-600 border-gray-300 hover:bg-gray-100">《劳动法》(全107条)</button>
       </div>
 
-      <input type="text" id="laborLawSearchInput" oninput="handleLaborLawSearch()" placeholder="🔍 输入任意关键字（如：试用期、经济补偿、竞业限制、加班费、单方解除）跨章节检索..." class="w-full px-3 py-2 border border-gray-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white">
+      <input type="text" id="laborLawSearchInput" oninput="handleLaborLawSearch()" placeholder="🔍 输入关键词实时搜索（如：试用期、经济补偿、加班费、单方解除、无固定期限）..." class="w-full px-3 py-2 border border-gray-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white mb-2">
       
-      <div id="chapterSelectBox" class="flex items-center gap-2">
-        <label for="laborLawChapterSelect" class="text-xs font-bold text-gray-700 whitespace-nowrap">章节快速直达：</label>
-        <select id="laborLawChapterSelect" onchange="renderLaborLawChapter()" class="w-full px-3 py-1.5 border border-gray-300 rounded-xl text-xs bg-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+      <div id="chapterSelectBox">
+        <label for="laborLawChapterSelect" class="text-xs font-bold text-gray-700 block mb-1">按章节目录快速跳转：</label>
+        <select id="laborLawChapterSelect" onchange="renderLaborLawChapter()" class="w-full px-3 py-2 border border-gray-300 rounded-xl text-xs bg-white focus:outline-none focus:ring-2 focus:ring-purple-500">
         </select>
       </div>
     </div>
 
-    <!-- Articles Viewport -->
     <div id="laborLawContent" class="p-5 overflow-y-auto space-y-3 text-gray-700 text-xs leading-relaxed flex-1">
     </div>
   </div>
@@ -384,6 +483,42 @@
           <p class="font-bold text-indigo-700 text-sm">自学打样➔试用积累➔口碑变现</p>
         </div>
       </div>
+
+      <div>
+        <h4 class="font-bold text-sm text-indigo-900 mb-2 border-l-4 border-indigo-600 pl-2">一、 前期投入成本与阶段规划表</h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse border border-gray-200">
+            <thead>
+              <tr class="bg-gray-100 text-gray-700">
+                <th class="p-2 border border-gray-200">阶段/时间</th>
+                <th class="p-2 border border-gray-200">核心任务</th>
+                <th class="p-2 border border-gray-200">预算明细</th>
+                <th class="p-2 border border-gray-200">预计投入</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="p-2 border border-gray-200"><span class="bg-blue-100 text-blue-800 text-[10px] px-1.5 py-0.5 rounded font-bold">阶段一：1-2个月</span><br>自学与打样</td>
+                <td class="p-2 border border-gray-200">确定方向、建立知识框架、购买基础调香原料与打样工具</td>
+                <td class="p-2 border border-gray-200">• 图书/学习资料：¥200 - ¥400<br>• 调香基础包：¥500 - ¥800</td>
+                <td class="p-2 border border-gray-200 text-emerald-600 font-bold">¥700 - ¥1,200</td>
+              </tr>
+              <tr>
+                <td class="p-2 border border-gray-200"><span class="bg-green-100 text-green-800 text-[10px] px-1.5 py-0.5 rounded font-bold">阶段二：3-4个月</span><br>案例与积累</td>
+                <td class="p-2 border border-gray-200">招募 20-30 位睡眠体验官，发放体验包并收集反馈案例</td>
+                <td class="p-2 border border-gray-200">• 批量包材与包装：¥600 - ¥1,000<br>• 种子用户邮寄快递费：¥200 - ¥300</td>
+                <td class="p-2 border border-gray-200 text-emerald-600 font-bold">¥800 - ¥1,300</td>
+              </tr>
+              <tr>
+                <td class="p-2 border border-gray-200"><span class="bg-purple-100 text-purple-800 text-[10px] px-1.5 py-0.5 rounded font-bold">阶段三：5-6个月+</span><br>背书提升(可选)</td>
+                <td class="p-2 border border-gray-200">考取国际认可资质（如 NAHA / IFA）提升客单价</td>
+                <td class="p-2 border border-gray-200">• NAHA 初/中级认证：¥3,000 - ¥8,000<br>• IFA 文凭：¥15,000 - ¥25,000</td>
+                <td class="p-2 border border-gray-200 text-purple-700 font-bold">¥3,000 - ¥25,000<br><span class="text-[9px] font-normal text-gray-400">(前期暂不投入)</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -398,137 +533,54 @@
     
     <div class="p-5 overflow-y-auto space-y-6 text-gray-700 text-xs leading-relaxed">
       <div class="p-4 bg-purple-50 rounded-xl border border-purple-100">
-        <p class="font-bold text-purple-900 text-sm mb-1">HR 面试高频问题与应答话术手册[cite: 5]</p>
+        <p class="font-bold text-purple-900 text-sm mb-1">HR 面试高频问题与应答话术手册</p>
         <p class="text-gray-600 leading-relaxed">
-          本手册专为从建筑设计成功转型至宜家 P&C 部门的候选人 Sarah 量身定制[cite: 5]。跨行求职是一场勇敢者的游戏，本指南旨在帮助你系统梳理过往经验，从容应对面试挑战[cite: 5]。文档涵盖了 6 道跨行 HR 面试中的高频必考题，每道题均配备了清晰的回答思路、专业且温暖的参考话术，以及核心关键词提炼，助你在面试中精准展现自身价值[cite: 5]。
+          本手册专为从建筑设计成功转型至宜家 P&C 部门的候选人 Sarah 量身定制。涵盖了 6 道跨行 HR 面试中的高频必考题，每道题均配备了清晰的回答思路、专业且温暖的参考话术，以及核心关键词提炼。
         </p>
       </div>
 
-      <!-- 问题一 -->
       <div class="p-4 bg-white border border-gray-200 rounded-xl shadow-sm space-y-2">
-        <h4 class="font-bold text-sm text-purple-800">问题一："你为什么从建筑设计转行做 HR？"（必考中的必考）[cite: 5]</h4>
-        <p class="text-gray-500"><strong>回答思路：</strong>不要说"设计院太累了"或"干不下去了"，而是强调主动选择和内在驱动[cite: 5]。</p>
+        <h4 class="font-bold text-sm text-purple-800">问题一："你为什么从建筑设计转行做 HR？"（必考中的必考）</h4>
+        <p class="text-gray-500"><strong>回答思路：</strong>不要说"设计院太累了"，而是强调主动选择和内在驱动。</p>
         <div class="p-3 bg-gray-50 rounded-lg text-gray-700 leading-relaxed">
           <strong>参考话术：</strong><br>
-          "在设计院工作的几年里，我独立负责了多个大型项目，锻炼了很强的项目统筹和跨部门协调能力[cite: 5]。但我逐渐发现，比起和图纸打交道，我更享受和人协作的过程——比如在项目中协调各方需求、推动团队达成共识的那些时刻，是我最有成就感的时候[cite: 5]。<br><br>
-          所以当有机会来到宜家 P&C 部门时，我毫不犹豫地抓住了[cite: 5]。这一年让我确认了自己的判断：HR 不是我'逃避'设计院的选择，而是我'主动走向'的方向[cite: 5]。在这里，我学会了用 SOP 去优化培训流程，用员工视角去设计活动体验，这些都是我真正热爱并愿意深耕的事情[cite: 5]。"
+          "在设计院工作的几年里，我独立负责了多个大型项目，锻炼了很强的项目统筹和跨部门协调能力。但我逐渐发现，比起和图纸打交道，我更享受和人协作的过程——比如在项目中协调各方需求、推动团队达成共识的那些时刻，是我最有成就感的时候。<br><br>
+          所以当有机会来到宜家 P&C 部门时，我毫不犹豫地抓住了。这一年让我确认了自己的判断：HR 不是我'逃避'设计院的选择，而是我'主动走向'的方向。"
         </div>
-        <p class="text-purple-700 font-medium">✨ 关键词提炼：主动选择、可迁移能力、已验证的热爱[cite: 5]</p>
+        <p class="text-purple-700 font-medium">✨ 关键词提炼：主动选择、可迁移能力、已验证的热爱</p>
       </div>
 
-      <!-- 问题三 -->
       <div class="p-4 bg-white border border-gray-200 rounded-xl shadow-sm space-y-2">
-        <h4 class="font-bold text-sm text-purple-800">问题三："你在跟进培训时遇到过什么困难？你是怎么解决的？"（行为面试题/STAR法则）[cite: 5]</h4>
-        <p class="text-gray-500"><strong>回答思路：</strong>用 STAR 法则（Situation-Task-Action-Result）讲述真实故事[cite: 5]。</p>
-        <div class="p-3 bg-gray-50 rounded-lg text-gray-700 leading-relaxed space-y-2">
-          <p><strong>参考话术：</strong></p>
-          <p><strong>（Situation）</strong> 在跟进 Training Calendar 时，我最初的工作方式只是追踪数据——谁完成了、谁没完成，然后催收反馈[cite: 5]。但很多时候业务部门不回应，进度就停滞了[cite: 5]。</p>
-          <p><strong>（Task）</strong> 我的 HR Manager 告诉我，不能只是观察和催办，需要有进一步解决问题的应对措施[cite: 5]。</p>
-          <p><strong>（Action）</strong> 于是我做了两件事：[cite: 5]</p>
-          <p class="pl-2 border-l-2 border-purple-400">
-            <strong>第一，线下课程管理：</strong>我整合了各部门直线经理提交的本财年需要学习的课程，制作了一份完整的苏州商场年度学习日历（Training Calendar）[cite: 5]。这份日历覆盖了三大课程类别——IKEA Mandatory（宜家必修课）、Compliance（合法合规课程）和 Business Competence（业务培训），涉及 IF（餐饮）、CR（客户关系）、Com-in、Sales（销售）、BNOM 等多个业务部门，时间跨度从 3 月到 11 月[cite: 5]。每条课程都详细标注了课程名称、讲师、培训目标、目标群体、月份安排、培训链接和时长[cite: 5]。这份日历供全体员工随时查阅，也便于我针对线下课程的完成情况，及时登记录入系统[cite: 5]。
-          </p>
-          <p class="pl-2 border-l-2 border-indigo-400">
-            <strong>第二，线上课程数字化：</strong>我将所有线上课程单独归纳，利用 AI 平台搭建了一个名为 "SZ Learning Hub" 的数字化学习入口[cite: 5]。员工可以通过手机或电脑访问 Site 链接，输入个人工号（Staff ID）完成身份识别后，即可进入学习平台[cite: 5]。平台左侧导航栏按部门分类展示课程，右侧搜索栏支持按课程名称快速检索，点击课程即可一键跳转到 IKEA CSD 学习平台开始学习[cite: 5]。同时，我还单独设置了管理员后台界面，可以查看每位员工的累计学习时长（如 0.0H、2.0H、20H 等），方便我定期从后台主动了解员工学习进度并提供支持，而不是干等回复[cite: 5]。
-          </p>
-          <p><strong>（Result）</strong> 调整之后，培训数据的收集效率明显提升，业务部门的配合度也好了很多，因为他们感受到 HR 不是来'催债'的，而是来帮忙解决问题的[cite: 5]。</p>
+        <h4 class="font-bold text-sm text-purple-800">问题二："你只有一年兼职 HR 经验，为什么我们应该录用你做全职？"</h4>
+        <div class="p-3 bg-gray-50 rounded-lg text-gray-700 leading-relaxed">
+          <strong>参考话术：</strong><br>
+          "在宜家这一年，我独立负责了 Training Calendar 的全流程跟进，从零建立了异常处理 SOP，还作为核心成员统筹了商场十周年大型员工活动。更重要的是，我在设计院积累的多年项目管理经验，让我具备了比普通 HR 新人更强的多任务处理能力和抗压能力。"
         </div>
-        <p class="text-purple-700 font-medium">✨ 关键词提炼：有具体场景、有转折、有方法论（线下日历+线上平台双管齐下）、有结果[cite: 5]</p>
+        <p class="text-purple-700 font-medium">✨ 关键词提炼：高密度成长、不是打杂、底层能力成熟</p>
+      </div>
+
+      <div class="p-4 bg-white border border-gray-200 rounded-xl shadow-sm space-y-2">
+        <h4 class="font-bold text-sm text-purple-800">问题三："你在跟进培训时遇到过什么困难？你是怎么解决的？"（STAR法则）</h4>
+        <div class="p-3 bg-gray-50 rounded-lg text-gray-700 leading-relaxed space-y-2">
+          <p><strong>第一，线下课程管理：</strong>制作了涵盖餐饮、客服、销售等部门的苏州商场年度学习日历（Training Calendar），全流程登记与排期。</p>
+          <p><strong>第二，线上课程数字化：</strong>利用 AI 搭建了名为 'SZ Learning Hub' 的数字化学习入口，员工可通过工号识别跳转 CSD 学习，管理者可查看累计学时（如0.0H、20H），主动赋能业务部门。</p>
+        </div>
+        <p class="text-purple-700 font-medium">✨ 关键词提炼：线下日历+线上平台双管齐下、数据驱动</p>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-// ===== 1. 客户端编辑与状态持久化逻辑 =====
-let isEditing = false;
-
-function toggleEditToolsMenu() {
-  document.getElementById('editToolsMenu').classList.toggle('hidden');
-}
-
-function toggleEditMode() {
-  isEditing = !isEditing;
-  const fields = document.querySelectorAll('.editable-field');
-  const btnText = document.getElementById('editBtnText');
-  const btnIcon = document.getElementById('editBtnIcon');
-  const body = document.body;
-
-  if (isEditing) {
-    body.classList.add('editing-mode');
-    fields.forEach(el => {
-      el.setAttribute('contenteditable', 'true');
-    });
-    btnText.innerText = "完成并保存编辑";
-    btnIcon.innerText = "✅";
-  } else {
-    body.classList.remove('editing-mode');
-    fields.forEach(el => {
-      el.setAttribute('contenteditable', 'false');
-    });
-    btnText.innerText = "开启直接编辑";
-    btnIcon.innerText = "✏️";
-    savePageData();
-  }
-}
-
-function savePageData() {
-  const data = {};
-  document.querySelectorAll('.editable-field').forEach(el => {
-    const id = el.getAttribute('data-id');
-    if (id) {
-      data[id] = el.innerHTML;
-    }
-  });
-  localStorage.setItem('dashboard_edited_data', JSON.stringify(data));
-}
-
-function loadSavedPageData() {
-  const saved = localStorage.getItem('dashboard_edited_data');
-  if (saved) {
-    try {
-      const data = JSON.parse(saved);
-      Object.keys(data).forEach(id => {
-        const el = document.querySelector(`[data-id="${id}"]`);
-        if (el) {
-          el.innerHTML = data[id];
-        }
-      });
-    } catch (e) {}
-  }
-}
-
-function resetPageData() {
-  if (confirm("确定恢复默认设置吗？你在线修改的所有文本将被重置。")) {
-    localStorage.removeItem('dashboard_edited_data');
-    location.reload();
-  }
-}
-
-function exportCurrentHTML() {
-  const cloneDoc = document.documentElement.cloneNode(true);
-  cloneDoc.querySelectorAll('.editable-field').forEach(el => {
-    el.removeAttribute('contenteditable');
-  });
-  cloneDoc.body.classList.remove('editing-mode');
-  
-  const htmlContent = "<!DOCTYPE html>\n" + cloneDoc.outerHTML;
-  const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8;' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'My_Dashboard_' + new Date().toISOString().split('T')[0] + '.html';
-  a.click();
-}
-
-// ===== 2. 《中华人民共和国劳动合同法》全量官方数据库（8章98条全文） =====
+// ===== 全量《中华人民共和国劳动合同法》（共98条全文） =====
 const LABOR_CONTRACT_LAW_DATA = {
   "第一章 总则": [
     "第一条 为了完善劳动合同制度，明确劳动合同双方当事人的权利和义务，保护劳动者的合法权益，构建和发展和谐稳定的劳动关系，制定本法。",
     "第二条 中华人民共和国境内的企业、个体经济组织、民办非企业单位等组织（以下称用人单位）与劳动者建立劳动关系，订立、履行、变更、解除或者终止劳动合同，适用本法。国家机关、事业单位、社会团体和与其建立劳动关系的劳动者，订立、履行、变更、解除或者终止劳动合同，依照本法执行。",
     "第三条 订立劳动合同，应当遵循合法、公平、平等自愿、协商一致、诚实信用的原则。依法订立的劳动合同具有约束力，用人单位与劳动者应当履行劳动合同约定的义务。",
-    "第四条 用人单位应当依法建立和完善劳动规章制度，保障劳动者享有劳动权利、履行劳动义务。用人单位在制定、修改或者决定直接涉及劳动者切身利益的规章制度或者重大事项时，应当经职工代表大会或者全体职工讨论，提出方案和意见，与工会或者职工代表平等协商确定。在规章制度和重大事项决定实施过程中，工会或者职工认为不适当的，有权向用人单位提出，通过协商予以修改完善。用人单位应当将直接涉及劳动者切身利益的规章制度和重大事项决定公示，或者告知劳动者。",
+    "第四条 用人单位应当依法建立和完善劳动规章制度，保障劳动者享有劳动权利、履行劳动义务。用人单位在制定、修改或者决定有关劳动报酬、工作时间、休息休假、劳动安全卫生、保险福利、职工培训、劳动纪律以及劳动定额管理等直接涉及劳动者切身利益的规章制度或者重大事项时，应当经职工代表大会或者全体职工讨论，提出方案和意见，与工会或者职工代表平等协商确定。在规章制度和重大事项决定实施过程中，工会或者职工认为不适当的，有权向用人单位提出，通过协商予以修改完善。用人单位应当将直接涉及劳动者切身利益的规章制度和重大事项决定公示，或者告知劳动者。",
     "第五条 县级以上人民政府劳动行政部门会同工会和企业方面代表，建立健全协调劳动关系三方机制，共同研究解决有关劳动关系的重大问题。",
-    "第六条 工会应当帮助、指导劳动者与用人单位依法订立和履行劳动合同，并与用人单位建立集体协商机制，维护劳动者的合法权益。"
+    "第六条 工会应当帮助、指导劳动者与用人单位依法订立和履行劳动合同，建立集体协商机制，维护劳动者的合法权益。"
   ],
   "第二章 劳动合同的订立": [
     "第七条 用人单位自用工之日起即与劳动者建立劳动关系。用人单位应当建立职工名册备查。",
@@ -538,14 +590,14 @@ const LABOR_CONTRACT_LAW_DATA = {
     "第十一条 用人单位未在用工的同时订立书面劳动合同，与劳动者约定的劳动报酬不明确的，新招用的劳动者的劳动报酬按照集体合同规定的标准执行；没有集体合同或者集体合同未规定的，实行同工同酬。",
     "第十二条 劳动合同分为固定期限劳动合同、无固定期限劳动合同和以完成一定工作任务为期限的劳动合同。",
     "第十三条 固定期限劳动合同，是指用人单位与劳动者约定合同终止时间的劳动合同。用人单位与劳动者协商一致，可以订立固定期限劳动合同。",
-    "第十四条 无固定期限劳动合同，是指用人单位与劳动者约定无确定终止时间的劳动合同。用人单位与劳动者协商一致，可以订立无固定期限劳动合同。有下列情形之一，劳动者提出或者同意续订、订立劳动合同的，除劳动者提出订立固定期限劳动合同外，应当订立无无固定期限劳动合同：（一）劳动者在该用人单位连续工作满十年的；（二）用人单位初次实行劳动合同制度或者国有企业改制重新订立劳动合同时，劳动者在该用人单位连续工作满十年且距法定退休年龄不足十年的；（三）连续订立二次固定期限劳动合同，且劳动者没有本法第三十九条和第四十条第一项、第二项规定的情形，续订劳动合同的。用人单位自用工之日起满一年不与劳动者订立书面劳动合同的，视为用人单位与劳动者已订立无固定期限劳动合同。",
+    "第十四条 无固定期限劳动合同，是指用人单位与劳动者约定无确定终止时间的劳动合同。用人单位与劳动者协商一致，可以订立无固定期限劳动合同。有下列情形之一，劳动者提出或者同意续订、订立劳动合同的，除劳动者提出订立固定期限劳动合同外，应当订立无固定期限劳动合同：（一）劳动者在该用人单位连续工作满十年的；（二）用人单位初次实行劳动合同制度或者国有企业改制重新订立劳动合同，劳动者在该用人单位连续工作满十年且距法定退休年龄不足十年的；（三）连续订立二次固定期限劳动合同，且劳动者没有本法第三十九条和第四十条第一项、第二项规定的情形，续订劳动合同的。用人单位自用工之日起满一年不与劳动者订立书面劳动合同的，视为用人单位与劳动者已订立无固定期限劳动合同。",
     "第十五条 以完成一定工作任务为期限的劳动合同，是指用人单位与劳动者约定以某项工作的完成为合同期限的劳动合同。用人单位与劳动者协商一致，可以订立以完成一定工作任务为期限的劳动合同。",
     "第十六条 劳动合同由用人单位与劳动者协商一致，并经用人单位与劳动者在劳动合同文本上签字或者盖章生效。劳动合同文本由用人单位和劳动者各执一份。",
     "第十七条 劳动合同应当具备以下条款：（一）用人单位的名称、住所和法定代表人或者主要负责人；（二）劳动者的姓名、住址和居民身份证或者其他有效身份证件号码；（三）劳动合同期限；（四）工作内容和工作地点；（五）工作时间和休息休假；（六）劳动报酬；（七）社会保险；（八）劳动保护、劳动条件和职业危害防护；（九）法律、法规规定应当纳入劳动合同的其他事项。劳动合同除前款规定的必备条款外，用人单位与劳动者可以约定试用期、培训、保守秘密、补充保险和福利待遇等其他事项。",
     "第十八条 劳动合同对劳动报酬和劳动条件等标准约定不明确，引发争议的，用人单位与劳动者可以重新协商；协商不成的，适用集体合同规定；没有集体合同或者集体合同未规定劳动报酬的，实行同工同酬；没有集体合同或者集体合同未规定劳动条件等标准的，适用国家有关规定。",
     "第十九条 劳动合同期限三个月以上不满一年的，试用期不得超过一个月；一年以上不满三年的，试用期不得超过二个月；三年以上固定期限和无固定期限的，试用期不得超过六个月。同一用人单位与同一劳动者只能约定一次试用期。以完成一定工作任务为期限的劳动合同或者劳动合同期限不满三个月的，不得约定试用期。试用期包含在劳动合同期限内。劳动合同仅约定试用期的，试用期不成立，该期限为劳动合同期限。",
     "第二十条 劳动者在试用期的工资不得低于本单位相同岗位最低档工资或者劳动合同约定工资的百分之八十，并不得低于当地最低工资标准。",
-    "第二十一条 在试用期内，除劳动者有本法第三十九条和第四十条第一项、第二项规定的情形外，用人单位不得解除劳动合同。用人单位在试用期解除劳动合同的，应当向劳动者说明理由。",
+    "第二十一条 在试用期中，除劳动者有本法第三十九条和第四十条第一项、第二项规定的情形外，用人单位不得解除劳动合同。用人单位在试用期解除劳动合同的，应当向劳动者说明理由。",
     "第二十二条 用人单位为劳动者提供专项培训费用，对其进行专业技术培训的，可以与该劳动者订立协议，约定服务期。劳动者违反服务期约定的，应当按照约定向用人单位支付违约金。违约金的数额不得超过用人单位提供的培训费用。用人单位要求劳动者支付的违约金不得超过服务期尚未履行部分所应分摊的培训费用。用人单位与劳动者约定服务期，不影响按照正常的工资调整机制提高劳动者在服务期期间的劳动报酬。",
     "第二十三条 用人单位与劳动者可以在劳动合同中约定保守用人单位的商业秘密和与知识产权相关的保密事项。对负有保密义务的劳动者，用人单位可以在劳动合同或者保密协议中与劳动者约定竞业限制条款，并约定在解除或者终止劳动合同后，在竞业限制期限内按月给予劳动者经济补偿。劳动者违反竞业限制约定的，应当按照约定向用人单位支付违约金。",
     "第二十四条 竞业限制的人员限于用人单位的高级管理人员、高级技术人员和其他负有保密义务的人员。竞业限制的范围、地域、期限由用人单位与劳动者约定，竞业限制的约定不得违反法律、法规的规定。在解除或者终止劳动合同后，前款规定的人员到与本单位生产或者经营同类产品、从事同类业务的有竞争关系的其他用人单位，或者自己开业生产或者经营同类产品、从事同类业务的竞业限制期限，不得超过二年。",
@@ -569,7 +621,7 @@ const LABOR_CONTRACT_LAW_DATA = {
     "第三十八条 用人单位有下列情形之一的，劳动者可以解除劳动合同：（一）未按照劳动合同约定提供劳动保护或者劳动条件的；（二）未及时足额支付劳动报酬的；（三）未依法为劳动者缴纳社会保险费的；（四）用人单位的规章制度违反法律、法规的规定，损害劳动者权益的；（五）因本法第二十六条第一款规定的情形致使劳动合同无效的；（六）法律、行政法规规定劳动者可以解除劳动合同的其他情形。用人单位以暴力、威胁或者非法限制人身自由的手段强迫劳动者劳动的，或者用人单位违章指挥、强令冒险作业危及劳动者人身安全的，劳动者可以立即解除劳动合同，不需事先告知用人单位。",
     "第三十九条 劳动者有下列情形之一的，用人单位可以解除劳动合同：（一）在试用期间被证明不符合录用条件的；（二）严重违反用人单位的规章制度的；（三）严重失职，营私舞弊，给用人单位造成重大损害的；（四）劳动者同时与其他用人单位建立劳动关系，对完成本单位的工作任务造成严重影响，或者经用人单位提出，拒不改正的；（五）因本法第二十六条第一款第一项规定的情形致使劳动合同无效的；（六）被依法追究刑事责任的。",
     "第四十条 有下列情形之一的，用人单位提前三十日以书面形式通知劳动者本人或者额外支付劳动者一个月工资后，可以解除劳动合同：（一）劳动者患病或者非因工负伤，在规定的医疗期满后不能从事原工作，也不能从事由用人单位另行安排的工作的；（二）劳动者不能胜任工作，经过培训或者调整工作岗位，仍不能胜任工作的；（三）劳动合同订立时所依据的客观情况发生重大变化，致使劳动合同无法履行，经用人单位与劳动者协商，未能就变更劳动合同内容达成协议的。",
-    "第四十一条 有下列情形之一，需要裁减人员二十人以上或者裁减不足二十人但占企业职工总数百分之十以上的，用人单位提前三十日向工会或者全体职工说明情况，听取工会或者职工的意见后，裁减人员方案经向劳动行政部门报告，可以裁减人员：（一）依照企业破产法规定进行重整的；（二）生产经营发生严重困难的；（三）企业转产、重大技术革新或者经营方式调整，经变更劳动合同后，仍需裁减人员的；（四）其他因劳动合同订立时所依据的客观经济情况发生重大变化，致使劳动合同无法履行的。裁减人员时，应当优先留用下列人员：（一）与本单位订立较长时间的固定期限劳动合同的；（二）与本单位订立无固定期限劳动合同的；（三）家庭无其他就业人员，有需要抚养的老人或者未成年人的。用人单位在六个月内重新招用人员的，应当通知被裁减的人员，并在同等条件下优先招用被裁减的人员。",
+    "第四十一条 有下列情形之一，需要裁减人员二十人以上或者裁减不足二十人但占企业职工总数百分之十以上的，用人单位提前三十日向工会或者全体职工说明情况，听取工会或者职工的意见后，裁减人员方案经向劳动行政部门报告，可以裁减人员：（一）依照企业破产法规定进行重整的；（二）生产经营发生严重困难的；（三）企业转产、重大技术革新或者经营方式调整，经变更劳动合同后，仍需裁减人员的；（四）其他因劳动合同订立时所依据的客观经济情况发生重大变化，致使劳动合同无法履行的。裁减人员时，应当优先留用下列人员：（一）与本单位订立较长期限的固定期限劳动合同的；（二）与本单位订立无固定期限劳动合同的；（三）家庭无其他就业人员，有需要扶养的老人或者未成年人的。用人单位在该法条规定裁减人员后六个月内重新招用人员的，应当通知被裁减的人员，并在同等条件下优先招用被裁减的人员。",
     "第四十二条 劳动者有下列情形之一的，用人单位不得依照本法第四十条、第四十一条的规定解除劳动合同：（一）从事接触职业病危害作业的劳动者未进行离岗前职业健康检查，或者疑似职业病病人在诊断或者医学观察期间的；（二）在本单位患职业病或者因工负伤并被确认丧失或者部分丧失劳动能力的；（三）患病或者非因工负伤，在规定的医疗期内的；（四）女职工在孕期、产期、哺乳期的；（五）在本单位连续工作满十五年，且距法定退休年龄不足五年的；（六）法律、行政法规规定的其他情形。",
     "第四十三条 用人单位单方解除劳动合同，应当事先将理由通知工会。用人单位违反法律、行政法规规定或者劳动合同约定的，工会有权要求用人单位纠正。用人单位应当研究工会的意见，并将处理结果书面通知工会。",
     "第四十四条 有下列情形之一的，劳动合同终止：（一）劳动合同期满的；（二）劳动者开始依法享受基本养老保险待遇的；（三）劳动者死亡，或者被人民法院宣告死亡或者宣告失踪的；（四）用人单位被依法宣告破产的；（五）用人单位被吊销营业执照、责令关闭、撤销或者用人单位决定提前解散的；（六）法律、行政法规规定的其他情形。",
@@ -577,47 +629,78 @@ const LABOR_CONTRACT_LAW_DATA = {
     "第四十六条 有下列情形之一的，用人单位应当向劳动者支付经济补偿：（一）劳动者依照本法第三十八条规定解除劳动合同的；（二）用人单位依照本法第三十六条规定向劳动者提出解除劳动合同并与劳动者协商一致解除劳动合同的；（三）用人单位依照本法第四十条规定解除劳动合同的；（四）用人单位依照本法第四十一条第一款规定解除劳动合同的；（五）除用人单位维持或者提高劳动合同约定条件续订劳动合同，劳动者不同意续订的情形外，依照本法第四十四条第一项规定终止固定期限劳动合同的；（六）依照本法第四十四条第四项、第五项规定终止劳动合同的；（七）法律、行政法规规定的其他情形。",
     "第四十七条 经济补偿按劳动者在本单位工作的年限，每满一年支付一个月工资的标准向劳动者支付。六个月以上不满一年的，按一年计算；不满六个月的，向劳动者支付半个月工资的经济补偿。劳动者月工资高于用人单位所在直辖市、设区的市级人民政府公布的本地区上年度职工月平均工资三倍的，向其支付经济补偿的标准按职工月平均工资三倍的数额支付，向其支付经济补偿的年限最高不超过十二年。本条所称月工资是指劳动者在劳动合同解除或者终止前十二个月的平均工资。",
     "第四十八条 用人单位违反本法规定解除或者终止劳动合同，劳动者要求继续履行劳动合同的，用人单位应当继续履行；劳动者不要求继续履行劳动合同或者劳动合同已经不能继续履行的，用人单位应当依照本法第八十七条规定支付赔偿金。",
-    "第四十九条 国家采取措施，建立健全劳动者社会保险关系跨地区转移接续制度。",
+    "第四十九条 国家采取措施，建立健全劳动者社会保险关系跨统筹地区转移接续制度。",
     "第五十条 用人单位应当在解除或者终止劳动合同时出具解除或者终止劳动合同的证明，并在十五日内为劳动者办理档案和社会保险关系转移手续。劳动者应当按照双方约定，办理工作交接。用人单位依照本法有关规定应当向劳动者支付经济补偿的，在办结工作交接时支付。用人单位对已经解除或者终止的劳动合同的文本，至少保存二年备查。"
   ],
   "第五章 特别规定": [
-    "第一节 集体合同 - 第五十一条 企业职工一方与用人单位通过平等协商，可以就劳动报酬、工作时间、休息休假、劳动安全卫生、保险福利等事项订立集体合同。",
-    "第二节 劳务派遣 - 第五十七条 劳务派遣单位应当依照公司法的有关规定设立，注册资本不得少于人民币二百万元。",
-    "第五十八条 劳务派遣单位是本法所称用人单位，应当履行用人单位对劳动者的义务。劳务派遣单位与被派遣劳动者订立的劳动合同，除应当载明本法第十七条规定的事项外，还应当载明被派遣劳动者的用工单位以及派遣期限、工作岗位等情况。劳务派遣单位应当与被派遣劳动者订立二年以上的固定期限劳动合同，按月支付劳动报酬；被派遣劳动者在无工作期间，劳务派遣单位应当按照所在地人民币最低工资标准，按月向其支付报酬。",
-    "第五十九条 劳务派遣单位派遣劳动者应当与接受以劳务派遣形式用工的单位订立劳务派遣协议。劳务派遣协议应当约定派遣岗位和人员数量、派遣期限、劳动报酬和社会保险费的数额与支付方式以及违反协议的责任。",
-    "第六十六条 劳动合同用工是我国的企业基本用工形式。劳务派遣用工是补充形式，只能在临时性、辅助性或者替代性的工作岗位上实施。",
-    "第三节 非全日制用工 - 第六十八条 非全日制用工，是指以小时计酬为主，劳动者在同一用人单位一般平均每日工作时间不超过四小时，每周累计工作时间不超过二十四小时的用工形式。",
+    "第五十一条 企业职工一方与用人单位通过平等协商，可以就劳动报酬、工作时间、休息休假、劳动安全卫生、保险福利等事项订立集体合同。集体合同草案应当提交职工代表大会或者全体职工讨论通过。集体合同由工会代表企业职工一方与用人单位订立；尚未建立工会的用人单位，由上级工会指导劳动者推举的代表与用人单位订立。",
+    "第五十二条 企业职工一方与用人单位可以订立劳动安全卫生、女职工权益保护、工资调整机制等专项集体合同。",
+    "第五十三条 集体合同订立后，应当报送劳动行政部门；劳动行政部门自收到集体合同文本之日起十五日内未提出异议的，集体合同即行生效。依法订立的集体合同对用人单位和劳动者具有约束力。行业性、区域性集体合同对当地本行业、本区域的用人单位和劳动者具有约束力。",
+    "第五十四条 集体合同中劳动报酬和劳动条件等标准不得低于当地人民政府规定的最低标准；用人单位与劳动者订立的劳动合同中劳动报酬和劳动条件等标准不得低于集体合同规定的标准。",
+    "第五十五条 因履行集体合同发生争议，经协商解决不成的，工会可以依法申请仲裁、提起诉讼。",
+    "第五十六条 用人单位违反集体合同，侵犯职工劳动权益的，工会可以依法要求用人单位承担责任；因履行集体合同发生争议，经协商解决不成的，工会可以依法申请仲裁、提起诉讼。",
+    "第五十七条 劳务派遣单位应当依照公司法的有关规定设立，注册资本不得少于二百万元。",
+    "第五十八条 劳务派遣单位是本法所称用人单位，应当履行用人单位对劳动者的义务。劳务派遣单位与被派遣劳动者订立的劳动合同，除应当具备本法第十七条规定的事项外，还应当载明被派遣劳动者的用工单位以及派遣期限、工作岗位等事项。劳务派遣单位应当与被派遣劳动者订立二年以上的固定期限劳动合同，按月支付劳动报酬；被派遣劳动者在无工作期间，劳务派遣单位应当按照所在地人民政府规定的最低工资标准，按月向其支付报酬。",
+    "第五十九条 劳务派遣单位派遣劳动者应当与接受以劳务派遣形式用工的单位（以下称用工单位）订立劳务派遣协议。劳务派遣协议应当约定派遣岗位和人员数量、派遣期限、劳动报酬和社会保险费的数额与支付方式以及违反协议的责任。用工单位应当根据工作岗位的实际需要与劳务派遣单位确定派遣期限，不得将连续用工期限分割订立数个短期劳务派遣协议。",
+    "第六十条 劳务派遣单位应当将劳务派遣协议的内容告知被派遣劳动者。劳务派遣单位不得克扣用工单位按照劳务派遣协议支付给被派遣劳动者的劳动报酬。劳务派遣单位和用工单位不得向被派遣劳动者收取费用。",
+    "第六十一条 劳务派遣单位跨地区派遣劳动者的，被派遣劳动者享有的劳动报酬和劳动条件，按照用工单位所在地的标准执行。",
+    "第六十二条 用工单位应当履行下列义务：（一）执行国家劳动标准，提供相应的劳动条件和劳动保护；（二）告知被派遣劳动者的工作要求和劳动报酬；（三）支付加班费、绩效奖金，提供与工作岗位相关的福利待遇；（四）对在岗被派遣劳动者进行工作岗位所必需的培训；（五）连续用工的，实行正常的工资调整机制。用工单位不得将被派遣劳动者再派遣到其他用人单位。",
+    "第六十三条 被派遣劳动者享有与用工单位的劳动者同工同酬的权利。用工单位应当按照同工同酬原则，对被派遣劳动者与本单位同类岗位的劳动者实行相同的劳动报酬分配办法。用工单位无同类岗位劳动者的，参照用工单位所在地相同或者相近岗位劳动者的劳动报酬确定。",
+    "第六十四条 被派遣劳动者有权依法参加工会或者组织工会，维护自己的合法权益。",
+    "第六十五条 被派遣劳动者有本法第三十六条、第三十七条和第三十八条规定情形的，可以按照规定与劳务派遣单位解除劳动合同。被派遣劳动者有本法第三十九条和第四十条第一项、第二项规定情形的，用工单位可以将劳动者退回劳务派遣单位，劳务派遣单位依照本法有关规定，可以与劳动者解除劳动合同。",
+    "第六十六条 劳动合同用工是我国的企业基本用工形式。劳务派遣用工是补充形式，只能在临时性、辅助性或者替代性的工作岗位上实施。前款规定的临时性工作岗位是指存续时间不超过六个月的岗位；辅助性工作岗位是指为主营业务岗位提供服务的非主营业务岗位；替代性工作岗位是指用人单位的劳动者因脱产学习、休假等原因无法工作的一定期限内，可以由其他劳动者替代工作的岗位。用人单位应当严格控制劳务派遣用工数量，不得超过其用工总量的一定比例，具体比例由国务院劳动行政部门规定。",
+    "第六十七条 用人单位不得设立劳务派遣单位向本单位或者所属单位派遣劳动者。",
+    "第六十八条 非全日制用工，是指以小时计酬为主，劳动者在同一用人单位一般平均每日工作时间不超过四小时，每周累计工作时间不超过二十四小时的用工形式。",
     "第六十九条 非全日制用工双方当事人可以订立口头协议。从事非全日制用工的劳动者可以与一个或者一个以上用人单位订立劳动合同；但是，后订立的劳动合同不得影响先订立的劳动合同的履行。",
-    "第七十条 非全日制用工双方当事人不得约定试用期。第七十一条 非全日制用工双方当事人任何一方都可以随时通知对方终止用工。终止用工，用人单位不向劳动者支付经济补偿。",
-    "第七十二条 非全日制用工小时计酬标准不得低于用人单位所在地人民币最低小时工资标准。非全日制用工劳动报酬结算支付周期最长不得超过十五日。"
+    "第七十条 非全日制用工双方当事人不得约定试用期。",
+    "第七十一条 非全日制用工双方当事人任何一方都可以随时通知对方终止用工。终止用工，用人单位不向劳动者支付经济补偿。",
+    "第七十二条 非全日制用工小时计酬标准不得低于用人单位所在地人民政府规定的最低小时工资标准。非全日制用工劳动报酬结算支付周期最长不得超过十五日。"
   ],
   "第六章 监督检查": [
-    "第七十三条 县级以上地方人民政府劳动行政部门负责本行政区域内的劳动合同制度实施的监督管理。",
-    "第七十四条 县级以上地方人民政府劳动行政部门对劳动合同制度实施情况进行监督检查，对违法行为依法处理。"
+    "第七十三条 国务院劳动行政部门负责全国劳动合同制度实施的监督管理。县级以上地方人民政府劳动行政部门负责本行政区域内劳动合同制度实施的监督管理。县级以上各级人民政府劳动行政部门在劳动合同制度实施的监督管理工作中，应当听取工会、企业方面代表以及有关行业主管部门的意见。",
+    "第七十四条 县级以上地方人民政府劳动行政部门依法对下列实施劳动合同制度的情况进行监督检查：（一）用人单位制定直接涉及劳动者切身利益的规章制度及其执行的情况；（二）用人单位与劳动者订立和解除劳动合同的情况；（三）劳务派遣单位和用工单位遵守劳务派遣有关规定的情况；（四）用人单位遵守国家关于劳动者工作时间和休息休假规定的情况；（五）用人单位支付劳动合同约定的劳动报酬和执行最低工资标准的情况；（六）用人单位参加社会保险和缴纳社会保险费的情况；（七）法律、法规规定的其他劳动监察事项。",
+    "第七十五条 县级以上地方人民政府劳动行政部门实施监督检查，有权查阅与劳动合同、集体合同有关的材料，有权对劳动场所进行实地检查，用人单位和劳动者应当如实提供有关情况和材料。",
+    "第七十六条 县级以上人民政府建设、卫生、安全生产监督管理等有关主管部门在各自职责范围内，对用人单位执行劳动合同制度的情况进行监督管理。",
+    "第七十七条 劳动者合法权益受到侵害的，有权要求有关部门依法处理，或者依法申请仲裁、提起诉讼。",
+    "第七十八条 工会依法维护劳动者的合法权益，对用人单位履行劳动合同、集体合同的情况进行监督。用人单位违反劳动法律、法规和劳动合同、集体合同的，工会有权提出意见或者要求纠正；劳动者申请仲裁或者提起诉讼的，工会依法给予支持和帮助。",
+    "第七十九条 任何组织或者个人对违反本法的行为都有权举报和控告。"
   ],
   "第七章 法律责任": [
+    "第八十条 用人单位直接涉及劳动者切身利益的规章制度违反法律、法规规定的，由劳动行政部门责令改正，给予警告；给劳动者造成损害的，应当承担赔偿责任。",
+    "第八十一条 用人单位提供的劳动合同文本未载明本法规定的劳动合同必备条款或者用人单位未将劳动合同文本交付劳动者的，由劳动行政部门责令改正；给劳动者造成损害的，应当承担赔偿责任。",
     "第八十二条 用人单位自用工之日起超过一个月不满一年未与劳动者订立书面劳动合同的，应当向劳动者每月支付二倍的工资。用人单位违反本法规定不与劳动者订立无固定期限劳动合同的，自应当订立无固定期限劳动合同之日起向劳动者每月支付二倍的工资。",
-    "第八十五条 用人单位有下列情形之一的，由劳动行政部门责令限期支付劳动报酬、加班费或者经济补偿；劳动报酬低于当地最低工资标准的，应当支付其差额部分；逾期不支付的，责令用人单位按应付金额百分之五十以上百分之百以下的标准向劳动者加付赔偿金：（一）未按照劳动合同的约定或者国家规定及时足额支付劳动者劳动报酬的；（二）低于当地最低工资标准支付劳动者工资的；（三）安排加班不支付加班费的；（四）解除或者终止劳动合同，未依照本法规定向劳动者支付经济补偿的。",
-    "第八十七条 用人单位违反本法规定解除或者终止劳动合同的，应当依照本法第四十七条规定的经济补偿标准的二倍向劳动者支付赔偿金。"
+    "第八十三条 用人单位违反本法规定与劳动者约定试用期的，由劳动行政部门责令改正；违法约定的试用期已经履行的，由用人单位以劳动者试用期满月工资为标准，按散履行的超过法定试用期的期间向劳动者支付赔偿金。",
+    "第八十四条 用人单位违反本法规定，扣押劳动者居民身份证等证件的，由劳动行政部门责令限期退还劳动者本人，并依照有关法律规定给予处罚。用人单位违反本法规定，以担保或者其他名义向劳动者收取财物的，由劳动行政部门责令限期退还劳动者本人，并以每人五百元以上二千元以下的标准处以罚款；给劳动者造成损害的，应当承担赔偿责任。劳动者依法解除或者终止劳动合同，用人单位扣押劳动者档案或者其他物品的，依照前款规定处罚。",
+    "第八十五条 用人单位有下列情形之一的，由劳动行政部门责令限期支付劳动报酬、加班费或者经济补偿；劳动报酬低于当地最低工资标准的，应当支付其差额部分；逾期不支付的，责令用人单位按应付金额百分之五十以上百分之一百以下的标准向劳动者加付赔偿金：（一）未按照劳动合同的约定或者国家规定及时足额支付劳动者劳动报酬的；（二）低于当地最低工资标准支付劳动者工资的；（三）安排加班不支付加班费的；（四）解除或者终止劳动合同，未依照本法规定向劳动者支付经济补偿的。",
+    "第八十六条 劳动合同依照本法第二十六条规定被确认无效，给对方造成损害的，有过错的一方应当承担赔偿责任。",
+    "第八十七条 用人单位违反本法规定解除或者终止劳动合同的，应当依照本法第四十七条规定的经济补偿标准的二倍向劳动者支付赔偿金。",
+    "第八十八条 用人单位有下列情形之一的，依法给予行政处罚；构成犯罪的，依法追究刑事责任；给劳动者造成损害的，应当承担赔偿责任：（一）以暴力、威胁或者非法限制人身自由的手段强迫劳动的；（二）违章指挥或者强令冒险作业危及劳动者人身安全的；（三）侮辱、体罚、殴打、非法搜查或者拘禁劳动者的；（四）劳动条件恶劣、环境污染严重，给劳动者身心健康造成严重损害的。",
+    "第八十九条 用人单位违反本法规定未向劳动者出具解除或者终止劳动合同的书面证明，由劳动行政部门责令改正；给劳动者造成损害的，应当承担赔偿责任。",
+    "第九十条 劳动者违反本法规定解除劳动合同，或者违反劳动合同中约定的保密义务或者竞业限制，给用人单位造成损失的，应当承担赔偿责任。",
+    "第九十一条 劳动者违反服务期约定的，应当按照约定向用人单位支付违约金。",
+    "第九十二条 劳务派遣单位、用工单位违反本法有关劳务派遣规定的，由劳动行政部门责令限期改正；逾期不改正的，处每人五千元以上一万元以下的罚款，对劳务派遣单位可以吊销其劳务派遣业务经营许可证。用工单位给被派遣劳动者造成损害的，劳务派遣单位与用工单位承担连带赔偿责任。",
+    "第九十三条 对不具备合法经营资格的用人单位的违法犯罪行为，依法追究法律责任；劳动者已经付出劳动的，该单位或者其出资人应当依照本法有关规定向劳动者支付劳动报酬、经济补偿、赔偿金；给劳动者造成损害的，应当承担赔偿责任。",
+    "第九十四条 个人承包经营违反本法规定招用劳动者，给劳动者造成损害的，发包的组织与个人承包经营者承担连带赔偿责任。",
+    "第九十五条 劳动行政部门和其他有关主管部门及其工作人员玩忽职守、不履行法定职责，或者违法行使职权，给劳动者或者用人单位造成损害的，应当承担赔偿责任；对直接负责的主管人员和其他直接责任人员依法给予行政处分；构成犯罪的，依法追究刑事责任。"
   ],
   "第八章 附则": [
     "第九十六条 事业单位与实行聘用制的工作人员订立、履行、变更、解除或者终止劳动合同，法律、行政法规或者国务院另有规定的，依照其规定；未作规定的，依照本法执行。",
-    "第九十七条 本法施行前已依法订立且在本法施行之日存续的劳动合同，继续履行。",
+    "第九十七条 本法施行前已依法订立且在本法施行之日存续的劳动合同，继续履行；本法第十四条第二款第一项规定的连续工作年限，自用人单位用工之日起计算。本法施行前已建立劳动关系，尚未订立书面劳动合同的，应当自本法施行之日起一个月内订立。本法施行前订立的劳动合同在本法施行后解除或者终止，依照本法第四十六条规定应当支付经济补偿的，经济补偿年限自本法施行之日起计算；本法施行前按照当时有关规定，用人单位应当向劳动者支付经济补偿的，按照当时有关规定执行。",
     "第九十八条 本法自2008年1月1日起施行。"
   ]
 };
 
-// ===== 3. 《中华人民共和国劳动法》全量官方数据库（13章107条全文） =====
+// ===== 全量《中华人民共和国劳动法》（共107条全文） =====
 const LABOR_LAW_DATA = {
   "第一章 总则": [
     "第一条 为了保护劳动者的合法权益，调整劳动关系，建立和维护适应社会主义市场经济的劳动制度，促进经济发展和社会进步，根据宪法，制定本法。",
-    "第二条 在中华人民共和国境内的企业、个体经济组织（以下统称用人单位）和与其形成劳动关系的劳动者，适用本法。国家机关、事业组织、社会团体和与其建立劳动合同关系的劳动者，依照本法执行。",
+    "第二条 在中华人民共和国境内的企业、个体经济组织（以下统称用人单位）和与之形成劳动关系的劳动者，适用本法。国家机关、事业组织、社会团体和与其建立劳动合同关系的劳动者，依照本法执行。",
     "第三条 劳动者享有平等就业和选择职业的权利、取得劳动报酬的权利、休息休假的权利、获得劳动安全卫生保护的权利、接受职业技能培训的权利、享受社会保险和福利的权利、提请劳动争议处理的权利以及法律规定的其他劳动权利。劳动者应当完成劳动任务，提高职业技能，执行劳动安全卫生规程，遵守劳动纪律和职业道德。",
     "第四条 用人单位应当依法建立和完善规章制度，保障劳动者享有劳动权利和履行劳动义务。",
     "第五条 国家采取各种措施，促进劳动就业，发展职业教育，制定劳动标准，调节社会收入，完善社会保险，协调劳动关系，逐步提高劳动者的生活水平。",
     "第六条 国家提倡劳动者参加社会义务劳动，开展劳动竞赛和合理化建议活动，鼓励和保护劳动者进行科学研究、技术革新和发明创造，表彰和奖励劳动模范和先进工作者。",
     "第七条 劳动者有权依法参加和组织工会。工会代表和维护劳动者的合法权益，依法独立自主地开展活动。",
-    "第八条 劳动者通过职工大会、职工代表大会或者其他形式，参与民主管理或者就保护劳动者合法权益与用人单位进行平等协商。",
+    "第八条 劳动者依照法律规定，通过职工大会、职工代表大会或者其他形式，参与民主管理或者就保护劳动者合法权益与用人单位进行平等协商。",
     "第九条 国务院劳动行政部门主管全国劳动工作。县级以上地方人民政府劳动行政部门主管本行政区域内的劳动工作。"
   ],
   "第二章 促进就业": [
@@ -631,7 +714,7 @@ const LABOR_LAW_DATA = {
   "第三章 劳动合同和集体合同": [
     "第十六条 劳动合同是劳动者与用人单位确立劳动关系、明确双方权利和义务的协议。建立劳动关系应当订立劳动合同。",
     "第十七条 订立和变更劳动合同，应当遵循平等自愿、协商一致的原则，不得违反法律、行政法规的规定。劳动合同依法订立即具有法律约束力，当事人必须履行劳动合同规定的义务。",
-    "第十八条 下列劳动合同无效：（一）违反法律、行政法规的劳动合同；（二）采取欺诈、胁迫等手段订立的劳动合同。无效的劳动合同，从订立时起，就没有法律约束力。确认劳动合同部分或者全部无效，由劳动争议仲裁委员会或者人民法院确认。",
+    "第十八条 下列劳动合同无效：（一）违反法律、行政法规的劳动合同；（二）采取欺诈、胁迫等手段订立的劳动合同。无效的劳动合同，从订立时起，就没有法律约束力。确认劳动合同部分或者全部无效，由劳动争议仲裁委员会或者人民法院确认。劳动合同部分无效，不影响其余部分的效力的，其余部分仍然有效。",
     "第十九条 劳动合同应当以书面形式订立，并具备以下条款：（一）劳动合同期限；（二）工作内容；（三）劳动保护和劳动条件；（四）劳动报酬；（五）劳动纪律；（六）劳动合同终止的条件；（七）违反劳动合同的责任。劳动合同除前款规定的必备条款外，当事人可以协商约定其他内容。",
     "第二十条 劳动合同的期限分为有固定期限、无固定期限和以完成一定的工作为期限。劳动者在同一用人单位连续工作满十年以上，当事人双方同意续延劳动合同的，如果劳动者提出订立无固定期限的劳动合同，应当订立无固定期限的劳动合同。",
     "第二十一条 劳动合同可以约定试用期。试用期最长不得超过六个月。",
@@ -640,188 +723,49 @@ const LABOR_LAW_DATA = {
     "第二十四条 经劳动合同当事人协商一致，劳动合同可以解除。",
     "第二十五条 劳动者有下列情形之一的，用人单位可以解除劳动合同：（一）在试用期间被证明不符合录用条件的；（二）严重违反劳动纪律或者用人单位规章制度的；（三）严重失职，营私舞弊，对用人单位利益造成重大损害的；（四）被依法追究刑事责任的。",
     "第二十六条 有下列情形之一的，用人单位可以解除劳动合同，但是应当提前三十日以书面形式通知劳动者本人：（一）劳动者患病或者非因工负伤，医疗期满后，不能从事原工作也不能从事由用人单位另行安排的工作的；（二）劳动者不能胜任工作，经过培训或者调整工作岗位，仍不能胜任工作的；（三）劳动合同订立时所依据的客观情况发生重大变化，致使原劳动合同无法履行，经当事人协商不能就变更劳动合同达成协议的。",
-    "第二十七条 用人单位依据企业破产法规定进行重整或者生产经营状况发生严重困难，确需裁减人员的，应当提前三十日向工会或者全体职工说明情况，听取工会或者职工的意见，经向劳动行政部门报告后，可以裁减人员。用人单位依据本条规定裁减人员，在六个月内录用人员的，应当优先录用被裁减的人员。",
+    "第二十七条 用人单位濒临破产进行法定整顿期间或者生产经营状况发生严重困难，确需裁减人员的，应当提前三十日向工会或者全体职工说明情况，听取工会或者职工的意见，经向劳动行政部门报告后，可以裁减人员。用人单位依据本条规定裁减人员，在六个月内录用人员的，应当优先录用被裁减的人员。",
     "第二十八条 用人单位依据本法第二十四条、第二十六条、第二十七条的规定解除劳动合同的，应当依照国家有关规定给予经济补偿。",
     "第二十九条 劳动者有下列情形之一的，用人单位不得依据本法第二十六条、第二十七条的规定解除劳动合同：（一）患职业病或者因工负伤并被确认丧失或者部分丧失劳动能力的；（二）患病或者负伤，在规定的医疗期内的；（三）女职工在孕期、产期、哺乳期内的；（四）法律、行政法规规定的其他情形。",
-    "第三十条 用人单位解除劳动合同，工会认为不适当的，有权提出意见。用人单位违反法律、法规或者劳动合同，工会重新研究处理时，应当听取工会的意见。",
+    "第三十条 用人单位解除劳动合同，工会认为不适当的，有权提出意见。用人单位违反法律、法规或者劳动合同的，工会有权要求重新处理；劳动者申请仲裁或者提起诉讼的，工会应当依法给予支持和帮助。",
     "第三十一条 劳动者解除劳动合同，应当提前三十日以书面形式通知用人单位。",
     "第三十二条 有下列情形之一的，劳动者可以随时通知用人单位解除劳动合同：（一）在试用期内的；（二）用人单位以暴力、威胁或者非法限制人身自由的手段强迫劳动的；（三）用人单位未按照劳动合同约定支付劳动报酬或者提供劳动条件的。",
-    "第三十三条 企业职工一方与企业可以就劳动报酬、工作时间、休息休假、劳动安全卫生、保险福利等事项，签订集体合同。",
+    "第三十三条 企业职工一方与企业可以就劳动报酬、工作时间、休息休假、劳动安全卫生、保险福利等事项，签订集体合同。集体合同草案应当提交职工代表大会或者全体职工讨论通过。集体合同由工会代表职工与企业签订；尚未建立工会的企业，由职工推举的代表与企业签订。",
     "第三十四条 集体合同签订后应当报送劳动行政部门；劳动行政部门自收到集体合同文本之日起十五日内未提出异议的，集体合同即行生效。",
     "第三十五条 依法签订的集体合同对企业和企业全体职工具有约束力。职工个人与企业订立的劳动合同中劳动条件和劳动报酬等标准不得低于集体合同的规定。"
   ],
   "第四章 工作时间和休息休假": [
     "第三十六条 国家实行劳动者每日工作时间不超过八小时、平均每周工作时间不超过四十四小时的工时制度。",
-    "第三十七条 对实行计件工作的劳动者，用人单位应当根据本法第三十六条规定的工时制度合理确定其劳动定额和计件报酬标准。",
+    "第三十七条 对实行计件工作的劳动者，用人单位应当根据本法第三十六条规定的工时制度，合理确定其劳动定额和计件报酬标准。",
     "第三十八条 用人单位应当保证劳动者每周至少休息一日。",
     "第三十九条 企业因生产特点不能实行本法第三十六条、第三十八条规定的，经劳动行政部门批准，可以实行其他工作和休息办法。",
     "第四十条 用人单位在下列节日期间应当依法安排劳动者休假：（一）元旦；（二）春节；（三）国际劳动节；（四）国庆节；（五）法律、法规规定的其他休假节日。",
-    "第四十一条 用人单位由于生产经营需要，经与工会和劳动者协商后可以延长工作时间，一般每日不得超过一小时；因特殊原因需要延长工作时间的这里为您整理了一份结构完整、功能齐备且排版现代的 HTML5 页面模版。包含响应式布局、引入 CDN 样式的头部、结构化的内容区域（包含导航、卡片网格、表格、表单）以及用于交互的 JavaScript 基础代码。
+    "第四十一条 用人单位由于生产经营需要，经与工会和劳动者协商后可以延长工作时间，一般每日不得超过一小时；因特殊原因需要延长工作时间的，在保障劳动者身体健康的条件下延长工作时间每日不得超过三小时，但是每月不得超过三十六小时。",
+    "第四十二条 有下列情形之一的，延长工作时间不受本法第四十一条规定的限制：（一）发生自然灾害、事故或者因其他原因，使传染病流行、人民生命健康和财产安全遭到严重威胁，需要紧急处理的；（二）生产设备、交通运输线路、公共设施发生故障，影响生产和公众利益，必须及时抢修的；（三）法律、行政法规规定的其他情形。",
+    "第四十三条 用人单位不得违反本法规定延长劳动者的工作时间。",
+    "第四十四条 有下列情形之一的，用人单位应当按照下列标准支付高于劳动者正常工作时间工资的工资报酬：（一）安排劳动者延长工作时间的，支付不低于工资的百分之一百五十的工资报酬；（二）休息日安排劳动者工作又不能安排补休的，支付不低于工资的百分之二百的工资报酬；（三）法定休假日安排劳动者工作的，支付不低于工资的百分之三百的工资报酬。",
+    "第四十五条 国家实行带薪年休假制度。劳动者连续工作一年以上的，享受带薪年休假。具体办法由国务院规定。"
+  ],
+  "第五章 工资": [
+    "第四十六条 工资分配应当遵循按劳分配原则，实行同工同酬。工资水平在经济发展的基础上逐步提高。国家对工资总量实行宏观调控。",
+    "第四十七条 用人单位根据本单位的生产经营特点和经济效益，依法自主确定本单位的工资分配方式和工资水平。",
+    "第四十八条 国家实行最低工资保障制度。最低工资的具体标准由省、自治区、直辖市人民政府规定，报国务院备案。用人单位支付劳动者的工资不得低于当地最低工资标准。",
+    "第四十九条 确定和调整最低工资标准应当综合参考下列因素：（一）劳动者本人及平均赡养人口的最低生活费用；（二）社会平均工资水平；（三）劳动生产率；（四）就业状况；（五）地区之间经济发展水平的差异。",
+    "第五十条 工资应当以货币形式按月支付给劳动者本人。不得克扣或者无故拖欠劳动者的工资。",
+为了精准帮你补全和完善代码，请把目前的代码片段粘贴在下方，并补充以下关键信息：
 
-可以直接保存为 `.html` 文件（如 `index.html`）并在浏览器中双击打开：
+1. **当前代码与语言**：例如 Python, JavaScript, C++, Go 等。
+2. **实现的目标/功能**：这段代码希望完成什么任务？
+3. **遇到问题（如有）**：是存在特定报错、性能瓶颈、逻辑断点，还是只需完成未写完的部分？
 
-```html
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>完整网页示例</title>
-    <!-- Tailwind CSS 样式库（极简快速构建现代UI） -->
-    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
-    <style>
-        /* 自定义微调样式 */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        }
-    </style>
-</head>
-<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
+---
 
-    <!-- 顶栏导航 -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="text-xl font-bold text-blue-600">品牌标识 LOGO</div>
-            <nav class="hidden md:flex space-x-8">
-                <a href="#features" class="text-gray-600 hover:text-blue-600 transition">功能特性</a>
-                <a href="#data" class="text-gray-600 hover:text-blue-600 transition">数据表格</a>
-                <a href="#contact" class="text-gray-600 hover:text-blue-600 transition">联系我们</a>
-            </nav>
-            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-                立即开始
-            </button>
-        </div>
-    </header>
+### 常见补全方向参考
 
-    <!-- 主体内容区域 -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+如果你是在开发以下常见类型，可以随时补充上下文：
 
-        <!-- 英雄 Banner 区域 -->
-        <section class="text-center py-12 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-            <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl mb-4">
-                高效、现代的 Web 页面解决方案
-            </h1>
-            <p class="max-w-2xl mx-auto text-lg text-gray-600 mb-8">
-                这是一个集成了完整结构、响应式设计与交互基础的标准 HTML5 模板，满足绝大多数业务场景的快速落地需求。
-            </p>
-            <div class="flex justify-center gap-4">
-                <a href="#contact" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition">
-                    提交需求
-                </a>
-                <a href="#features" class="bg-gray-100 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-200 transition">
-                    了解更多
-                </a>
-            </div>
-        </section>
+* **前端开发**：如 Vue/React 组件、异步请求处理、防抖/节流函数、表单校验等。
+* **后端 API**：如 Express/FastAPI 路由、数据库 CRUD 操作、鉴权中间件（JWT）、错误处理机制。
+* **算法/数据处理**：如 Pandas/Numpy 数据清洗、递归逻辑、排序与搜索算法。
+* **工具脚本**：如 文件批量处理、爬虫、自动化运维脚本。
 
-        <!-- 卡片网格区域 (Features) -->
-        <section id="features">
-            <h2 class="text-2xl font-bold text-gray-900 mb-6">核心功能特性</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
-                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold text-xl mb-4">01</div>
-                    <h3 class="text-lg font-semibold mb-2">响应式布局</h3>
-                    <p class="text-gray-600 text-sm">自动适配手机、平板及桌面宽屏终端，确保完美的跨屏视觉体验。</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
-                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center font-bold text-xl mb-4">02</div>
-                    <h3 class="text-lg font-semibold mb-2">语义化结构</h3>
-                    <p class="text-gray-600 text-sm">严格遵循 HTML5 语义化标签规范，提升搜索引擎 SEO 友好度。</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
-                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center font-bold text-xl mb-4">03</div>
-                    <h3 class="text-lg font-semibold mb-2">轻量可扩展</h3>
-                    <p class="text-gray-600 text-sm">基于 CSS 框架构建，代码结构清晰，方便后续模块二次开发与接入。</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 数据表格区域 -->
-        <section id="data" class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">项目进度明细表</h2>
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="border-b border-gray-200 text-gray-500 text-sm">
-                            <th class="py-3 px-4 font-medium">项目名称</th>
-                            <th class="py-3 px-4 font-medium">负责人</th>
-                            <th class="py-3 px-4 font-medium">状态</th>
-                            <th class="py-3 px-4 font-medium">交付时间</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-100 text-sm text-gray-700">
-                        <tr class="hover:bg-gray-50">
-                            <td class="py-3 px-4 font-medium">前端页面重构</td>
-                            <td class="py-3 px-4">张经理</td>
-                            <td class="py-3 px-4"><span class="bg-green-100 text-green-700 px-2.5 py-1 rounded-full text-xs">进行中</span></td>
-                            <td class="py-3 px-4">2026-09-15</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="py-3 px-4 font-medium">API 接口对接</td>
-                            <td class="py-3 px-4">李工</td>
-                            <td class="py-3 px-4"><span class="bg-yellow-100 text-yellow-700 px-2.5 py-1 rounded-full text-xs">待测试</span></td>
-                            <td class="py-3 px-4">2026-09-20</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="py-3 px-4 font-medium">UI 设计稿设计</td>
-                            <td class="py-3 px-4">王设计师</td>
-                            <td class="py-3 px-4"><span class="bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full text-xs">已完成</span></td>
-                            <td class="py-3 px-4">2026-08-30</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- 表单交互区域 -->
-        <section id="contact" class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm max-w-2xl mx-auto">
-            <h2 class="text-2xl font-bold text-gray-900 mb-2 text-center">联系与反馈</h2>
-            <p class="text-gray-500 text-center mb-6 text-sm">请填写以下信息，我们将会在 24 小时内与您取得联系。</p>
-            <form id="contactForm" class="space-y-4">
-                <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">姓名</label>
-                    <input type="text" id="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition" placeholder="请输入您的姓名">
-                </div>
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">邮箱地址</label>
-                    <input type="email" id="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition" placeholder="name@example.com">
-                </div>
-                <div>
-                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">留言内容</label>
-                    <textarea id="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition" placeholder="请详细描述您的需求..."></textarea>
-                </div>
-                <button type="submit" class="w-full bg-blue-600 text-white font-medium py-2.5 rounded-lg hover:bg-blue-700 transition">
-                    提交信息
-                </button>
-            </form>
-        </section>
-
-    </main>
-
-    <!-- 页脚区域 -->
-    <footer class="bg-white border-t border-gray-200 mt-12">
-        <div class="max-w-7xl mx-auto px-4 py-6 text-center text-gray-500 text-sm">
-            <p>© 2026 公司名称. 保留所有权利。</p>
-        </div>
-    </footer>
-
-    <!-- JavaScript 交互脚本 -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('contactForm');
-            
-            // 表单提交事件处理
-            form.addEventListener('submit', (e) => {
-                e.preventDefault(); // 阻止默认的表单跳转处理
-                
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-
-                // 交互反馈示例
-                alert(`感谢您的提交，${name}！我们已接收到您的联系邮箱 (${email})。`);
-                form.reset(); // 清空表单
-            });
-        });
-    </script>
-</body>
-</html>
+请直接回复你现有的代码和具体需求！
