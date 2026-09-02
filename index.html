@@ -7,7 +7,6 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* 自定义动画与基础样式 */
     .editing-mode [contenteditable="true"] {
       outline: 2px dashed #3b82f6;
       border-radius: 4px;
@@ -151,40 +150,40 @@
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
         <div>
           <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-            <span>🌙</span> 睡眠改善与好物全景清单
+            <span>🌙</span> 睡眠改善与精力管理指南
           </h2>
-          <p class="text-xs text-slate-500 mt-0.5">打造高品质深度睡眠环境与全天候精力管理指南</p>
+          <p class="text-xs text-slate-500 mt-0.5">打造高品质深度睡眠环境与全天候精力恢复体系</p>
         </div>
         <button onclick="toggleSleepModal()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-xs rounded-xl transition-colors shadow-sm shadow-indigo-200 flex items-center gap-1.5">
           <span>✨</span> 查看完整睡眠改善全景图
         </button>
       </div>
 
-      <!-- 快速睡眠要点卡片 -->
+      <!-- 快速睡眠要点卡片（精简去重后） -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="p-4 rounded-xl bg-indigo-50/50 border border-indigo-100">
           <div class="font-bold text-indigo-900 text-sm mb-1 flex items-center gap-1.5">
-            <span>🛏️</span> 物理睡姿与睡眠环境
+            <span>🛏️</span> 环境构建
           </div>
-          <p class="text-xs text-indigo-700/80 leading-relaxed">维持卧室温度 18-22℃，使用遮光窗帘，右侧卧位降低心脏压迫。</p>
+          <p class="text-xs text-indigo-700/80 leading-relaxed">维持卧室温度 18-22℃，使用遮光窗帘，减少光声干扰。</p>
         </div>
         <div class="p-4 rounded-xl bg-purple-50/50 border border-purple-100">
           <div class="font-bold text-purple-900 text-sm mb-1 flex items-center gap-1.5">
-            <span>🌿</span> 香氛与身心放松
+            <span>🌿</span> 身心放松
           </div>
-          <p class="text-xs text-purple-700/80 leading-relaxed">薰衣草、洋甘菊精油扩香；睡前 30 分钟无蓝光环境与腹式呼吸。</p>
+          <p class="text-xs text-purple-700/80 leading-relaxed">睡前 30 分钟无蓝光环境，采用腹式呼吸缓解神经焦虑。</p>
         </div>
         <div class="p-4 rounded-xl bg-blue-50/50 border border-blue-100">
           <div class="font-bold text-blue-900 text-sm mb-1 flex items-center gap-1.5">
-            <span>🥛</span> 饮食与营养干预
+            <span>🥛</span> 营养干预
           </div>
-          <p class="text-xs text-blue-700/80 leading-relaxed">睡前可饮用温牛奶，适量补充甘氨酸镁或褪黑素（短期）。</p>
+          <p class="text-xs text-blue-700/80 leading-relaxed">睡前可适量饮用温牛奶，避免过饱或摄入咖啡因。</p>
         </div>
         <div class="p-4 rounded-xl bg-teal-50/50 border border-teal-100">
           <div class="font-bold text-teal-900 text-sm mb-1 flex items-center gap-1.5">
-            <span>⏰</span> 作息与昼夜节律
+            <span>⏰</span> 昼夜节律
           </div>
-          <p class="text-xs text-teal-700/80 leading-relaxed">固定起床时间，清晨接受 15 分钟日光照射，建立生物钟。”</p>
+          <p class="text-xs text-teal-700/80 leading-relaxed">固定起床时间，清晨接受日光照射，建立规律生物钟。</p>
         </div>
       </div>
     </section>
