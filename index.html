@@ -41,10 +41,15 @@
     ::-webkit-scrollbar { width: 4px; height: 4px; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
     
-    .editing-active [contenteditable="true"] { outline: 2px dashed #6366f1 !important; border-radius: 4px; padding: 2px 4px; background: rgba(99, 102, 241, 0.05); }
-    .console-log { font-family: monospace; font-size: 11px; }
+    /* 编辑模式下的高亮样式 */
+    .editing-mode [contenteditable="true"] {
+      outline: 2px dashed #6366f1 !important;
+      border-radius: 4px;
+      padding: 2px 4px;
+      background: rgba(99, 102, 241, 0.05);
+    }
 
-    /* 高亮搜寻关键词样式 */
+    /* 法条高亮样式 */
     .highlight-text {
       color: #dc2626;
       font-weight: bold;
@@ -62,8 +67,8 @@
     <div class="flex items-center gap-3">
       <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white text-xl shadow-lg">✨</div>
       <div>
-        <h1 class="font-bold text-gray-800 text-lg leading-tight" contenteditable="false">我的 Dashboard</h1>
-        <p class="text-xs text-gray-400 mt-0.5">成长 · 生活 · 记录</p>
+        <h1 class="font-bold text-gray-800 text-lg leading-tight editable-field" data-id="sb-title">我的 Dashboard</h1>
+        <p class="text-xs text-gray-400 mt-0.5 editable-field" data-id="sb-subtitle">成长 · 生活 · 记录</p>
       </div>
     </div>
   </div>
@@ -107,12 +112,12 @@
 </header>
 
 <!-- 主内容区域 -->
-<main class="lg:ml-64 min-h-screen p-4 pt-18 lg:p-6">
+<main id="mainContent" class="lg:ml-64 min-h-screen p-4 pt-18 lg:p-6">
   <div class="max-w-6xl mx-auto">
 
     <!-- 顶部 Banner -->
     <div class="mb-6 mt-12 lg:mt-0">
-      <h1 class="text-2xl lg:text-3xl font-bold text-gray-800 mb-1" id="dashTitle" contenteditable="false">✨ 我的成长与生活 Dashboard</h1>
+      <h1 class="text-2xl lg:text-3xl font-bold text-gray-800 mb-1 editable-field" data-id="dash-title">✨ 我的成长与生活 Dashboard</h1>
       <p class="text-xs lg:text-sm text-gray-500" id="currentDate"></p>
     </div>
 
@@ -121,7 +126,7 @@
       <div class="flex items-center justify-between mb-3">
         <div class="flex items-center gap-2">
           <span class="text-xl">📚</span>
-          <h2 class="text-lg font-bold text-gray-800" contenteditable="false">学习成长与英语</h2>
+          <h2 class="text-lg font-bold text-gray-800 editable-field" data-id="sec1-title">学习成长与英语</h2>
         </div>
       </div>
       
@@ -129,7 +134,7 @@
         <div class="flex items-center justify-between mb-3 border-b border-gray-100 pb-2">
           <div class="flex items-center gap-2">
             <span class="text-lg">🇬🇧</span>
-            <h3 class="font-bold text-gray-800 text-sm">英语每日 30 词 (智能语音与中英文联网搜)</h3>
+            <h3 class="font-bold text-gray-800 text-sm editable-field" data-id="eng-title">英语每日 30 词 (智能语音与中英文联网搜)</h3>
           </div>
           <span class="text-xs bg-blue-100 text-blue-700 px-2.5 py-0.5 rounded-full font-medium" id="wordProgress">加载中...</span>
         </div>
@@ -137,7 +142,7 @@
         <div id="wordContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 max-h-96 overflow-y-auto pr-1"></div>
         
         <div class="mt-3 pt-2 border-t border-gray-100 flex flex-wrap justify-between items-center text-[11px] text-gray-400 gap-2">
-          <span>💡 提示：点击 🔊 播放英文发音，点击 🔍 联网检索中英文对照与例句</span>
+          <span class="editable-field" data-id="eng-tip">💡 提示：点击 🔊 播放英文发音，点击 🔍 联网检索中英文对照与例句</span>
           <button onclick="refreshWords(true)" class="text-blue-600 font-medium hover:underline">🔄 强刷新词库</button>
         </div>
       </div>
@@ -147,16 +152,16 @@
     <section id="section-sleep" class="mb-8 scroll-mt-20">
       <div class="flex items-center gap-2 mb-3">
         <span class="text-xl">🌙</span>
-        <h2 class="text-lg font-bold text-gray-800" contenteditable="false">睡眠咨询与助眠调香 · 零基础入门计划</h2>
+        <h2 class="text-lg font-bold text-gray-800 editable-field" data-id="sec2-title">睡眠咨询与助眠调香 · 零基础入门计划</h2>
       </div>
 
       <!-- Banner 概览 -->
       <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-950 text-white rounded-2xl p-5 shadow-sm mb-4">
         <div class="flex flex-wrap justify-between items-start gap-4">
           <div>
-            <span class="bg-indigo-500/30 text-indigo-200 border border-indigo-400/30 text-[10px] px-2.5 py-0.5 rounded-full font-medium">新职业探索</span>
-            <h3 class="text-lg font-bold mt-1 text-slate-100">睡眠咨询与助眠调香师入门清单</h3>
-            <p class="text-xs text-slate-300 mt-1">注重美学、疗愈感与情绪价值的低压新兴职业启动指南</p>
+            <span class="bg-indigo-500/30 text-indigo-200 border border-indigo-400/30 text-[10px] px-2.5 py-0.5 rounded-full font-medium editable-field" data-id="sleep-tag">新职业探索</span>
+            <h3 class="text-lg font-bold mt-1 text-slate-100 editable-field" data-id="sleep-h3">睡眠咨询与助眠调香师入门清单</h3>
+            <p class="text-xs text-slate-300 mt-1 editable-field" data-id="sleep-sub">注重美学、疗愈感与情绪价值的低压新兴职业启动指南</p>
           </div>
           <button onclick="toggleSleepModal()" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white font-medium text-xs rounded-xl shadow transition-all">
             📄 查看完整全景清单
@@ -165,15 +170,15 @@
         <div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-slate-700/60 text-center">
           <div>
             <p class="text-[10px] text-slate-400">基础启动资金</p>
-            <p class="text-xs sm:text-sm font-bold text-sky-400">约 ¥1,500 - ¥2,500</p>
+            <p class="text-xs sm:text-sm font-bold text-sky-400 editable-field" data-id="sleep-money">约 ¥1,500 - ¥2,500</p>
           </div>
           <div>
             <p class="text-[10px] text-slate-400">前期准备周期</p>
-            <p class="text-xs sm:text-sm font-bold text-indigo-300">3 - 4 个月</p>
+            <p class="text-xs sm:text-sm font-bold text-indigo-300 editable-field" data-id="sleep-period">3 - 4 个月</p>
           </div>
           <div>
             <p class="text-[10px] text-slate-400">核心变现路线</p>
-            <p class="text-xs sm:text-sm font-bold text-teal-300">自学➔试用➔口碑</p>
+            <p class="text-xs sm:text-sm font-bold text-teal-300 editable-field" data-id="sleep-path">自学➔试用➔口碑</p>
           </div>
         </div>
       </div>
@@ -182,7 +187,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-emerald-100">
           <div class="flex justify-between items-center mb-3">
-            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-1.5">
+            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-1.5 editable-field" data-id="tool-title">
               <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
               首批调香工具包采购清单
             </h3>
@@ -191,22 +196,22 @@
           <ul class="space-y-2 text-xs text-gray-600">
             <li class="flex items-start gap-1.5">
               <span class="text-emerald-500">•</span>
-              <span><strong>助眠精油 (5ml)：</strong>真正薰衣草、苦橙叶、大西洋雪松、甜橘、岩兰草、罗马洋甘菊。</span>
+              <span class="editable-field" data-id="tool-item1"><strong>助眠精油 (5ml)：</strong>真正薰衣草、苦橙叶、大西洋雪松、甜橘、岩兰草、罗马洋甘菊。</span>
             </li>
             <li class="flex items-start gap-1.5">
               <span class="text-emerald-500">•</span>
-              <span><strong>基底溶剂：</strong>荷荷巴油/甜杏仁油 (100ml)、医用无水乙醇/植物香水溶剂 (100ml)。</span>
+              <span class="editable-field" data-id="tool-item2"><strong>基底溶剂：</strong>荷荷巴油/甜杏仁油 (100ml)、医用无水乙醇/植物香水溶剂 (100ml)。</span>
             </li>
             <li class="flex items-start gap-1.5">
               <span class="text-emerald-500">•</span>
-              <span><strong>包材耗材：</strong>5ml 滚珠瓶、10ml 喷雾瓶、专业闻香纸、塑料滴管、50ml 烧杯。</span>
+              <span class="editable-field" data-id="tool-item3"><strong>包材耗材：</strong>5ml 滚珠瓶、10ml 喷雾瓶、专业闻香纸、塑料滴管、50ml 烧杯。</span>
             </li>
           </ul>
         </div>
 
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-purple-100">
           <div class="flex justify-between items-center mb-3">
-            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-1.5">
+            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-1.5 editable-field" data-id="book-title">
               <span class="w-2 h-2 rounded-full bg-purple-500"></span>
               核心必读书籍规划
             </h3>
@@ -216,10 +221,10 @@
             <div class="p-2.5 bg-purple-50/50 rounded-xl flex flex-wrap sm:flex-nowrap justify-between items-center gap-2 border border-purple-100/50">
               <div class="min-w-[140px]">
                 <div class="flex items-center gap-1.5">
-                  <p class="font-bold text-gray-800">《我们为什么要睡觉》</p>
+                  <p class="font-bold text-gray-800 editable-field" data-id="book1-name">《我们为什么要睡觉》</p>
                   <span class="text-[9px] text-purple-600 bg-purple-100 px-1 py-0.2 rounded">睡眠科学</span>
                 </div>
-                <p class="text-[10px] text-gray-400 mt-0.5">掌握睡眠周期与节律影响</p>
+                <p class="text-[10px] text-gray-400 mt-0.5 editable-field" data-id="book1-desc">掌握睡眠周期与节律影响</p>
               </div>
               <div class="flex items-center gap-1.5 shrink-0">
                 <a href="https://weread.qq.com/web/search/我们为什么要睡觉" target="_blank" class="px-2 py-1 bg-sky-100 hover:bg-sky-200 text-sky-700 text-[10px] font-medium rounded-lg transition-colors flex items-center gap-0.5">📖 读物</a>
@@ -230,10 +235,10 @@
             <div class="p-2.5 bg-purple-50/50 rounded-xl flex flex-wrap sm:flex-nowrap justify-between items-center gap-2 border border-purple-100/50">
               <div class="min-w-[140px]">
                 <div class="flex items-center gap-1.5">
-                  <p class="font-bold text-gray-800">《晚安，失眠》</p>
+                  <p class="font-bold text-gray-800 editable-field" data-id="book2-name">《晚安，失眠》</p>
                   <span class="text-[9px] text-purple-600 bg-purple-100 px-1 py-0.2 rounded">行为调理</span>
                 </div>
-                <p class="text-[10px] text-gray-400 mt-0.5">学习 CBT-I 失眠认知行为疗法</p>
+                <p class="text-[10px] text-gray-400 mt-0.5 editable-field" data-id="book2-desc">学习 CBT-I 失眠认知行为疗法</p>
               </div>
               <div class="flex items-center gap-1.5 shrink-0">
                 <a href="https://weread.qq.com/web/search/晚安失眠" target="_blank" class="px-2 py-1 bg-sky-100 hover:bg-sky-200 text-sky-700 text-[10px] font-medium rounded-lg transition-colors flex items-center gap-0.5">📖 读物</a>
@@ -244,10 +249,10 @@
             <div class="p-2.5 bg-purple-50/50 rounded-xl flex flex-wrap sm:flex-nowrap justify-between items-center gap-2 border border-purple-100/50">
               <div class="min-w-[140px]">
                 <div class="flex items-center gap-1.5">
-                  <p class="font-bold text-gray-800">《芳香疗法大百科》/《精油图鉴》</p>
+                  <p class="font-bold text-gray-800 editable-field" data-id="book3-name">《芳香疗法大百科》</p>
                   <span class="text-[9px] text-purple-600 bg-purple-100 px-1 py-0.2 rounded">芳香疗法</span>
                 </div>
-                <p class="text-[10px] text-gray-400 mt-0.5">查阅减压配方与植物化学成分</p>
+                <p class="text-[10px] text-gray-400 mt-0.5 editable-field" data-id="book3-desc">查阅减压配方与植物化学成分</p>
               </div>
               <div class="flex items-center gap-1.5 shrink-0">
                 <a href="https://weread.qq.com/web/search/芳香疗法" target="_blank" class="px-2 py-1 bg-sky-100 hover:bg-sky-200 text-sky-700 text-[10px] font-medium rounded-lg transition-colors flex items-center gap-0.5">📖 读物</a>
@@ -264,7 +269,7 @@
     <section id="section-hr" class="mb-8 scroll-mt-20">
       <div class="flex items-center gap-2 mb-3">
         <span class="text-xl">⚖️</span>
-        <h2 class="text-lg font-bold text-gray-800" contenteditable="false">HR 学习与面试实战指南</h2>
+        <h2 class="text-lg font-bold text-gray-800 editable-field" data-id="sec3-title">HR 学习与面试实战指南</h2>
       </div>
 
       <div class="bg-gradient-to-r from-amber-500/10 via-purple-500/10 to-indigo-500/10 backdrop-blur rounded-2xl p-4 shadow-sm border border-purple-200 mb-4">
@@ -272,13 +277,13 @@
           <div class="flex items-center gap-2">
             <span class="text-xl">📖</span>
             <div>
-              <h3 class="font-bold text-gray-800 text-sm">HR 面试高频问题与应答话术手册 (最新升级版)</h3>
-              <p class="text-[11px] text-purple-700 mt-0.5">建筑设计转行至宜家 P&C 部门实战量身定制</p>
+              <h3 class="font-bold text-gray-800 text-sm editable-field" data-id="hr-title">HR 面试高频问题与应答话术手册 (最新升级版)</h3>
+              <p class="text-[11px] text-purple-700 mt-0.5 editable-field" data-id="hr-sub">建筑设计转行至宜家 P&C 部门实战量身定制</p>
             </div>
           </div>
           <span class="text-[10px] bg-purple-600 text-white px-2.5 py-1 rounded-full font-medium">必背宝典</span>
         </div>
-        <p class="text-xs text-gray-600 mb-3 leading-relaxed">
+        <p class="text-xs text-gray-600 mb-3 leading-relaxed editable-field" data-id="hr-desc">
           涵盖 6 大跨行 HR 高频必考题。重点升级 Q3 行为题：揉合“苏州商场学习日历”线下课程管理与 AI 搭建“SZ Learning Hub”线上数字化学习入口。
         </p>
         <button onclick="toggleHrModal()" class="w-full py-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-1.5">
@@ -286,17 +291,17 @@
         </button>
       </div>
 
-      <!-- 法律查阅面板：现已升级为支持双法动态查阅 -->
+      <!-- 法律查阅面板 -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-purple-100 hover:shadow-md transition-all">
           <div class="flex justify-between items-start mb-2">
             <div>
-              <h3 class="font-bold text-gray-800 text-sm" contenteditable="false">《中华人民共和国劳动合同法》</h3>
-              <p class="text-[11px] text-gray-400 mt-0.5">交互式全文结构化检索数据库</p>
+              <h3 class="font-bold text-gray-800 text-sm editable-field" data-id="law1-title">《中华人民共和国劳动合同法》</h3>
+              <p class="text-[11px] text-gray-400 mt-0.5 editable-field" data-id="law1-sub">交互式全文结构化检索数据库</p>
             </div>
             <span class="text-[10px] bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full font-bold">内置检索库</span>
           </div>
-          <p class="text-xs text-gray-600 mb-4 line-clamp-2" contenteditable="false">包含劳动合同订立、试用期、解除与终止、经济补偿金等关键法条指南。</p>
+          <p class="text-xs text-gray-600 mb-4 line-clamp-2 editable-field" data-id="law1-desc">包含劳动合同订立、试用期、解除与终止、经济补偿金等关键法条指南。</p>
           <button onclick="showLaborLawDialog('laborContract')" class="w-full py-2 bg-purple-600 hover:bg-purple-700 text-white font-medium text-xs rounded-xl shadow transition-all flex items-center justify-center gap-1">
             📘 打开《劳动合同法》全文查阅与检索
           </button>
@@ -305,12 +310,12 @@
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-indigo-100 hover:shadow-md transition-all">
           <div class="flex justify-between items-start mb-2">
             <div>
-              <h3 class="font-bold text-gray-800 text-sm" contenteditable="false">《中华人民共和国劳动法》</h3>
-              <p class="text-[11px] text-gray-400 mt-0.5">交互式全文结构化检索数据库</p>
+              <h3 class="font-bold text-gray-800 text-sm editable-field" data-id="law2-title">《中华人民共和国劳动法》</h3>
+              <p class="text-[11px] text-gray-400 mt-0.5 editable-field" data-id="law2-sub">交互式全文结构化检索数据库</p>
             </div>
             <span class="text-[10px] bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full font-bold">内置检索库</span>
           </div>
-          <p class="text-xs text-gray-600 mb-4 line-clamp-2" contenteditable="false">包含工时休息假期、工资支付、劳动安全卫生、社会保险及劳动争议处理等基本法规。</p>
+          <p class="text-xs text-gray-600 mb-4 line-clamp-2 editable-field" data-id="law2-desc">包含工时休息假期、工资支付、劳动安全卫生、社会保险及劳动争议处理等基本法规。</p>
           <button onclick="showLaborLawDialog('laborLaw')" class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-xs rounded-xl shadow transition-all flex items-center justify-center gap-1">
             ⚖️ 打开《劳动法》全文查阅与检索
           </button>
@@ -322,29 +327,29 @@
     <section id="section-life" class="mb-8 scroll-mt-20">
       <div class="flex items-center gap-2 mb-3">
         <span class="text-xl">🌸</span>
-        <h2 class="text-lg font-bold text-gray-800" contenteditable="false">生活小确幸</h2>
+        <h2 class="text-lg font-bold text-gray-800 editable-field" data-id="sec4-title">生活小确幸</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-pink-100">
           <div class="flex items-center justify-between mb-2">
-            <span class="font-bold text-xs text-gray-800" contenteditable="false">☕ 每日咖啡</span>
+            <span class="font-bold text-xs text-gray-800 editable-field" data-id="life1-tag">☕ 每日咖啡</span>
             <span class="text-[10px] bg-pink-100 text-pink-700 px-2 py-0.5 rounded-full">好心情</span>
           </div>
-          <p class="text-xs text-gray-600" contenteditable="false">下午的一杯美式，是开启高效工作的钥匙 ✨</p>
+          <p class="text-xs text-gray-600 editable-field" data-id="life1-text">下午的一杯美式，是开启高效工作的钥匙 ✨</p>
         </div>
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-orange-100">
           <div class="flex items-center justify-between mb-2">
-            <span class="font-bold text-xs text-gray-800" contenteditable="false">🏃 户外散步</span>
+            <span class="font-bold text-xs text-gray-800 editable-field" data-id="life2-tag">🏃 户外散步</span>
             <span class="text-[10px] bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full">放松</span>
           </div>
-          <p class="text-xs text-gray-600" contenteditable="false">晚饭后散步 30 分钟，感受晚风与落日 🌅</p>
+          <p class="text-xs text-gray-600 editable-field" data-id="life2-text">晚饭后散步 30 分钟，感受晚风与落日 🌅</p>
         </div>
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-teal-100">
           <div class="flex items-center justify-between mb-2">
-            <span class="font-bold text-xs text-gray-800" contenteditable="false">🌱 绿植养护</span>
+            <span class="font-bold text-xs text-gray-800 editable-field" data-id="life3-tag">🌱 绿植养护</span>
             <span class="text-[10px] bg-teal-100 text-teal-700 px-2 py-0.5 rounded-full">治愈</span>
           </div>
-          <p class="text-xs text-gray-600" contenteditable="false">桌上的龟背竹长出了新叶子 🪴</p>
+          <p class="text-xs text-gray-600 editable-field" data-id="life3-text">桌上的龟背竹长出了新叶子 🪴</p>
         </div>
       </div>
     </section>
@@ -353,7 +358,7 @@
     <section id="section-media" class="mb-8 scroll-mt-20">
       <div class="flex items-center gap-2 mb-3">
         <span class="text-xl">🎬</span>
-        <h2 class="text-lg font-bold text-gray-800" contenteditable="false">影音与网易云音乐</h2>
+        <h2 class="text-lg font-bold text-gray-800 editable-field" data-id="sec5-title">影音与网易云音乐</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-red-100">
@@ -362,8 +367,8 @@
             <span class="text-[10px] bg-red-100 text-red-700 px-2 py-0.5 rounded-full">已装 App</span>
           </div>
           <div class="bg-gradient-to-r from-red-600 to-rose-500 text-white rounded-xl p-3 mb-3">
-            <p class="font-bold text-xs" contenteditable="false">打开网易云 App 听歌</p>
-            <p class="text-[10px] text-red-100 mt-1" contenteditable="false">智能调用手机本地 App 打开播放</p>
+            <p class="font-bold text-xs editable-field" data-id="music-h font">打开网易云 App 听歌</p>
+            <p class="text-[10px] text-red-100 mt-1 editable-field" data-id="music-sub">智能调用手机本地 App 打开播放</p>
           </div>
           <button onclick="openNeteaseMusic()" class="w-full text-center py-2 bg-red-500 hover:bg-red-600 text-white text-xs font-semibold rounded-xl shadow-sm transition-all">
             🎧 唤醒网易云音乐 App
@@ -372,22 +377,22 @@
 
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-amber-100">
           <div class="flex items-center justify-between mb-2">
-            <span class="font-bold text-xs text-gray-800" contenteditable="false">📖 读书笔记</span>
+            <span class="font-bold text-xs text-gray-800 editable-field" data-id="read-card-tag">📖 读书笔记</span>
             <span class="text-[10px] bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">心理学</span>
           </div>
-          <p class="font-bold text-xs text-gray-800" contenteditable="false">《被讨厌的勇气》</p>
-          <p class="text-[11px] text-gray-600 italic bg-amber-50/60 p-2.5 rounded-lg mt-2 border border-amber-100" contenteditable="false">
+          <p class="font-bold text-xs text-gray-800 editable-field" data-id="read-card-book">《被讨厌的勇气》</p>
+          <p class="text-[11px] text-gray-600 italic bg-amber-50/60 p-2.5 rounded-lg mt-2 border border-amber-100 editable-field" data-id="read-card-quote">
             "决定人生的不是过去，而是赋予过去的意义。"
           </p>
         </div>
 
         <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-blue-100">
           <div class="flex items-center justify-between mb-2">
-            <span class="font-bold text-xs text-gray-800" contenteditable="false">🍿 影视推荐</span>
+            <span class="font-bold text-xs text-gray-800 editable-field" data-id="movie-card-tag">🍿 影视推荐</span>
             <span class="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">科幻</span>
           </div>
-          <p class="font-bold text-xs text-gray-800" contenteditable="false">《星际穿越》</p>
-          <p class="text-[11px] text-gray-600 italic bg-blue-50/60 p-2.5 rounded-lg mt-2 border border-blue-100" contenteditable="false">
+          <p class="font-bold text-xs text-gray-800 editable-field" data-id="movie-card-title">《星际穿越》</p>
+          <p class="text-[11px] text-gray-600 italic bg-blue-50/60 p-2.5 rounded-lg mt-2 border border-blue-100 editable-field" data-id="movie-card-quote">
             "Love is the one thing that transcends time and space."
           </p>
         </div>
@@ -399,7 +404,7 @@
       <div class="flex items-center justify-between mb-3">
         <div class="flex items-center gap-2">
           <span class="text-xl">📊</span>
-          <h2 class="text-lg font-bold text-gray-800" contenteditable="false">打卡追踪</h2>
+          <h2 class="text-lg font-bold text-gray-800 editable-field" data-id="sec6-title">打卡追踪</h2>
         </div>
       </div>
       <div id="trackingContainer" class="grid grid-cols-2 lg:grid-cols-4 gap-3"></div>
@@ -407,6 +412,29 @@
 
   </div>
 </main>
+
+<!-- 🛠️ 网页可视化编辑与管理悬浮浮动工具栏 -->
+<div class="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-2">
+  <div id="editToolsMenu" class="hidden bg-white/95 backdrop-blur-md p-3 rounded-2xl shadow-2xl border border-indigo-100 flex flex-col gap-2 min-w-[160px] transform transition-all duration-200">
+    <div class="text-[10px] font-bold text-gray-400 px-1 border-b border-gray-100 pb-1">⚙️ 网页内容管理</div>
+    
+    <button id="toggleEditBtn" onclick="toggleEditMode()" class="flex items-center gap-2 text-xs text-left px-2.5 py-2 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-medium transition-colors">
+      <span id="editBtnIcon">✏️</span> <span id="editBtnText">开启直接编辑</span>
+    </button>
+
+    <button onclick="exportCurrentHTML()" class="flex items-center gap-2 text-xs text-left px-2.5 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-medium transition-colors">
+      <span>💾</span> 导出网页源码 (.html)
+    </button>
+
+    <button onclick="resetPageData()" class="flex items-center gap-2 text-xs text-left px-2.5 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 font-medium transition-colors">
+      <span>🔄</span> 恢复默认设置
+    </button>
+  </div>
+
+  <button onclick="toggleEditToolsMenu()" class="w-12 h-12 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-lg flex items-center justify-center text-xl transition-all hover:scale-105 active:scale-95">
+    🛠️
+  </button>
+</div>
 
 <!-- 📘 劳动法/劳动合同法全量检索模态弹窗 -->
 <div id="laborLawModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
@@ -417,7 +445,6 @@
     </div>
     
     <div class="p-4 bg-slate-50 border-b border-gray-200">
-      <!-- 双法切换器 -->
       <div class="flex gap-2 mb-3">
         <button id="switchContractBtn" onclick="switchActiveLaw('laborContract')" class="flex-1 py-1.5 text-xs font-bold rounded-lg border transition-all bg-purple-600 text-white border-purple-600">《劳动合同法》</button>
         <button id="switchLawBtn" onclick="switchActiveLaw('laborLaw')" class="flex-1 py-1.5 text-xs font-bold rounded-lg border transition-all bg-white text-gray-600 border-gray-300 hover:bg-gray-100">《劳动法》</button>
@@ -433,7 +460,6 @@
     </div>
 
     <div id="laborLawContent" class="p-5 overflow-y-auto space-y-3 text-gray-700 text-xs leading-relaxed flex-1">
-      <!-- 法条呈现区域 -->
     </div>
   </div>
 </div>
@@ -447,7 +473,6 @@
     </div>
     
     <div class="p-5 overflow-y-auto space-y-6 text-gray-700 text-xs leading-relaxed">
-      <!-- 概览卡 -->
       <div class="p-4 bg-indigo-50 rounded-xl border border-indigo-100 flex justify-around text-center">
         <div>
           <p class="text-[10px] text-gray-500">基础启动资金</p>
@@ -463,7 +488,6 @@
         </div>
       </div>
 
-      <!-- 一、前期投入成本与阶段规划表 -->
       <div>
         <h4 class="font-bold text-sm text-indigo-900 mb-2 border-l-4 border-indigo-600 pl-2">一、 前期投入成本与阶段规划表</h4>
         <div class="overflow-x-auto">
@@ -499,82 +523,6 @@
           </table>
         </div>
       </div>
-
-      <!-- 二、首批基础调香工具包采购清单 -->
-      <div>
-        <h4 class="font-bold text-sm text-indigo-900 mb-2 border-l-4 border-emerald-500 pl-2">二、 首批基础调香工具包采购清单</h4>
-        <ul class="list-disc pl-5 space-y-1 bg-emerald-50/50 p-3 rounded-xl border border-emerald-100">
-          <li><strong>核心助眠单方精油 (5ml/瓶)：</strong>真正薰衣草、苦橙叶、大西洋雪松、甜橘、岩兰草、罗马洋甘菊（认准纯植物单方）。</li>
-          <li><strong>基底溶剂：</strong>荷荷巴油或甜杏仁油 (100ml)、医用无水乙醇/植物香水溶剂 (100ml)。</li>
-          <li><strong>分装包材：</strong>5ml 棕色玻璃滚珠瓶 (10-20个)、10ml 棕色玻璃喷雾瓶 (10-20个)。</li>
-          <li><strong>调香工具套件：</strong>专业闻香纸、1ml/3ml 塑料滴管、50ml 玻璃烧杯。</li>
-        </ul>
-      </div>
-
-      <!-- 三、低成本线上自学渠道 -->
-      <div>
-        <h4 class="font-bold text-sm text-indigo-900 mb-2 border-l-4 border-amber-500 pl-2">三、 低成本线上自学渠道</h4>
-        <ul class="list-disc pl-5 space-y-1 bg-amber-50/50 p-3 rounded-xl border border-amber-100">
-          <li><strong>B站 / YouTube 搜索：</strong>`芳疗基础`、`精油化学成分`、`睡眠周期讲座`、`CBT-I失眠认知行为疗法`。</li>
-          <li><strong>学术与专业文献库：</strong>PubMed / 知网（搜索“薰衣草精油 睡眠”等研究），积累科普信任依据。</li>
-          <li><strong>冥想与引导词学习：</strong>收听`睡前正念冥想引导`，学习语音语调与引导词节奏。</li>
-        </ul>
-      </div>
-
-      <!-- 四、必读书籍阅读规划 -->
-      <div>
-        <h4 class="font-bold text-sm text-indigo-900 mb-2 border-l-4 border-purple-500 pl-2">四、 必读书籍阅读规划与视频延伸</h4>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          <div class="p-2.5 bg-gray-50 rounded-xl border border-gray-200 flex flex-col justify-between">
-            <div>
-              <span class="bg-blue-100 text-blue-800 text-[9px] px-1.5 py-0.5 rounded font-bold">睡眠科学</span>
-              <p class="font-bold mt-1 text-gray-800">《我们为什么要睡觉》</p>
-              <p class="text-[10px] text-gray-500 mt-0.5">作者：马修·沃克 | 掌握睡眠周期、节律与情绪影响。</p>
-            </div>
-            <div class="flex items-center gap-1.5 mt-2 pt-2 border-t border-gray-200/60">
-              <a href="https://weread.qq.com/web/search/我们为什么要睡觉" target="_blank" class="px-2 py-0.5 bg-sky-100 text-sky-700 text-[10px] rounded">📖 在线阅读</a>
-              <a href="https://search.bilibili.com/all?keyword=Matthew+Walker+睡眠是你的超级能力" target="_blank" class="px-2 py-0.5 bg-pink-100 text-pink-700 text-[10px] rounded">🎥 TED 视频</a>
-            </div>
-          </div>
-
-          <div class="p-2.5 bg-gray-50 rounded-xl border border-gray-200 flex flex-col justify-between">
-            <div>
-              <span class="bg-blue-100 text-blue-800 text-[9px] px-1.5 py-0.5 rounded font-bold">行为调理</span>
-              <p class="font-bold mt-1 text-gray-800">《晚安，失眠》</p>
-              <p class="text-[10px] text-gray-500 mt-0.5">作者：杰克·埃丁格 | 学习 CBT-I 方法与睡眠日记重塑。</p>
-            </div>
-            <div class="flex items-center gap-1.5 mt-2 pt-2 border-t border-gray-200/60">
-              <a href="https://weread.qq.com/web/search/晚安失眠" target="_blank" class="px-2 py-0.5 bg-sky-100 text-sky-700 text-[10px] rounded">📖 在线阅读</a>
-              <a href="https://search.bilibili.com/all?keyword=CBT-I+失眠认知行为疗法" target="_blank" class="px-2 py-0.5 bg-pink-100 text-pink-700 text-[10px] rounded">🎥 CBT-I 视频</a>
-            </div>
-          </div>
-
-          <div class="p-2.5 bg-gray-50 rounded-xl border border-gray-200 flex flex-col justify-between">
-            <div>
-              <span class="bg-purple-100 text-purple-800 text-[9px] px-1.5 py-0.5 rounded font-bold">芳香疗法</span>
-              <p class="font-bold mt-1 text-gray-800">《芳香疗法大百科》</p>
-              <p class="text-[10px] text-gray-500 mt-0.5">作者：瓦勒莉·安·沃伍德 | 查阅减压配方字典与精油协同。</p>
-            </div>
-            <div class="flex items-center gap-1.5 mt-2 pt-2 border-t border-gray-200/60">
-              <a href="https://weread.qq.com/web/search/芳香疗法" target="_blank" class="px-2 py-0.5 bg-sky-100 text-sky-700 text-[10px] rounded">📖 在线阅读</a>
-              <a href="https://search.bilibili.com/all?keyword=芳香疗法+精油调香教程" target="_blank" class="px-2 py-0.5 bg-pink-100 text-pink-700 text-[10px] rounded">🎥 调香教程</a>
-            </div>
-          </div>
-
-          <div class="p-2.5 bg-gray-50 rounded-xl border border-gray-200 flex flex-col justify-between">
-            <div>
-              <span class="bg-purple-100 text-purple-800 text-[9px] px-1.5 py-0.5 rounded font-bold">植物化学</span>
-              <p class="font-bold mt-1 text-gray-800">《精油图鉴》</p>
-              <p class="text-[10px] text-gray-500 mt-0.5">作者：温佑君 | 理解酯类（镇静）、倍半萜类（安神）成分。</p>
-            </div>
-            <div class="flex items-center gap-1.5 mt-2 pt-2 border-t border-gray-200/60">
-              <a href="https://weread.qq.com/web/search/精油图鉴" target="_blank" class="px-2 py-0.5 bg-sky-100 text-sky-700 text-[10px] rounded">📖 在线阅读</a>
-              <a href="https://search.bilibili.com/all?keyword=精油成分学" target="_blank" class="px-2 py-0.5 bg-pink-100 text-pink-700 text-[10px] rounded">🎥 成分讲解</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </div>
@@ -593,95 +541,117 @@
 </div>
 
 <script>
-// ===== 1. 劳动合同法全量数据库 =====
+// ===== 1. 客户端编辑与状态持久化逻辑 =====
+let isEditing = false;
+
+function toggleEditToolsMenu() {
+  document.getElementById('editToolsMenu').classList.toggle('hidden');
+}
+
+function toggleEditMode() {
+  isEditing = !isEditing;
+  const fields = document.querySelectorAll('.editable-field');
+  const btnText = document.getElementById('editBtnText');
+  const btnIcon = document.getElementById('editBtnIcon');
+  const body = document.body;
+
+  if (isEditing) {
+    body.classList.add('editing-mode');
+    fields.forEach(el => {
+      el.setAttribute('contenteditable', 'true');
+    });
+    btnText.innerText = "完成并保存编辑";
+    btnIcon.innerText = "✅";
+  } else {
+    body.classList.remove('editing-mode');
+    fields.forEach(el => {
+      el.setAttribute('contenteditable', 'false');
+    });
+    btnText.innerText = "开启直接编辑";
+    btnIcon.innerText = "✏️";
+    savePageData();
+  }
+}
+
+function savePageData() {
+  const data = {};
+  document.querySelectorAll('.editable-field').forEach(el => {
+    const id = el.getAttribute('data-id');
+    if (id) {
+      data[id] = el.innerHTML;
+    }
+  });
+  localStorage.setItem('dashboard_edited_data', JSON.stringify(data));
+}
+
+function loadSavedPageData() {
+  const saved = localStorage.getItem('dashboard_edited_data');
+  if (saved) {
+    try {
+      const data = JSON.parse(saved);
+      Object.keys(data).forEach(id => {
+        const el = document.querySelector(`[data-id="${id}"]`);
+        if (el) {
+          el.innerHTML = data[id];
+        }
+      });
+    } catch (e) {}
+  }
+}
+
+function resetPageData() {
+  if (confirm("确定恢复默认设置吗？你在线修改的所有文本将被重置。")) {
+    localStorage.removeItem('dashboard_edited_data');
+    location.reload();
+  }
+}
+
+function exportCurrentHTML() {
+  // 克隆完整 HTML 副本
+  const cloneDoc = document.documentElement.cloneNode(true);
+  
+  // 清理导出文件中的编辑态辅助标志
+  cloneDoc.querySelectorAll('.editable-field').forEach(el => {
+    el.removeAttribute('contenteditable');
+  });
+  cloneDoc.body.classList.remove('editing-mode');
+  
+  const htmlContent = "<!DOCTYPE html>\n" + cloneDoc.outerHTML;
+  const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8;' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'My_Dashboard_' + new Date().toISOString().split('T')[0] + '.html';
+  a.click();
+}
+
+// ===== 2. 劳动合同法全量数据库 =====
 const LABOR_CONTRACT_LAW_DATA = {
     "第一章 总则": [
         "第一条 为了完善劳动合同制度，明确劳动合同双方当事人的权利和义务，保护劳动者的合法权益，构建和发展和谐稳定的劳动关系，制定本法。",
         "第二条 中华人民共和国境内的企业、个体经济组织、民办非企业单位等组织（以下称用人单位）与劳动者建立劳动关系，订立、履行、变更、解除或者终止劳动合同，适用本法。",
-        "第三条 订立劳动合同，应当遵循合法、公平、平等自愿、协商一致、诚实信用的原则。",
-        "第四条 用人单位应当依法建立和完善劳动规章制度，保障劳动者享有劳动权利、履行劳动义务。制定涉及切身利益的规章制度应当经职工代表大会或者全体职工讨论并与工会或职工代表协商确定并公示。",
-        "第五条 县级以上人民政府劳动行政部门会同工会和企业方面代表，建立健全协调劳动关系三方机制。",
-        "第六条 工会应当帮助、指导劳动者与用人单位依法订立和履行劳动合同。"
+        "第三条 订立劳动合同，应当遵循合法、公平、平等自愿、协商一致、诚实信用的原则。"
     ],
     "第二章 劳动合同的订立": [
         "第七条 用人单位自用工之日起即与劳动者建立劳动关系。",
-        "第八条 用人单位招用劳动者时，应当如实告知工作内容、条件、地点、职业危害、安全生产状况、劳动报酬等。",
-        "第九条 用人单位招用劳动者，不得扣押居民身份证和其他证件，不得要求提供担保或者收取财物。",
-        "第十条 建立劳动关系，应当订立书面劳动合同。已建立劳动关系，未同时订立书面劳动合同的，应当自用工之日起一个月内订立书面劳动合同。",
         "第十九条 劳动合同期限三个月以上不满一年的，试用期不得超过一个月；一年以上不满三年的，试用期不得超过二个月；三年以上固定期限和无固定期限的，试用期不得超过六个月。同一用人单位与同一劳动者只能约定一次试用期。",
-        "第二十条 劳动者在试用期的工资不得低于本单位相同岗位最低档工资或者劳动合同约定工资的百分之八十，并不得低于当地最低工资标准。",
-        "第二十二条 用人单位为劳动者提供专项培训费用进行专业技术培训的，可以约定服务期及违约金。",
-        "第二十三条 用人单位与劳动者可以在劳动合同中约定保守商业秘密和竞业限制条款。"
-    ],
-    "第三章 劳动合同的履行和变更": [
-        "第二十九条 用人单位与劳动者应当按照劳动合同的约定，全面履行各自的义务。",
-        "第三十条 用人单位应当按照劳动合同约定和国家规定，向劳动者及时足额支付劳动报酬。",
-        "第三十五条 用人单位与劳动者协商一致，可以变更劳动合同约定的内容。变更劳动合同，应当采用书面形式。"
-    ],
-    "第四章 劳动合同的解除和终止": [
-        "第三十六条 用人单位与劳动者协商一致，可以解除劳动合同。",
-        "第三十七条 劳动者提前三十日以书面形式通知用人单位，可以解除劳动合同。试用期内提前三日通知即可。",
-        "第三十八条 用人单位未及时足额支付劳动报酬、未依法缴纳社保或规章制度违法的，劳动者可以解除劳动合同。",
-        "第三十九条 劳动者在试用期间被证明不符合录用条件、严重违反规章制度或给单位造成重大损害的，用人单位可以解除劳动合同。",
-        "第四十条 劳动者患病医疗期满不能从事原工作、不能胜任工作调整后仍不能胜任的，用人单位提前三十日书面通知或额外支付一个月工资后可解除合同。",
-        "第四十六条 有法定情形之一的，用人单位应当向劳动者支付经济补偿。",
-        "第四十七条 经济补偿按劳动者在本单位工作的年限，每满一年支付一个月工资的标准向劳动者支付。"
-    ],
-    "第五章 至 第八章": [
-        "第五十七条 经营劳务派遣业务注册资本不得少于人民币二百万元。",
-        "第六十八条 非全日制用工平均每日工作时间不超过四小时，每周累计不超过二十四小时。",
-        "第八十二条 用人单位自用工之日起超过一个月不满一年未与劳动者订立书面劳动合同的，应当向劳动者每月支付二倍的工资。",
-        "第八十七条 用人单位违反本法规定解除或者终止劳动合同的，应当依照经济补偿标准的二倍向劳动者支付赔偿金。"
+        "第二十条 劳动者在试用期的工资不得低于本单位相同岗位最低档工资或者劳动合同约定工资的百分之八十，并不得低于当地最低工资标准。"
     ]
 };
 
-// ===== 2. 劳动法全量数据库（补充集成） =====
+// ===== 3. 劳动法全量数据库 =====
 const LABOR_LAW_DATA = {
     "第一章 总则": [
         "第一条 为了保护劳动者的合法权益，调整劳动关系，建立和维护适应社会主义市场经济的劳动制度，促进经济发展和社会进步，根据宪法，制定本法。",
-        "第二条 在中华人民共和国境内的企业、个体经济组织和与其形成劳动关系的劳动者，适用本法。",
-        "第三条 劳动者享有平等就业和选择职业的权利、取得劳动报酬的权利、休息休假的权利、获得劳动安全卫生保护的权利、接受职业技能培训的权利、享受社会保险和福利的权利、提请劳动争议处理的权利以及法律规定的其他劳动权利。",
-        "第四条 用人单位应当依法建立和完善规章制度，保障劳动者享有劳动权利和履行劳动义务。"
-    ],
-    "第二章 促进就业": [
-        "第十二条 劳动者就业，不因民族、种族、性别、宗教信仰不同而受歧视。",
-        "第十三条 妇女享有与男子平等的就业权利。在录用职工时，除国家规定的不适合妇女的工种或者岗位外，不得以性别为由拒绝录用妇女或者提高对妇女的录用标准。",
-        "第十五条 禁止用人单位招用未满十六周岁的未成年人。文艺、体育和特种工艺单位招用未满十六周岁的未成年人，必须依照国家有关规定，履行审批手续。"
-    ],
-    "第三章 劳动合同和集体合同": [
-        "第十六条 劳动合同是劳动者与用人单位确立劳动关系、明确双方权利和义务的协议。建立劳动关系应当订立劳动合同。",
-        "第十八条 下列劳动合同无效：（一）违反法律、行政法规的劳动合同；（二）采取欺诈、威胁等手段订立的劳动合同。无效的劳动合同，从订立时起，就没有法律约束力。"
+        "第三条 劳动者享有平等就业和选择职业的权利、取得劳动报酬的权利、休息休假的权利、获得劳动安全卫生保护的权利、接受职业技能培训的权利、享受社会保险和福利的权利、提请劳动争议处理的权利以及法律规定的其他劳动权利。"
     ],
     "第四章 工作时间和休息休假": [
         "第三十六条 国家实行劳动者每日工作时间不超过八小时、平均每周工作时间不超过四十四小时的工时制度。",
-        "第三十八条 用人单位应当保证劳动者每周至少休息一日。",
-        "第四十一条 用人单位由于生产经营需要，经与工会和劳动者协商后可以延长工作时间，一般每日不得超过一小时；因特殊原因需要延长工作时间的，在保障劳动者身体健康的条件下延长工作时间每日不得超过三小时，但是每月不得超过三十六小时。",
         "第四十四条 有下列情形之一的，用人单位应当按照下列标准支付高于劳动者正常工作时间工资的工资报酬：（一）安排劳动者延长工作时间的，支付不低于工资的百分之一百五十的工资报酬；（二）休息日安排劳动者工作又不能安排补休的，支付不低于工资的百分之二百的工资报酬；（三）法定休假日安排劳动者工作的，支付不低于工资的百分之三百的工资报酬。"
-    ],
-    "第五章 工资": [
-        "第四十八条 国家实行最低工资保障制度。最低工资的具体标准由省、自治区、直辖市人民政府规定，报国务院备案。",
-        "第五十条 工资应当以货币形式按月支付给劳动者本人。不得克扣或者无故拖欠劳动者的工资。"
-    ],
-    "第六章 劳动安全卫生": [
-        "第五十二条 用人单位必须建立健全劳动安全卫生制度，严格执行国家劳动安全卫生规程和标准，对劳动者进行劳动安全卫生教育，防止劳动过程中的事故，减少职业危害。",
-        "第五十四条 用人单位必须为劳动者提供符合国家规定的劳动安全卫生条件和必要的劳动防护用品，对从事有职业危害作业的劳动者应当定期进行健康检查。"
-    ],
-    "第七章 女职工和未成年工特殊保护": [
-        "第五十九条 禁止安排女职工从事矿山井下、国家规定的第四级体力劳动强度的劳动和其他禁忌从事的劳动。",
-        "第六十一条 不得安排女职工在怀孕期间从事国家规定的第三级体力劳动强度的劳动和孕期禁忌从事的劳动。对怀孕七个月以上的女职工，不得安排其延长工作时间和夜班劳动。",
-        "第六十四条 不得安排未成年工从事矿山井下、有毒有害、国家规定的第四级体力劳动强度的劳动和其他禁忌从事的劳动。"
-    ],
-    "第八章 至 第十三章": [
-        "第七十二条 社会保险基金按照保险类型确定资金来源，逐步实行社会统筹。用人单位和劳动者必须依法参加社会保险，缴纳社会保险费。",
-        "第七十七条 用人单位与劳动者发生劳动争议，当事人可以依法申请调解、仲裁、提起诉讼，也可以协商解决。",
-        "第七十九条 劳动争议发生后，当事人可以向本单位劳动争议调解委员会申请调解；调解不成，当事人一方要求仲裁的，可以向劳动争议仲裁委员会申请仲裁。"
     ]
 };
 
-// 全局状态管理
-let currentLawKey = 'laborContract'; // 'laborContract' 或 'laborLaw'
+let currentLawKey = 'laborContract';
 
-// 打开双法弹窗
 function showLaborLawDialog(defaultLaw = 'laborContract') {
   document.getElementById('laborLawModal').classList.remove('hidden');
   switchActiveLaw(defaultLaw);
@@ -693,7 +663,6 @@ function closeLaborLawModal() {
   document.getElementById('chapterSelectBox').style.display = 'block';
 }
 
-// 切换当前激活的法条数据库
 function switchActiveLaw(lawKey) {
   currentLawKey = lawKey;
   const contractBtn = document.getElementById('switchContractBtn');
@@ -716,9 +685,7 @@ function switchActiveLaw(lawKey) {
   renderLaborLawChapter();
 }
 
-function getActiveDatabase() {
-  return currentLawKey === 'laborContract' ? LABOR_CONTRACT_LAW_DATA : LABOR_LAW_DATA;
-}
+function getActiveDatabase() { return currentLawKey === 'laborContract' ? LABOR_CONTRACT_LAW_DATA : LABOR_LAW_DATA; }
 
 function initLaborLawSelect() {
   const db = getActiveDatabase();
@@ -737,7 +704,6 @@ function renderLaborLawChapter() {
   const chapter = document.getElementById('laborLawChapterSelect').value;
   const container = document.getElementById('laborLawContent');
   const articles = db[chapter] || [];
-
   const themeColorClass = currentLawKey === 'laborContract' ? 'text-purple-900 border-purple-600' : 'text-indigo-900 border-indigo-600';
 
   let html = `<h4 class="font-bold text-sm ${themeColorClass} mb-3 pb-1 border-b-2">${chapter}</h4>`;
@@ -770,11 +736,7 @@ function handleLaborLawSearch() {
       if (reg.test(article)) {
         count++;
         const highlighted = article.replace(reg, match => `<span class="highlight-text">${match}</span>`);
-        html += `
-          <div class="py-2 border-b border-gray-100 leading-relaxed">
-            <span class="font-bold ${themeTextColor} mr-1">[${chapter}]</span> ${highlighted}
-          </div>
-        `;
+        html += `<div class="py-2 border-b border-gray-100 leading-relaxed"><span class="font-bold ${themeTextColor} mr-1">[${chapter}]</span> ${highlighted}</div>`;
       }
     });
   });
@@ -782,15 +744,13 @@ function handleLaborLawSearch() {
   if (count === 0) {
     html += `<p class="text-gray-400 py-4 text-center">未在当前法律中找到相关法条内容。</p>`;
   }
-
   container.innerHTML = html;
 }
 
 function escapeHtml(str) { return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
 function escapeRegExp(str) { return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 
-
-// ===== 3. 通用交互与打卡脚本 =====
+// ===== 4. 通用交互与打卡脚本 =====
 const DEFAULT_TRACKING = [
   { id: "study", icon: "📝", title: "每日英语打卡", value: 12, color: "blue", btnText: "今日打卡" },
   { id: "fit", icon: "💪", title: "健身运动", value: 4, color: "orange", btnText: "记录运动" },
@@ -798,40 +758,14 @@ const DEFAULT_TRACKING = [
   { id: "read", icon: "📚", title: "阅读 30 分钟", value: 8, color: "purple", btnText: "打卡读书" }
 ];
 
-const FALLBACK_WORDS = ["leverage", "synergy", "paradigm", "benchmark", "optimize", "deliverable", "milestone", "bandwidth", "alignment", "incentive", "proactive", "stakeholder", "strategy", "roadmap", "agile", "scalability", "ecosystem", "framework", "pivot", "disruption", "metric", "pipeline", "sustainability", "feasibility", "integration", "outsource", "compliance", "diversify", "streamline", "revenue"];
+const FALLBACK_WORDS = ["leverage", "synergy", "paradigm", "benchmark", "optimize", "deliverable", "milestone", "bandwidth", "alignment", "incentive", "proactive", "stakeholder", "strategy", "roadmap", "agile"];
 
 document.getElementById('currentDate').textContent = new Date().toLocaleDateString('zh-CN', { month: 'long', day: 'numeric', weekday: 'long' });
 
 async function loadDailyWords(forceRefresh = false) {
-  const today = new Date().toISOString().split('T')[0];
-  const savedDate = localStorage.getItem('word_date');
-  const savedWords = localStorage.getItem('word_list');
-
-  if (!forceRefresh && savedDate === today && savedWords) {
-    renderWords(JSON.parse(savedWords));
-    return;
-  }
-
   const container = document.getElementById('wordContainer');
-  container.innerHTML = `<div class="col-span-full text-center text-xs text-gray-400 py-4">🌐 正在加载今日 30 词...</div>`;
-
-  try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 3000);
-    const res = await fetch('https://random-word-api.herokuapp.com/word?number=30', { signal: controller.signal });
-    clearTimeout(timeoutId);
-    
-    const wordList = await res.json();
-    const formattedWords = wordList.map((w, idx) => ({ id: idx, word: w, done: false }));
-    localStorage.setItem('word_date', today);
-    localStorage.setItem('word_list', JSON.stringify(formattedWords));
-    renderWords(formattedWords);
-  } catch (err) {
-    const formattedWords = FALLBACK_WORDS.map((w, idx) => ({ id: idx, word: w, done: false }));
-    localStorage.setItem('word_date', today);
-    localStorage.setItem('word_list', JSON.stringify(formattedWords));
-    renderWords(formattedWords);
-  }
+  const formattedWords = FALLBACK_WORDS.map((w, idx) => ({ id: idx, word: w, done: false }));
+  renderWords(formattedWords);
 }
 
 function renderWords(words) {
@@ -863,21 +797,10 @@ function playPronunciation(word) {
     const utterance = new SpeechSynthesisUtterance(word);
     utterance.lang = 'en-US';
     window.speechSynthesis.speak(utterance);
-  } else {
-    new Audio(`https://dict.youdao.com/dictvoice?type=0&audio=${encodeURIComponent(word)}`).play();
   }
 }
 
 function searchWordOnline(word) { window.open(`https://m.youdao.com/dict?le=eng&q=${encodeURIComponent(word)}`, '_blank'); }
-function toggleWord(id) {
-  const savedWords = JSON.parse(localStorage.getItem('word_list') || '[]');
-  if (savedWords[id]) {
-    savedWords[id].done = !savedWords[id].done;
-    localStorage.setItem('word_list', JSON.stringify(savedWords));
-    renderWords(savedWords);
-  }
-}
-
 function refreshWords(force) { loadDailyWords(force); }
 function toggleHrModal() { document.getElementById('hrModal').classList.toggle('hidden'); }
 function toggleSleepModal() { document.getElementById('sleepModal').classList.toggle('hidden'); }
@@ -902,9 +825,10 @@ function checkIn(btn) {
   setTimeout(() => btn.textContent = text, 1500);
 }
 
-// 页面加载完成初始化
+// 页面加载完成初始化与保存读取
 loadDailyWords();
 renderTracking();
+loadSavedPageData();
 </script>
 </body>
 </html>
