@@ -40,7 +40,7 @@
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
         </button>
         <h1 class="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent flex items-center gap-2">
-          <span>✨</span> 个人工作与生活仪表盘
+          <span>✨</span> <span class="editable-field" contenteditable="false">个人工作与生活仪表盘</span>
         </h1>
       </div>
       <div class="flex items-center gap-4">
@@ -72,7 +72,11 @@
         </a>
       </nav>
     </div>
+    <!-- 侧边栏底部：新增可直接编辑页面内容的功能按钮 -->
     <div class="pt-4 border-t border-slate-100 space-y-2">
+      <button onclick="toggleEditMode()" id="sidebarEditBtn" class="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors flex items-center gap-2">
+        <span id="editBtnIcon">✏️</span> <span id="editBtnText">开启直接编辑页面</span>
+      </button>
       <button onclick="resetPageData()" class="w-full text-left px-3 py-2 rounded-lg text-xs text-red-600 hover:bg-red-50 transition-colors flex items-center gap-2">
         <span>🔄</span> 恢复默认设置
       </button>
@@ -90,7 +94,7 @@
       <div class="flex items-center justify-between mb-4">
         <div class="flex items-center gap-2">
           <span class="text-2xl">🔤</span>
-          <h2 class="text-lg font-bold text-slate-800">每日英语词汇拓展</h2>
+          <h2 class="text-lg font-bold text-slate-800 editable-field" contenteditable="false">每日英语词汇拓展</h2>
           <span id="wordProgress" class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium">已加载 10 词</span>
         </div>
         <div class="flex gap-2">
@@ -112,27 +116,27 @@
         <div>
           <div class="flex items-center justify-between mb-3">
             <h3 class="text-md font-bold text-slate-800 flex items-center gap-2">
-              <span>📘</span> HR 业务速查手册
+              <span>📘</span> <span class="editable-field" contenteditable="false">HR 业务速查手册</span>
             </h3>
             <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">核心精选</span>
           </div>
-          <p class="text-sm text-slate-600 mb-4">涵盖薪酬计算、结构化面试 STAR 法、绩效考核（KPI/OKR）与常用 HR 专业词汇。</p>
+          <p class="text-sm text-slate-600 mb-4 editable-field" contenteditable="false">涵盖薪酬计算、结构化面试 STAR 法、绩效考核（KPI/OKR）与常用 HR 专业词汇。</p>
         </div>
         <button onclick="toggleHrModal()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm rounded-xl transition-colors shadow-sm shadow-emerald-200 flex items-center justify-center gap-2">
           📖 打开 HR 全景手册
         </button>
       </div>
 
-      <!-- 劳动法与合规指南（已按您的截图与需求完美填充并加入全文查看按钮） -->
+      <!-- 劳动法与合规指南 -->
       <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 flex flex-col justify-between">
         <div>
           <div class="flex items-center justify-between mb-3">
             <h3 class="text-md font-bold text-slate-800 flex items-center gap-2">
-              <span>⚖️</span> 劳动法规与企业合规
+              <span>⚖️</span> <span class="editable-field" contenteditable="false">劳动法规与企业合规</span>
             </h3>
             <span class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full">法律保障</span>
           </div>
-          <p class="text-sm text-slate-600 mb-4">包含劳动合同法常识、竞业限制、工伤认定标准、加班费计算基数及解除劳动合同补偿标准。</p>
+          <p class="text-sm text-slate-600 mb-4 editable-field" contenteditable="false">包含劳动合同法常识、竞业限制、工伤认定标准、加班费计算基数及解除劳动合同补偿标准。</p>
         </div>
         <div class="space-y-2">
           <div class="grid grid-cols-2 gap-2">
@@ -155,9 +159,9 @@
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
         <div>
           <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-            <span>🌙</span> 睡眠改善与精力管理指南
+            <span>🌙</span> <span class="editable-field" contenteditable="false">睡眠改善与精力管理指南</span>
           </h2>
-          <p class="text-xs text-slate-500 mt-0.5">打造高品质深度睡眠环境与全天候精力恢复体系</p>
+          <p class="text-xs text-slate-500 mt-0.5 editable-field" contenteditable="false">打造高品质深度睡眠环境与全天候精力恢复体系</p>
         </div>
         <button onclick="toggleSleepModal()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-xs rounded-xl transition-colors shadow-sm shadow-indigo-200 flex items-center gap-1.5">
           <span>✨</span> 查看完整睡眠改善全景图
@@ -170,45 +174,30 @@
           <div class="font-bold text-indigo-900 text-sm mb-1 flex items-center gap-1.5">
             <span>🛏️</span> 环境构建
           </div>
-          <p class="text-xs text-indigo-700/80 leading-relaxed">维持卧室温度 18-22℃，使用遮光窗帘，减少光声干扰。</p>
+          <p class="text-xs text-indigo-700/80 leading-relaxed editable-field" contenteditable="false">维持卧室温度 18-22℃，使用遮光窗帘，减少光声干扰。</p>
         </div>
         <div class="p-4 rounded-xl bg-purple-50/50 border border-purple-100">
           <div class="font-bold text-purple-900 text-sm mb-1 flex items-center gap-1.5">
             <span>🌿</span> 身心放松
           </div>
-          <p class="text-xs text-purple-700/80 leading-relaxed">睡前 30 分钟无蓝光环境，采用腹式呼吸缓解神经焦虑。</p>
+          <p class="text-xs text-purple-700/80 leading-relaxed editable-field" contenteditable="false">睡前 30 分钟无蓝光环境，采用腹式呼吸缓解神经焦虑。</p>
         </div>
         <div class="p-4 rounded-xl bg-blue-50/50 border border-blue-100">
           <div class="font-bold text-blue-900 text-sm mb-1 flex items-center gap-1.5">
             <span>🥛</span> 营养干预
           </div>
-          <p class="text-xs text-blue-700/80 leading-relaxed">睡前可适量饮用温牛奶，避免过饱或摄入咖啡因。</p>
+          <p class="text-xs text-blue-700/80 leading-relaxed editable-field" contenteditable="false">睡前可适量饮用温牛奶，避免过饱或摄入咖啡因。</p>
         </div>
         <div class="p-4 rounded-xl bg-teal-50/50 border border-teal-100">
           <div class="font-bold text-teal-900 text-sm mb-1 flex items-center gap-1.5">
             <span>⏰</span> 昼夜节律
           </div>
-          <p class="text-xs text-teal-700/80 leading-relaxed">固定起床时间，清晨接受日光照射，建立规律生物钟。</p>
+          <p class="text-xs text-teal-700/80 leading-relaxed editable-field" contenteditable="false">固定起床时间，清晨接受日光照射，建立规律生物钟。</p>
         </div>
       </div>
     </section>
 
   </main>
-
-  <!-- 悬浮设置与编辑工具 -->
-  <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-2 items-end">
-    <div id="editToolsMenu" class="hidden flex-col gap-2 mb-2 bg-white p-3 rounded-2xl shadow-xl border border-slate-200 transition-all">
-      <button onclick="toggleEditMode()" class="px-3 py-2 text-xs font-semibold rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors flex items-center gap-2">
-        <span id="editBtnIcon">✏️</span> <span id="editBtnText">开启直接编辑</span>
-      </button>
-      <button onclick="resetPageData()" class="px-3 py-2 text-xs font-semibold rounded-xl bg-red-50 text-red-600 hover:bg-red-100 transition-colors flex items-center gap-2">
-        <span>🔄</span> 恢复默认
-      </button>
-    </div>
-    <button onclick="toggleEditToolsMenu()" class="p-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all focus:outline-none" title="设置菜单">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-    </button>
-  </div>
 
   <!-- 弹窗 1：睡眠全景指南 Modal -->
   <div id="sleepModal" class="fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
@@ -406,12 +395,6 @@
       }
     }
 
-    // 悬浮工具栏菜单切换
-    function toggleEditToolsMenu() {
-      const menu = document.getElementById("editToolsMenu");
-      if (menu) menu.classList.toggle("hidden");
-    }
-
     // 睡眠全景清单弹窗
     function toggleSleepModal() {
       const modal = document.getElementById("sleepModal");
@@ -424,7 +407,7 @@
       if (modal) modal.classList.toggle("hidden");
     }
 
-    // 劳动法与合同法弹窗（支持合同规范、经济补偿规则及完整劳动合同法条例）
+    // 劳动法与合同法弹窗
     function showLaborLawDialog(lawType) {
       const modal = document.getElementById("laborLawModal");
       const title = document.getElementById("laborLawTitle");
@@ -507,6 +490,7 @@
       const fields = document.querySelectorAll(".editable-field");
       const btnIcon = document.getElementById("editBtnIcon");
       const btnText = document.getElementById("editBtnText");
+      const sidebarEditBtn = document.getElementById("sidebarEditBtn");
 
       fields.forEach(field => {
         field.contentEditable = isEditMode;
@@ -516,9 +500,16 @@
         document.body.classList.toggle("editing-mode", isEditMode);
       }
 
-      if (btnIcon && btnText) {
-        btnIcon.innerText = isEditMode ? "💾" : "✏️";
-        btnText.innerText = isEditMode ? "锁定并保存修改" : "开启直接编辑";
+      if (btnIcon && btnText && sidebarEditBtn) {
+        if (isEditMode) {
+          btnIcon.innerText = "💾";
+          btnText.innerText = "锁定并保存修改";
+          sidebarEditBtn.className = "w-full text-left px-3 py-2 rounded-lg text-xs font-semibold bg-green-50 text-green-700 hover:bg-green-100 transition-colors flex items-center gap-2";
+        } else {
+          btnIcon.innerText = "✏️";
+          btnText.innerText = "开启直接编辑页面";
+          sidebarEditBtn.className = "w-full text-left px-3 py-2 rounded-lg text-xs font-semibold bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors flex items-center gap-2";
+        }
       }
     }
 
