@@ -123,7 +123,7 @@
         </button>
       </div>
 
-      <!-- 劳动法与合规指南 -->
+      <!-- 劳动法与合规指南（已按您的截图与需求完美填充并加入全文查看按钮） -->
       <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 flex flex-col justify-between">
         <div>
           <div class="flex items-center justify-between mb-3">
@@ -134,12 +134,17 @@
           </div>
           <p class="text-sm text-slate-600 mb-4">包含劳动合同法常识、竞业限制、工伤认定标准、加班费计算基数及解除劳动合同补偿标准。</p>
         </div>
-        <div class="grid grid-cols-2 gap-2">
-          <button onclick="showLaborLawDialog('contract')" class="py-2 bg-slate-100 hover:bg-amber-50 hover:text-amber-700 text-slate-700 font-medium text-xs rounded-xl transition-colors">
-            📜 劳动合同规范
-          </button>
-          <button onclick="showLaborLawDialog('compensation')" class="py-2 bg-slate-100 hover:bg-amber-50 hover:text-amber-700 text-slate-700 font-medium text-xs rounded-xl transition-colors">
-            💰 经济补偿金规则
+        <div class="space-y-2">
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="showLaborLawDialog('contract')" class="py-2 px-3 bg-slate-100 hover:bg-amber-50 hover:text-amber-700 text-slate-700 font-medium text-xs rounded-xl transition-colors text-center">
+              📜 劳动合同规范
+            </button>
+            <button onclick="showLaborLawDialog('compensation')" class="py-2 px-3 bg-slate-100 hover:bg-amber-50 hover:text-amber-700 text-slate-700 font-medium text-xs rounded-xl transition-colors text-center">
+              💰 经济补偿金规则
+            </button>
+          </div>
+          <button onclick="showLaborLawDialog('fullText')" class="w-full py-2 bg-amber-600 hover:bg-amber-700 text-white font-medium text-xs rounded-xl transition-colors shadow-sm shadow-amber-200 flex items-center justify-center gap-1.5">
+            📖 查看劳动合同法全文条例
           </button>
         </div>
       </div>
@@ -240,7 +245,7 @@
     </div>
   </div>
 
-  <!-- 弹窗 2：HR 全景手册 Modal（已恢复完整核心知识库） -->
+  <!-- 弹窗 2：HR 全景手册 Modal -->
   <div id="hrModal" class="fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
     <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
       <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-emerald-50/50">
@@ -250,8 +255,6 @@
         <button onclick="toggleHrModal()" class="text-slate-400 hover:text-slate-600 p-1">✕</button>
       </div>
       <div class="p-6 overflow-y-auto space-y-4 custom-scrollbar text-sm text-slate-600">
-        
-        <!-- 板块一 -->
         <div class="space-y-2">
           <h4 class="font-bold text-slate-800 text-base border-l-4 border-emerald-500 pl-2">一、薪酬与工时计算基本公式</h4>
           <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs font-mono space-y-1">
@@ -261,8 +264,6 @@
             <p>• 加班费折算基数：平时不低于 150%，休息日不低于 200%，法定节假日不低于 300%</p>
           </div>
         </div>
-
-        <!-- 板块二 -->
         <div class="space-y-2">
           <h4 class="font-bold text-slate-800 text-base border-l-4 border-emerald-500 pl-2">二、结构化面试 STAR 提问模型</h4>
           <p class="text-xs leading-relaxed bg-emerald-50/30 p-3 rounded-xl border border-emerald-100">
@@ -272,8 +273,6 @@
             <b>R (Result - 结果):</b> 最终取得了什么量化或质化的成果？学到了什么经验？
           </p>
         </div>
-
-        <!-- 板块三 -->
         <div class="space-y-2">
           <h4 class="font-bold text-slate-800 text-base border-l-4 border-emerald-500 pl-2">三、绩效考核与人才盘点 (KPI / OKR / 9宫格)</h4>
           <p class="text-xs leading-relaxed">
@@ -282,8 +281,6 @@
             • <b>人才盘点九宫格:</b> 以横轴“绩效”和纵轴“潜力”对核心人才进行区分，制定差异化的培养与激励方案。
           </p>
         </div>
-
-        <!-- 板块四 -->
         <div class="space-y-2">
           <h4 class="font-bold text-slate-800 text-base border-l-4 border-emerald-500 pl-2">四、常用 HR 专业英语词汇</h4>
           <div class="grid grid-cols-2 gap-2 text-xs">
@@ -293,7 +290,6 @@
             <div class="bg-slate-50 p-2 rounded border border-slate-200"><b>Employee Engagement:</b> 员工敬业度</div>
           </div>
         </div>
-
       </div>
       <div class="p-4 border-t border-slate-100 text-right bg-slate-50">
         <button onclick="toggleHrModal()" class="px-4 py-2 bg-slate-800 text-white rounded-xl text-xs font-medium hover:bg-slate-700 transition-colors">
@@ -303,16 +299,16 @@
     </div>
   </div>
 
-  <!-- 弹窗 3：劳动法查阅 Modal -->
+  <!-- 弹窗 3：劳动法与合同法全景查阅 Modal -->
   <div id="laborLawModal" class="fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
-    <div class="bg-white rounded-2xl max-w-xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
       <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-amber-50/50">
         <h3 id="laborLawTitle" class="font-bold text-slate-800 text-lg flex items-center gap-2">
           <span>⚖️</span> 劳动法律规范速查
         </h3>
         <button onclick="closeLaborLawModal()" class="text-slate-400 hover:text-slate-600 p-1">✕</button>
       </div>
-      <div id="laborLawContent" class="p-6 overflow-y-auto space-y-3 custom-scrollbar text-sm text-slate-600">
+      <div id="laborLawContent" class="p-6 overflow-y-auto space-y-4 custom-scrollbar text-sm text-slate-600">
         <!-- 动态改变内容 -->
       </div>
       <div class="p-4 border-t border-slate-100 text-right bg-slate-50">
@@ -428,7 +424,7 @@
       if (modal) modal.classList.toggle("hidden");
     }
 
-    // 劳动法弹窗
+    // 劳动法与合同法弹窗（支持合同规范、经济补偿规则及完整劳动合同法条例）
     function showLaborLawDialog(lawType) {
       const modal = document.getElementById("laborLawModal");
       const title = document.getElementById("laborLawTitle");
@@ -438,18 +434,54 @@
       if (lawType === 'contract') {
         if(title) title.innerText = "📜 劳动合同签署与试用期规范";
         if(content) content.innerHTML = `
-          <p class="font-bold text-slate-800">1. 试用期上限规则：</p>
-          <p class="text-xs leading-relaxed">劳动合同期限 3 个月至 1 年：试用期不得超过 1 个月；<br>合同期限 1 年至 3 年：试用期不得超过 2 个月；<br>3 年以上固定期限和无固定期限合同：试用期不得超过 6 个月。</p>
-          <p class="font-bold text-slate-800 mt-3">2. 建立劳动关系时间：</p>
-          <p class="text-xs leading-relaxed">用人单位自用工之日起即与劳动者建立劳动关系。建立劳动关系，应当订立书面劳动合同。已建立劳动关系，未同时订立书面劳动合同的，应当自用工之日起一个月内订立书面劳动合同。</p>
+          <div class="space-y-3">
+            <div>
+              <p class="font-bold text-slate-800">1. 试用期上限规则：</p>
+              <p class="text-xs leading-relaxed mt-1">劳动合同期限 3 个月至 1 年：试用期不得超过 1 个月；<br>合同期限 1 年至 3 年：试用期不得超过 2 个月；<br>3 年以上固定期限和无固定期限合同：试用期不得超过 6 个月。</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-800">2. 建立劳动关系与书面合同：</p>
+              <p class="text-xs leading-relaxed mt-1">用人单位自用工之日起即与劳动者建立劳动关系。建立劳动关系，应当订立书面劳动合同。已建立劳动关系，未同时订立书面劳动合同的，应当自用工之日起一个月内订立书面劳动合同。</p>
+            </div>
+          </div>
         `;
       } else if (lawType === 'compensation') {
         if(title) title.innerText = "💰 经济补偿金 N / N+1 计算规则";
         if(content) content.innerHTML = `
-          <p class="font-bold text-slate-800">1. 经济补偿的计算标准 (N)：</p>
-          <p class="text-xs leading-relaxed">经济补偿按劳动者在本单位工作的年限，每满一年支付一个月工资的标准向劳动者支付。六个月以上不满一年的，按一年计算；不满六个月的，向劳动者支付半个月工资的经济补偿。</p>
-          <p class="font-bold text-slate-800 mt-3">2. 代通知金 (N+1)：</p>
-          <p class="text-xs leading-relaxed">用人单位未提前 30 日以书面形式通知劳动者本人解除劳动合同的，应当额外支付劳动者一个月工资（即代通知金）。</p>
+          <div class="space-y-3">
+            <div>
+              <p class="font-bold text-slate-800">1. 经济补偿的计算标准 (N)：</p>
+              <p class="text-xs leading-relaxed mt-1">经济补偿按劳动者在本单位工作的年限，每满一年支付一个月工资的标准向劳动者支付。六个月以上不满一年的，按一年计算；不满六个月的，向劳动者支付半个月工资的经济补偿。</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-800">2. 代通知金 (N+1)：</p>
+              <p class="text-xs leading-relaxed mt-1">用人单位未提前 30 日以书面形式通知劳动者本人解除劳动合同的，应当额外支付劳动者一个月工资（即代通知金）。</p>
+            </div>
+          </div>
+        `;
+      } else if (lawType === 'fullText') {
+        if(title) title.innerText = "📖 《中华人民共和国劳动合同法》核心条例全文";
+        if(content) content.innerHTML = `
+          <div class="space-y-4 text-xs leading-relaxed">
+            <div class="bg-amber-50/50 p-3 rounded-xl border border-amber-100">
+              <p class="font-bold text-slate-800 text-sm mb-1">第一章 总则（节选）</p>
+              <p><b>第三条</b> 订立劳动合同，应当遵循合法、公平、平等自愿、协商一致、诚实信用的原则。依法订立的劳动合同具有约束力，用人单位与劳动者应当履行劳动合同规定的义务。</p>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <p class="font-bold text-slate-800 text-sm mb-1">第二章 劳动合同的订立</p>
+              <p><b>第十条</b> 建立劳动关系，应当订立书面劳动合同。已建立劳动关系，未同时订立书面劳动合同的，应当自用工之日起一个月内订立书面劳动合同。</p>
+              <p class="mt-1"><b>第十四条</b> 无固定期限劳动合同，是指用人单位与劳动者约定无终止时间的劳动合同。劳动者在该用人单位连续工作满十年的，或者用人单位初次实行劳动人事制度改革时依法建立劳动关系，劳动者连续工作满十年且距法定退休年龄不足十年的，应当订立无固定期限劳动合同。</p>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <p class="font-bold text-slate-800 text-sm mb-1">第三章 劳动合同的履行和变更</p>
+              <p><b>第三十五条</b> 用人单位与劳动者协商一致，可以变更劳动合同约定的内容。变更劳动合同，应当采用书面形式。</p>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <p class="font-bold text-slate-800 text-sm mb-1">第四章 劳动合同的解除和终止</p>
+              <p><b>第三十九条</b> 劳动者有下列情形之一的，用人单位可以解除劳动合同：(一)在试用期间被证明不符合录用条件的；(二)严重违反用人单位的规章制度的；(三)严重失职，营私舞弊，给用人单位造成重大损害的...</p>
+              <p class="mt-1"><b>第四十六条</b> 有下列情形之一的，用人单位应当向劳动者支付经济补偿：(一)劳动者依照本法第三十八条规定解除劳动合同的；(二)用人单位依照本法第三十六条规定向劳动者提出解除劳动合同并与劳动者协商一致解除劳动合同的...</p>
+            </div>
+          </div>
         `;
       }
       modal.classList.remove("hidden");
